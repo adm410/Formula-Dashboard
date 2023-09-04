@@ -1,192 +1,192 @@
 {
     "Data": {
         "track": {
-            "name": "Bahrain International Circuit"{
+            "Bahrain International Circuit": {
                 "flag": "🇧🇭",
                 "laps": "57",
                 "length": "5.412",
                 "raceDistance": "308.238"
             },
-            "name": "Jeddah Corniche Circuit"{
+            "Jeddah Corniche Circuit": {
                 "flag": "🇸🇦",
                 "laps": "50",
                 "length": "6.174",
                 "raceDistance": "308.45"
             },
-            "name": "Albert Park Grand Prix Circuit"{
+            "Albert Park Grand Prix Circuit": {
                 "flag": "🇦🇺",
                 "laps": "58",
                 "length": "5.278",
                 "raceDistance": "306.124"
             },
-            "name": "Autodromo Enzo e Dino Ferrari"{
+            "Autodromo Enzo e Dino Ferrari": {
                 "flag": "🇮🇹",
                 "laps": "63",
                 "length": "4.909",
                 "raceDistance": "309.049"
             },
-            "name": "Miami International Autodrome"{
+            "Miami International Autodrome": {
                 "flag": "🇺🇸",
                 "laps": "57",
                 "length": "5.412",
                 "raceDistance": "308.326"
             },
-            "name": "Circuit de Barcelona-Catalunya"{
+            "Circuit de Barcelona-Catalunya": {
                 "flag": "🇪🇸",
                 "laps": "66",
                 "length": "4.657",
                 "raceDistance": "307.236"
             },
-            "name": "Circuit de Monaco"{
+            "Circuit de Monaco": {
                 "flag": "🇲🇨",
                 "laps": "78",
                 "length": "3.337",
                 "raceDistance": "260.286"
             },
-            "name": "Baku City Circuit"{
+            "Baku City Circuit": {
                 "flag": "🇦🇿",
                 "laps": "51",
                 "length": "6.003",
                 "raceDistance": "306.049"
             },
-            "name": "Circuit Gilles Villeneuve"{
+            "Circuit Gilles Villeneuve": {
                 "flag": "🇨🇦",
                 "laps": "70",
                 "length": "4.361",
                 "raceDistance": "305.27"
             },
-            "name": "Silverstone Circuit"{
+            "Silverstone Circuit": {
                 "flag": "🇬🇧",
                 "laps": "52",
                 "length": "5.891",
                 "raceDistance": "306.198"
             },
-            "name": "Red Bull Ring"{
+            "Red Bull Ring": {
                 "flag": "🇦🇹",
                 "laps": "71",
                 "length": "4.318",
                 "raceDistance": "306.452"
             },
-            "name": "Circuit Paul Ricard"{
+            "Circuit Paul Ricard": {
                 "flag": "🇫🇷",
                 "laps": "53",
                 "length": "5.842",
                 "raceDistance": "309.69"
             },
-            "name": "Hungaroring"{
+            "Hungaroring": {
                 "flag": "🇭🇺",
                 "laps": "70",
                 "length": "4.381",
                 "raceDistance": "306.63"
             },
-            "name": "Circuit de Spa-Francorchamps"{
+            "Circuit de Spa-Francorchamps": {
                 "flag": "🇧🇪",
                 "laps": "44",
                 "length": "7.004",
                 "raceDistance": "308.052"
             },
-            "name": "Circuit Park Zandvoort"{
+            "Circuit Park Zandvoort": {
                 "flag": "🇳🇱",
                 "laps": "72",
                 "length": "4.259",
                 "raceDistance": "306.587"
             },
-            "name": "Autodromo Nazionale di Monza"{
+            "Autodromo Nazionale di Monza": {
                 "flag": "🇮🇹",
                 "laps": "53",
                 "length": "5.793",
                 "raceDistance": "306.72"
             },
-            "name": "Marina Bay Street Circuit"{
+            "Marina Bay Street Circuit": {
                 "flag": "🇸🇬",
                 "laps": "61",
                 "length": "5.063",
                 "raceDistance": "308.706"
             },
-            "name": "Suzuka Circuit"{
+            "Suzuka Circuit": {
                 "flag": "🇯🇵",
                 "laps": "53",
                 "length": "5.807",
                 "raceDistance": "307.471"
             },
-            "name": "Circuit of the Americas"{
+            "Circuit of the Americas": {
                 "flag": "🇺🇸",
                 "laps": "56",
                 "length": "5.513",
                 "raceDistance": "308.405"
             },
-            "name": "Autódromo Hermanos Rodríguez"{
+            "Autódromo Hermanos Rodríguez": {
                 "flag": "🇲🇽",
                 "laps": "71",
                 "length": "4.304",
                 "raceDistance": "305.354"
             },
-            "name": "Autódromo José Carlos Pace"{
+            "Autódromo José Carlos Pace": {
                 "flag": "🇧🇷",
                 "laps": "71",
                 "length": "4.309",
                 "raceDistance": "305.879"
             },
-            "name": "Yas Marina Circuit"{
+            "Yas Marina Circuit": {
                 "flag": "🇦🇪",
                 "laps": "58",
                 "length": "5.281",
                 "raceDistance": "306.183"
             },
-            "name": "Las Vegas Strip Street Circuit"{
+            "Las Vegas Strip Street Circuit": {
                 "flag": "🇺🇸",
                 "laps": "50",
                 "length": "6.116",
                 "raceDistance": "305.775"
             },
-            "name": "Shanghai International Circuit"{
+            "Shanghai International Circuit": {
                 "flag": "🇨🇳",
                 "laps": "56",
                 "length": "5.451",
                 "raceDistance": "305.066"
             },
-            "name": "Istanbul Park"{
+            "Istanbul Park": {
                 "flag": "🇹🇷",
                 "laps": "58",
                 "length": "5.338",
                 "raceDistance": "309.396"
             },
-            "name": "Losail International Circuit"{
+            "Losail International Circuit": {
                 "flag": "🇶🇦",
                 "laps": "57",
                 "length": "5.38",
                 "raceDistance": "306.66"
             },
-            "name": "Autódromo Internacional do Algarve"{
+            "Autódromo Internacional do Algarve": {
                 "flag": "🇵🇹",
                 "laps": "66",
                 "length": "4.653",
                 "raceDistance": "306.826"
             },
-            "name": "Nürburgring"{
+            "Nürburgring": {
                 "flag": "🇩🇪",
                 "laps": "60",
                 "length": "5.148",
                 "raceDistance": "308.617"
             },
-            "name": "Sochi Autodrom"{
+            "Sochi Autodrom": {
                 "flag": "🇷🇺",
                 "laps": "53",
                 "length": "5.848",
                 "raceDistance": "309.745"
             },
-            "name": "Hockenheimring"{
+            "Hockenheimring": {
                 "flag": "🇩🇪",
                 "laps": "67",
                 "length": "4.574",
                 "raceDistance": "306.458"
             },
-            "name": "Autodromo Internazionale del Mugello"{
+            "Autodromo Internazionale del Mugello": {
                 "flag": "🇮🇹",
                 "laps": "59",
                 "length": "5.245",
                 "raceDistance": "309.497"
-            },
+            }
         },
         "nationality": {}
     }
