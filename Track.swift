@@ -6,7 +6,7 @@
 //
 
 
-var  flag = ""
+var flag = ""
 var laps = ""
 var length = ""
 var distance = ""
