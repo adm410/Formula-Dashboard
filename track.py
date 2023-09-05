@@ -11,6 +11,10 @@ def trackData(track, name):
         laps = "58"
         length = "5.278"
         distance = "306.124"
+    elif track == "Autodromo Internazionale del Mugello":
+        laps = "59"
+        length = "5.245"
+        distance = "309.497"
     elif track == "Autódromo Internacional do Algarve":
         laps = "66"
         length = "4.653"
@@ -23,6 +27,10 @@ def trackData(track, name):
         laps = "71"
         length = "4.304"
         distance = "305.354"
+    elif track == "Autodromo Nazionale di Monza":
+        laps = "53"
+        length = "5.793"
+        distance = "306.72"
     elif track == "Autódromo José Carlos Pace":
         laps = "71"
         length = "4.309"
@@ -111,6 +119,10 @@ def trackData(track, name):
         laps = "53"
         length = "5.848"
         distance = "309.745"
+    elif track == "Circuit de Spa-Francorchamps":
+        laps = "44"
+        length = "7.004"
+        distance = "308.052"
     elif track == "Suzuka Circuit":
         laps = "53"
         length = "5.807"
