@@ -1,467 +1,382 @@
 {
     "Data": {
-        "country": [
-            {
-                "name": "australia",
+        "country": {
+            "name": "australia"{
                 "flag": "🇦🇺"
             },
-            {
-                "name": "austria",
+            "name": "austria"{
                 "flag": "🇦🇹"
             },
-            {
-                "name": "azerbaijan",
+            "name": "azerbaijan"{
                 "flag": "🇦🇿"
             },
-            {
-                "name": "bahrain",
+            "name": "bahrain"{
                 "flag": "🇧🇭"
             },
-            {
-                "name": "belgium",
+            "name": "belgium"{
                 "flag": "🇧🇪"
             },
-            {
-                "name": "brazil",
+            "name": "brazil"{
                 "flag": "🇧🇷"
             },
-            {
-                "name": "canada",
+            "name": "canada"{
                 "flag": "🇨🇦"
             },
-            {
-                "name": "china",
+            "name": "china"{
                 "flag": "🇨🇳"
             },
-            {
-                "name": "denmark",
+            "name": "denmark"{
                 "flag": "🇩🇰"
             },
-            {
-                "name": "finland",
+            "name": "finland"{
                 "flag": "🇫🇮"
             },
-            {
-                "name": "france",
+            "name": "france"{
                 "flag": "🇫🇷"
             },
-            {
-                "name": "germany",
+            "name": "germany"{
                 "flag": "🇩🇪"
             },
-            {
-                "name": "hungary",
+            "name": "hungary"{
                 "flag": "🇭🇺"
             },
-            {
-                "name": "italy",
+            "name": "israel"{
+                "flag": "🇮🇱"
+            },
+            "name": "italy"{
                 "flag": "🇮🇹"
             },
-            {
-                "name": "japan",
+            "name": "japan"{
                 "flag": "🇯🇵"
             },
-            {
-                "name": "mexico",
+            "name": "mexico"{
                 "flag": "🇲🇽"
             },
-            {
-                "name": "monaco",
+            "name": "monaco"{
                 "flag": "🇲🇨"
             },
-            {
-                "name": "netherlands",
+            "name": "netherlands"{
                 "flag": "🇳🇱"
             },
-            {
-                "name": "new zealand",
+            "name": "new zealand"{
                 "flag": "🇳🇿"
             },
-            {
-                "name": "portugal",
+            "name": "portugal"{
                 "flag": "🇵🇹"
             },
-            {
-                "name": "qatar",
+            "name": "qatar"{
                 "flag": "🇶🇦"
             },
-            {
-                "name": "russia",
+            "name": "russia"{
                 "flag": "🇷🇺"
             },
-            {
-                "name": "saudi arabia",
+            "name": "saudi arabia"{
                 "flag": "🇸🇦"
             },
-            {
-                "name": "singapore",
+            "name": "singapore"{
                 "flag": "🇸🇬"
             },
-            {
-                "name": "spain",
+            "name": "spain"{
                 "flag": "🇪🇸"
             },
-            {
-                "name": "thailand",
+            "name": "thailand"{
                 "flag": "🇹🇭"
             },
-            {
-                "name": "turkey",
+            "name": "turkey"{
                 "flag": "🇹🇷"
             },
-            {
-                "name": "uae",
+            "name": "uae"{
                 "flag": "🇦🇪"
             },
-            {
-                "name": "united kingdom",
+            "name": "united kingdom"{
                 "flag": "🇬🇧"
             },
-            {
-                "name": "united states",
+            "name": "united states"{
                 "flag": "🇺🇸"
             }
-        ],
-        "nationality": [
-            {
-                "name": "american",
+        },
+        "nationality": {
+            "name": "american"{
                 "flag": "🇺🇸"
             },
-            {
-                "name": "australian",
+            "name": "australian"{
                 "flag": "🇦🇺"
             },
-            {
-                "name": "austrian",
+            "name": "austrian"{
                 "flag": "🇦🇹"
             },
-            {
-                "name": "azerbaijani",
+            "name": "azerbaijani"{
                 "flag": "🇦🇿"
             },
-            {
-                "name": "bahraini",
+            "name": "bahraini"{
                 "flag": "🇧🇭"
             },
-            {
-                "name": "belgian",
+            "name": "belgian"{
                 "flag": "🇧🇪"
             },
-            {
-                "name": "brazilian",
+            "name": "brazilian"{
                 "flag": "🇧🇷"
             },
-            {
-                "name": "british",
+            "name": "british"{
                 "flag": "🇬🇧"
             },
-            {
-                "name": "canadian",
+            "name": "canadian"{
                 "flag": "🇨🇦"
             },
-            {
-                "name": "chinese",
+            "name": "chinese"{
                 "flag": "🇨🇳"
             },
-            {
-                "name": "danish",
+            "name": "danish"{
                 "flag": "🇩🇰"
             },
-            {
-                "name": "dutch",
+            "name": "dutch"{
                 "flag": "🇳🇱"
             },
-            {
-                "name": "emirati",
+            "name": "emirati"{
                 "flag": "🇦🇪"
             },
-            {
-                "name": "finnish",
+            "name": "finnish"{
                 "flag": "🇫🇮"
             },
-            {
-                "name": "french",
+            "name": "french"{
                 "flag": "🇫🇷"
             },
-            {
-                "name": "german",
+            "name": "german"{
                 "flag": "🇩🇪"
             },
-            {
-                "name": "hungarian",
+            "name": "hungarian"{
                 "flag": "🇭🇺"
             },
-            {
-                "name": "italian",
+            "name": "israeli"{
+                "flag": "🇮🇱"
+            },
+            "name": "italian"{
                 "flag": "🇮🇹"
             },
-            {
-                "name": "japanese",
+            "name": "japanese"{
                 "flag": "🇯🇵"
             },
-            {
-                "name": "mexican",
+            "name": "mexican"{
                 "flag": "🇲🇽"
             },
-            {
-                "name": "monegasque",
+            "name": "monegasque"{
                 "flag": "🇲🇨"
             },
-            {
-                "name": "new zealander",
+            "name": "new zealander"{
                 "flag": "🇳🇿"
             },
-            {
-                "name": "portuguese",
+            "name": "portuguese"{
                 "flag": "🇵🇹"
             },
-            {
-                "name": "qatari",
+            "name": "qatari"{
                 "flag": "🇶🇦"
             },
-            {
-                "name": "russian",
+            "name": "russian"{
                 "flag": "🇷🇺"
             },
-            {
-                "name": "saudi",
+            "name": "saudi"{
                 "flag": "🇸🇦"
             },
-            {
-                "name": "singaporean",
+            "name": "singaporean"{
                 "flag": "🇸🇬"
             },
-            {
-                "name": "spanish",
+            "name": "spanish"{
                 "flag": "🇪🇸"
             },
-            {
-                "name": "thai",
+            "name": "thai"{
                 "flag": "🇹🇭"
             },
-            {
-                "name": "turkish",
+            "name": "turkish"{
                 "flag": "🇹🇷"
             }
-        ],
-        "track": [
-            {
-                "name": "Albert Park Grand Prix Circuit",
+        },
+        "track": {
+            "name": "Albert Park Grand Prix Circuit"{
                 "flag": "🇦🇺",
                 "laps": "58",
                 "length": "5.278",
                 "distance": "306.124"
             },
-            {
-                "name": "Autodromo Enzo e Dino Ferrari",
+            "name": "Autodromo Enzo e Dino Ferrari"{
                 "flag": "🇮🇹",
                 "laps": "63",
                 "length": "4.909",
                 "distance": "309.049"
             },
-            {
-                "name": "Autodromo Internazionale del Mugello",
+            "name": "Autodromo Internazionale del Mugello"{
                 "flag": "🇮🇹",
                 "laps": "59",
                 "length": "5.245",
                 "distance": "309.497"
             },
-            {
-                "name": "Autodromo Nazionale di Monza",
+            "name": "Autodromo Nazionale di Monza"{
                 "flag": "🇮🇹",
                 "laps": "53",
                 "length": "5.793",
                 "distance": "306.72"
             },
-            {
-                "name": "Autódromo Hermanos Rodríguez",
+            "name": "Autódromo Hermanos Rodríguez"{
                 "flag": "🇲🇽",
                 "laps": "71",
                 "length": "4.304",
                 "distance": "305.354"
             },
-            {
-                "name": "Autódromo Internacional do Algarve",
+            "name": "Autódromo Internacional do Algarve"{
                 "flag": "🇵🇹",
                 "laps": "66",
                 "length": "4.653",
                 "distance": "306.826"
             },
-            {
-                "name": "Autódromo José Carlos Pace",
+            "name": "Autódromo José Carlos Pace"{
                 "flag": "🇧🇷",
                 "laps": "71",
                 "length": "4.309",
                 "distance": "305.879"
             },
-            {
-                "name": "Bahrain International Circuit",
+            "name": "Bahrain International Circuit"{
                 "flag": "🇧🇭",
                 "laps": "57",
                 "length": "5.412",
                 "distance": "308.238"
             },
-            {
-                "name": "Baku City Circuit",
+            "name": "Baku City Circuit"{
                 "flag": "🇦🇿",
                 "laps": "51",
                 "length": "6.003",
                 "distance": "306.049"
             },
-            {
-                "name": "Circuit Gilles Villeneuve",
+            "name": "Circuit Gilles Villeneuve"{
                 "flag": "🇨🇦",
                 "laps": "70",
                 "length": "4.361",
                 "distance": "305.27"
             },
-            {
-                "name": "Circuit Park Zandvoort",
+            "name": "Circuit Park Zandvoort"{
                 "flag": "🇳🇱",
                 "laps": "72",
                 "length": "4.259",
                 "distance": "306.587"
             },
-            {
-                "name": "Circuit Paul Ricard",
+            "name": "Circuit Paul Ricard"{
                 "flag": "🇫🇷",
                 "laps": "53",
                 "length": "5.842",
                 "distance": "309.69"
             },
-            {
-                "name": "Circuit de Barcelona-Catalunya",
+            "name": "Circuit de Barcelona-Catalunya"{
                 "flag": "🇪🇸",
                 "laps": "66",
                 "length": "4.657",
                 "distance": "307.236"
             },
-            {
-                "name": "Circuit de Monaco",
+            "name": "Circuit de Monaco"{
                 "flag": "🇲🇨",
                 "laps": "78",
                 "length": "3.337",
                 "distance": "260.286"
             },
-            {
-                "name": "Circuit de Spa-Francorchamps",
+            "name": "Circuit de Spa-Francorchamps"{
                 "flag": "🇧🇪",
                 "laps": "44",
                 "length": "7.004",
                 "distance": "308.052"
             },
-            {
-                "name": "Circuit of the Americas",
+            "name": "Circuit of the Americas"{
                 "flag": "🇺🇸",
                 "laps": "56",
                 "length": "5.513",
                 "distance": "308.405"
             },
-            {
-                "name": "Hockenheimring",
+            "name": "Hockenheimring"{
                 "flag": "🇩🇪",
                 "laps": "67",
                 "length": "4.574",
                 "distance": "306.458"
             },
-            {
-                "name": "Hungaroring",
+            "name": "Hungaroring"{
                 "flag": "🇭🇺",
                 "laps": "70",
                 "length": "4.381",
                 "distance": "306.63"
             },
-            {
-                "name": "Istanbul Park",
+            "name": "Istanbul Park"{
                 "flag": "🇹🇷",
                 "laps": "58",
                 "length": "5.338",
                 "distance": "309.396"
             },
-            {
-                "name": "Jeddah Corniche Circuit",
+            "name": "Jeddah Corniche Circuit"{
                 "flag": "🇸🇦",
                 "laps": "50",
                 "length": "6.174",
                 "distance": "308.45"
             },
-            {
-                "name": "Las Vegas Strip Street Circuit",
+            "name": "Las Vegas Strip Street Circuit"{
                 "flag": "🇺🇸",
                 "laps": "50",
                 "length": "6.116",
                 "distance": "305.775"
             },
-            {
-                "name": "Losail International Circuit",
+            "name": "Losail International Circuit"{
                 "flag": "🇶🇦",
                 "laps": "57",
                 "length": "5.38",
                 "distance": "306.66"
             },
-            {
-                "name": "Marina Bay Street Circuit",
+            "name": "Marina Bay Street Circuit"{
                 "flag": "🇸🇬",
                 "laps": "61",
                 "length": "5.063",
                 "distance": "308.706"
             },
-            {
-                "name": "Miami International Autodrome",
+            "name": "Miami International Autodrome"{
                 "flag": "🇺🇸",
                 "laps": "57",
                 "length": "5.412",
                 "distance": "308.326"
             },
-            {
-                "name": "Nürburgring",
+            "name": "Nürburgring"{
                 "flag": "🇩🇪",
                 "laps": "60",
                 "length": "5.148",
                 "distance": "308.617"
             },
-            {
-                "name": "Red Bull Ring",
+            "name": "Red Bull Ring"{
                 "flag": "🇦🇹",
                 "laps": "71",
                 "length": "4.318",
                 "distance": "306.452"
             },
-            {
-                "name": "Shanghai International Circuit",
+            "name": "Shanghai International Circuit"{
                 "flag": "🇨🇳",
                 "laps": "56",
                 "length": "5.451",
                 "distance": "305.066"
             },
-            {
-                "name": "Silverstone Circuit",
+            "name": "Silverstone Circuit"{
                 "flag": "🇬🇧",
                 "laps": "52",
                 "length": "5.891",
                 "distance": "306.198"
             },
-            {
-                "name": "Sochi Autodrom",
+            "name": "Sochi Autodrom"{
                 "flag": "🇷🇺",
                 "laps": "53",
                 "length": "5.848",
                 "distance": "309.745"
             },
-            {
-                "name": "Suzuka Circuit",
+            "name": "Suzuka Circuit"{
                 "flag": "🇯🇵",
                 "laps": "53",
                 "length": "5.807",
                 "distance": "307.471"
             },
-            {
-                "name": "Yas Marina Circuit",
+            "name": "Yas Marina Circuit"{
                 "flag": "🇦🇪",
                 "laps": "58",
                 "length": "5.281",
                 "distance": "306.183"
             }
-        ]
+        }
     }
 }
