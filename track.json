@@ -1,6 +1,6 @@
 {
     "Data": {
-        "country": {
+        "country": [
             {
                 "name": "australia",
                 "flag": "🇦🇺"
@@ -121,8 +121,8 @@
                 "name": "united states",
                 "flag": "🇺🇸"
             }
-        },
-        "nationality": {
+        ],
+        "nationality": [
             {
                 "name": "american",
                 "flag": "🇺🇸"
@@ -243,8 +243,8 @@
                 "name": "turkish",
                 "flag": "🇹🇷"
             }
-        },
-        "track": {
+        ],
+        "track": [
             {
                 "name": "Albert Park Grand Prix Circuit",
                 "flag": "🇦🇺",
@@ -462,6 +462,6 @@
                 "length": "5.281",
                 "distance": "306.183"
             }
-        }
+        ]
     }
 }
