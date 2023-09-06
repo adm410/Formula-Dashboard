@@ -28,10 +28,10 @@ def flagData(country, nationality):
     flag = "🇩🇪"
   elif nationality == "Hungarian" or country == "Hungary":
     flag = "🇭🇺"
-  elif nationality == "Italian" or country == "Italy":
-    flag = "🇮🇹"
   elif nationality == "Israeli" or country == "Israel":
     flag = "🇮🇱"
+  elif nationality == "Italian" or country == "Italy":
+    flag = "🇮🇹"
   elif nationality == "Japanese" or country == "Japan":
     flag = "🇯🇵"
   elif nationality == "Mexican" or country == "Mexico":
