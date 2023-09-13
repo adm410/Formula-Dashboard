@@ -1,0 +1,183 @@
+:root {
+  --bordergray: #DFE2E699 !important;
+  --red: red !important;
+
+  --white: rgb(250, 250, 250) !important;
+  --textwhite: white !important;
+  --lightwhite: white !important;
+
+  --black: black !important;
+  --textblack: black !important;
+  --lightblack: #090909 !important;
+}
+
+body {
+  background-color: var(--white) !important;
+  color: var(--textblack) !important;
+  font-size: 15px !important;
+}
+
+body.dark-mode {
+  background-color: var(--black) !important;
+  color: var(--textwhite) !important;
+}
+
+#header {
+  font-size: 33px;
+  transition: 0.2s;
+  height: 70px;
+  -webkit-backdrop-filter: blur(100px);
+  backdrop-filter: blur(100px);
+  border-bottom: solid 1.5px !important;
+  border-color: var(--bordergray) !important;
+}
+
+#headertxt {
+  color: var(--textblack);
+  font-weight: 550;
+  transition: 0.2s;
+}
+
+#headertxt.dark-mode {
+  color: var(--textwhite) !important;
+}
+
+#headertxt:hover {
+  display: block;
+  color: var(--red) !important;
+}
+
+#next,
+#driver,
+#constructor,
+#calendar {
+  background-color: var(--lightwhite) !important;
+  color: var(--textblack) !important;
+  font-weight: 500;
+  transition: 0.2s;
+  align-content: center;
+  text-align: center;
+  margin: 30px auto;
+  border: solid 2px !important;
+  border-radius: 10px !important;
+  border-color: var(--bordergray) !important;
+}
+
+#next.dark-mode,
+#driver.dark-mode,
+#constructor.dark-mode,
+#calendar.dark-mode {
+  background-color: var(--lightblack) !important;
+  color: var(--textwhite) !important;
+}
+
+#next:active,
+#driver:active,
+#constructor:active,
+#calendar:active {
+  transition: 0.2s;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+table {
+  transition: 0.2s;
+  font-weight: 500;
+  margin: 10px auto 10px auto;
+  width: 100%;
+  align-content: left;
+  text-align: left;
+  border-collapse: separate;
+}
+
+th,
+td {
+  padding: 4px 50px 6px 50px !important;
+}
+
+th {
+  border-bottom: solid 2px !important;
+  border-color: var(--bordergray) !important;
+}
+
+.tableFooter {
+  font-weight: 600;
+  border-top: solid 2px;
+  border-color: var(--bordergray) !important;
+}
+
+#nav-link {
+  transition: 0.2s;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: var(--red) !important;
+  -webkit-backdrop-filter: blur(100px);
+  backdrop-filter: blur(100px);
+}
+
+#nav-link.active {
+  color: var(--textwhite) !important;
+  background-color: var(--red) !important;
+}
+
+.linkOut {
+  transition: 0.2s;
+  font-weight: 600;
+}
+
+.linkOut:hover {
+  color: var(--red) !important;
+}
+
+#darkText,
+#driver-table,
+#constructor-table,
+#calendar-table {
+  color: var(--textblack) !important;
+}
+
+#darkText.dark-mode,
+#driver-table.dark-mode,
+#constructor-table.dark-mode,
+#calendar-table.dark-mode {
+  color: var(--textwhite) !important;
+}
+
+input {
+  font-weight: 600 !important;
+  width: 120px !important;
+  border-radius: 10px !important;
+}
+
+.loading-cell,
+.error-cell {
+  padding-top: 20px !important;
+  text-align: center;
+  color: var(--red) !important;
+}
+
+#versiontxt {
+  opacity: 0.4;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+#calIcon {
+  color: var(--red);
+  transition: 0.3s !important;
+  display: block;
+  opacity: 0;
+}
+
+#yearPicker {
+  transition: 0.2s;
+  border: solid 1.5px !important;
+  border-radius: 10px !important;
+  border-color: var(--bordergray) !important;
+}
+
+#yearPicker.dark-mode {
+  background-color: var(--lightblack) !important;
+  color: var(--textwhite) !important;
+
+}
