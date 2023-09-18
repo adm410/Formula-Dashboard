@@ -8,10 +8,11 @@
 
   --black: black !important;
   --textblack: black !important;
-  --lightblack: #090909 !important;
+  --lightblack: #111111 !important;
 }
 
 body {
+  transition: 0.2s !important;
   background-color: var(--white) !important;
   color: var(--textblack) !important;
   font-size: 15px !important;
@@ -23,9 +24,11 @@ body.dark-mode {
 }
 
 #header {
-  font-size: 33px;
   transition: 0.2s;
-  height: 70px;
+  scale: 1;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   -webkit-backdrop-filter: blur(100px);
   backdrop-filter: blur(100px);
   border-bottom: solid 1.5px !important;
@@ -33,9 +36,9 @@ body.dark-mode {
 }
 
 #headertxt {
-  color: var(--textblack);
-  font-weight: 550;
   transition: 0.2s;
+  font-size: 33px;
+  font-weight: 550;
 }
 
 #headertxt.dark-mode {
@@ -47,19 +50,24 @@ body.dark-mode {
   color: var(--red) !important;
 }
 
+#headereffect {
+  padding-left: 30px;
+  padding-right: 30px;
+  transition: 0.2s;
+}
+
 #next,
 #driver,
 #constructor,
 #calendar {
   background-color: var(--lightwhite) !important;
-  color: var(--textblack) !important;
   font-weight: 500;
   transition: 0.2s;
   align-content: center;
   text-align: center;
   margin: 30px auto;
   border: solid 2px !important;
-  border-radius: 10px !important;
+  border-radius: 15px !important;
   border-color: var(--bordergray) !important;
 }
 
@@ -71,16 +79,16 @@ body.dark-mode {
   color: var(--textwhite) !important;
 }
 
-#next:active,
-#driver:active,
-#constructor:active,
-#calendar:active {
-  transition: 0.2s;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+
+#race-details-name {
+  font-size: xx-large;
+  font-weight: 550;
+  border-top: solid 2px !important;
+  border-color: var(--bordergray) !important;
 }
 
 table {
-  transition: 0.2s;
+  transition: 0.2s !important;
   font-weight: 500;
   margin: 10px auto 10px auto;
   width: 100%;
@@ -107,11 +115,10 @@ th {
 
 #nav-link {
   transition: 0.2s;
+  border-radius: 8px !important;
   font-size: 15px !important;
   font-weight: 500 !important;
   color: var(--red) !important;
-  -webkit-backdrop-filter: blur(100px);
-  backdrop-filter: blur(100px);
 }
 
 #nav-link.active {
@@ -150,27 +157,27 @@ input {
 
 .loading-cell,
 .error-cell {
-  padding-top: 20px !important;
+  padding-top: 30px !important;
+  font-size: 20px;
   text-align: center;
   color: var(--red) !important;
+  font-weight: 600;
 }
 
 #versiontxt {
   opacity: 0.4;
   font-size: 15px;
   font-weight: 600;
-  transition: 0.2s;
 }
 
 #calIcon {
+  transition: 0.2s !important;
+  font-size: 30px;
   color: var(--red);
-  transition: 0.3s !important;
-  display: block;
   opacity: 0;
 }
 
 #yearPicker {
-  transition: 0.2s;
   border: solid 1.5px !important;
   border-radius: 10px !important;
   border-color: var(--bordergray) !important;
@@ -179,5 +186,18 @@ input {
 #yearPicker.dark-mode {
   background-color: var(--lightblack) !important;
   color: var(--textwhite) !important;
+}
 
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+.bi-chevron-right {
+  transition: 0.3s;
+}
+
+.justified-text {
+  text-align: justify !important;
+  max-width: fit-content;
+  margin: 0 auto;
 }

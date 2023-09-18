@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", getRaceDetails);
 document.addEventListener("DOMContentLoaded", getSeasonDetails);
+document.addEventListener("DOMContentLoaded", getTrackDetails);
 window.onscroll = function () { scrollFunction() };
 
 const urlSeason = "https://ergast.com/api/f1/current.json"
@@ -87,12 +88,15 @@ function getRaceDetails() {
       // `
 
       const raceDetails = `
-    <p>${p1}
-    <br><div class="pb-0">${p2}</div>
-    <br>${p3}
-    <br><div class="pb-0">${q}</div>
-    <br>${r}</p>
+    <div class="justified-text">
+    <div>${p1}</div>
+    <div class="pb-4">${p2}</div>
+    <div>${p3}</p>
+    <div class="pb-4">${q}</div>
+    <div class="pb-3">${r}</div>
+    </div>
   `;
+
       document.getElementById("document-name").innerHTML = documentName;
       document.getElementById("race-details-name").innerHTML = raceDetailsName;
       document.getElementById("race-details-track").innerHTML = raceDetailsTrack;
@@ -101,7 +105,7 @@ function getRaceDetails() {
       document.getElementById("race-round").innerHTML = raceRound;
     })
     .catch(error => {
-      document.getElementById("race-details-name").innerHTML = `<tr><td colspan='4' class='error-cell'>Error: ${error}</td></tr>`;
+      document.getElementById("race-details-name").innerHTML = `<p class='error-cell'>Error: ${error}</p>`;
     });
 }
 
@@ -122,7 +126,7 @@ function getSeasonDetails() {
 
 function updateDriverTable(year) {
   const driverTable = document.getElementById("driver-table").getElementsByTagName('tbody')[0];
-  driverTable.innerHTML = "<tr><td colspan='4' class='loading-cell'><span class='spinner-border spinner-border' role='status' aria-hidden='true'></span></td></tr>";
+  driverTable.innerHTML = "<tr><td colspan='5' class='loading-cell'><span class='spinner-border spinner-border' role='status' aria-hidden='true'></span></td></tr>";
 
   fetch(`https://ergast.com/api/f1/${year}/driverstandings.json`)
     .then(response => response.json())
@@ -161,7 +165,7 @@ function updateDriverTable(year) {
       });
     })
     .catch(error => {
-      driverTable.innerHTML = `<tr><td colspan='4' class='error-cell'>Error: ${error}</td></tr>`;
+      driverTable.innerHTML = `<tr><td colspan='5' class='error-cell'>Error: ${error}</td></tr>`;
     });
 }
 
@@ -207,7 +211,7 @@ function updateConstructorTable(year) {
 
 function updateCalendarTable(year) {
   const calendarTable = document.getElementById("calendar-table").getElementsByTagName('tbody')[0];
-  calendarTable.innerHTML = "<tr><td colspan='3' class='loading-cell' colspan='3'><span class='spinner-border spinner-border' role='status' aria-hidden='true'></span></td></tr>";
+  calendarTable.innerHTML = "<tr><td colspan='5' class='loading-cell' colspan='3'><span class='spinner-border spinner-border' role='status' aria-hidden='true'></span></td></tr>";
 
   fetch(`https://ergast.com/api/f1/${year}.json`)
     .then(response => response.json())
@@ -283,7 +287,7 @@ function updateCalendarTable(year) {
       });
     })
     .catch(error => {
-      calendarTable.innerHTML = `< tr > <td colspan='3' class='error-cell'>Error: ${error.message}</td></tr > `;
+      calendarTable.innerHTML = `<tr><td colspan='5' class='error-cell'>Error: ${error}</td></tr>`;
     });
 }
 
@@ -306,10 +310,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (currentYear != selectedYear) {
       document.getElementById("calIcon").style.opacity = "1";
-      document.getElementById("calIcon").style.display = "block";
     } else {
       document.getElementById("calIcon").style.opacity = "0";
-      document.getElementById("calIcon").style.display = "none";
     }
   });
 });
@@ -319,28 +321,66 @@ function updateYear() {
   const currentYear = new Date().getFullYear();
   yearPicker.value = currentYear;
   yearPicker.max = currentYear;
-  document.getElementById("calIcon").style.display = "none";
+  document.getElementById("calIcon").style.opacity = "0";
   updateConstructorTable(currentYear);
   updateDriverTable(currentYear);
   updateCalendarTable(currentYear);
 }
 
+function getTrackDetails() {
+  fetch(urlNext)
+    .then(response => response.json())
+    .then(data => {
+      const race = data.MRData.RaceTable.Races[0];
+      const raceTrack = race.Circuit.circuitName;
+
+      fetch('https://raw.githubusercontent.com/adm410/Formula-Dashboard/main/track.json')
+        .then(response => response.json())
+        .then(data => {
+          const track = data.Data.track.find(track => track.name === raceTrack);
+
+          if (track) {
+            const trackLaps = `
+              Laps: ${track.laps}
+            `
+            const trackLength = `
+            Length: ${track.length} km
+            `
+            const trackDistance = `
+            Distance: ${track.distance} km
+            `
+              ;
+            document.getElementById("track-laps").innerHTML = trackLaps;
+            document.getElementById("track-length").innerHTML = trackLength;
+            document.getElementById("track-distance").innerHTML = trackDistance;
+          } else {
+            document.getElementById("trackData").innerHTML = `<p class='error-cell'>Error: Track Not Found.</p>`;
+          }
+        })
+        .catch(error => {
+          document.getElementById("trackData").innerHTML = `<p class='error-cell'>Error: ${error}</p>`;
+        });
+    })
+    .catch(error => {
+      document.getElementById("trackData").innerHTML = `<p class='error-cell'>Error: ${error}</p>`;
+    });
+}
+
+
 function scrollFunction() {
   if (document.body.scrollTop > 25 || document.documentElement.scrollTop > 25) {
     document.getElementById("header").style.boxShadow = "0 4px 10px 0 rgba(0, 0, 0, 0.2)";
-    document.getElementById("header").style.fontSize = "27px";
-    document.getElementById("header").style.height = "65px";
-    document.getElementById("versiontxt").style.opacity = "0";
-    document.getElementById("yearPicker").style.fontSize = "15px";
+    document.getElementById("headereffect").style.scale = "0.9"
   } else {
     document.getElementById("header").style.boxShadow = "";
-    document.getElementById("header").style.fontSize = "33px";
-    document.getElementById("header").style.height = "70px";
-    document.getElementById("versiontxt").style.opacity = "0.4";
-    document.getElementById("yearPicker").style.fontSize = "17px";
+    document.getElementById("headereffect").style.scale = "1"
   }
 }
 
+function rotateArrow() {
+  var arrow = document.querySelector('.bi-chevron-right');
+  arrow.classList.toggle('rotate-90');
+}
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
   document.body.classList.add('dark-mode');

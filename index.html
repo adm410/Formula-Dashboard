@@ -17,17 +17,18 @@
 
 
 <body style="user-select: none;">
-  <header id="header" class="sticky-top px-4 pt-2">
-    <nav class="navbar navbar-expand-md pb-5">
-      <a class="link-body-emphasis text-decoration-none" href="https://github.com/adm410/Formula-Dashboard"
-        target="_blank" class="text-decoration-none">
-        <p id="headertxt">Formula Dashboard<super id="versiontxt">V1</super>
+  <header id="header" class="sticky-top">
+    <nav id="headereffect" class="navbar navbar-expand-lg">
+      <a id="headertxt" class="link-body-emphasis text-decoration-none"
+        href="https://github.com/adm410/Formula-Dashboard" target="_blank" class="text-decoration-none">
+        <p>Formula Dashboard<super id="versiontxt">V1</super>
         </p>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="hstack pb-3 px-3">
+        <div class="hstack justify-content-center pb-2 px-3">
           <input class="form-control" type="number" id="yearPicker" min="1950">
           <i id="calIcon" onclick="updateYear()" class="bi bi-calendar3 px-3"></i>
         </div>
@@ -49,8 +50,7 @@
     </nav>
   </header>
 
-
-  <div class="container-fluid" style="user-select: text;" data-bs-spy="scroll" data-bs-smooth-scroll="true">
+  <div class="container-fluid responsive" style="user-select: text;" data-bs-spy="scroll" data-bs-smooth-scroll="true">
     <div class="next" id="next" style="width:55% !important;">
       <div class="tableFooter row pt-3 px-3" style="border: none !important;">
         <div class="col text-start">
@@ -59,11 +59,21 @@
         </div>
         <div id="race-details-country" class="col text-end"></div>
       </div>
-      <p style="font-size: xx-large; font-weight: 550; border-top: solid 2px !important; border-color: var(--bordergray) !important;"
-        class="pt-3 pb-1" id="race-details-name"></p>
+      <p class="pt-3 pb-1" id="race-details-name"></p>
       <div class="pb-2" id="race-details"></div>
       <div class="tableFooter py-2">
-        <div id="race-details-track"></div>
+        <div onclick="rotateArrow();" class="collapseData" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          <i style="display: inline-block !important;" class="bi bi-chevron-right"></i>
+          <div style="display: inline-block !important;" id="race-details-track"></div>
+        </div>
+        <div class="collapse" id="collapseExample">
+          <div id="trackData" class="justified-text pt-2 py-2" style="font-size: small;">
+            <div id="track-laps"></div>
+            <div id="track-length"></div>
+            <div id="track-distance"></div>
+          </div>
+        </div>
       </div>
     </div>
     <br>
@@ -124,9 +134,7 @@
         <div id="calendar-year"></div>
       </div>
     </div>
-
   </div>
-
   <div class="hstack justify-content-center text-center mb-0 pt-3"
     style="border-top: solid 1.5px !important; border-color: var(--bordergray) !important;">
     <a href="https://github.com/adm410/Formula-Dashboard" target="_blank" class="text-decoration-none" id="darkText">
