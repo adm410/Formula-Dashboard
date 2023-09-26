@@ -5,8 +5,7 @@ window.onscroll = function () { scrollFunction() };
 
 const urlSeason = "https://ergast.com/api/f1/current.json"
 const urlNext = "https://ergast.com/api/f1/current/next.json"
-const localeType = "en-GB"
-// const localeType = "mr-IN"
+const localeType = "en-IN"
 
 function getRaceDetails() {
   fetch(urlNext)
