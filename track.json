@@ -38,6 +38,10 @@
                 "flag": "🇩🇰"
             },
             {
+                "name": "estonia",
+                "flag": "🇪🇪"
+            },
+            {
                 "name": "finland",
                 "flag": "🇫🇮"
             },
@@ -190,6 +194,10 @@
             {
                 "name": "emirati",
                 "flag": "🇦🇪"
+            },
+            {
+                "name": "estonian",
+                "flag": "🇪🇪"
             },
             {
                 "name": "finnish",
