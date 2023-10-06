@@ -24,6 +24,7 @@ jobs:
         run: |
           # Build your Brython code here, if needed
           python your_script.py
+          python index.html
           # Deploy to GitHub Pages
           git push origin main
         env:
