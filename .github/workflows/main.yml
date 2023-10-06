@@ -23,7 +23,7 @@ jobs:
       - name: Build and deploy
         run: |
           # Build your Brython code here, if needed
-          python .github/workflows/your_script.py
+          python your_script.py
           # Deploy to GitHub Pages
           git push origin main
         env:
