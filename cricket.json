@@ -1,0 +1,56 @@
+{
+    "Data": {
+        "country": [
+            {
+                "name": "afghanistan",
+                "code": "AFG",
+                "flag": "🇦🇫"
+            },
+            {
+                "name": "australia",
+                "code": "AUS",
+                "flag": "🇦🇺"
+            },
+            {
+                "name": "bangladesh",
+                "code": "BAN",
+                "flag": "🇧🇩"
+            },
+            {
+                "name": "england",
+                "code": "ENG",
+                "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+            },
+            {
+                "name": "india",
+                "code": "IND",
+                "flag": "🇮🇳"
+            },
+            {
+                "name": "netherlands",
+                "code": "NED",
+                "flag": "🇳🇱"
+            },
+            {
+                "name": "new zealand",
+                "code": "NZ",
+                "flag": "🇳🇿"
+            },
+            {
+                "name": "pakistan",
+                "code": "PAK",
+                "flag": "🇵🇰"
+            },
+            {
+                "name": "south africa",
+                "code": "SA",
+                "flag": "🇿🇦"
+            },
+            {
+                "name": "sri lanka",
+                "code": "SL",
+                "flag": "🇱🇰"
+            }
+        ]
+    }
+}
