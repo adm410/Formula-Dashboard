@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="document-name"></title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    </script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <script src="./script.js"></script>
+</head>
+
+
+<body>
+  <header id="header" class="sticky-top">
+    <nav id="headereffect" class="navbar navbar-expand-lg">
+      <div class="hstack">
+        <button onclick="openGitHub()" id="headertxt">Formula Dashboard</button>
+        <input class="form-control" type="number" id="yearPicker" min="1950">
+        <i id="calIcon" onclick="updateYear()" class="material-symbols-outlined">today</i>
+        <a href="#next" id="tabIcon" class="material-symbols-outlined">sports_score</a>
+        <a href="#driver" id="tabIcon" class="material-symbols-outlined">sports_motorsports</a>
+        <a href="#constructor" id="tabIcon" class="material-symbols-outlined">trophy</a>
+        <a href="#calendar" id="tabIcon" class="material-symbols-outlined">calendar_month</a>
+      </div>
+      <ul class="navbar-nav nav-pills nav-fill ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#next">Race</a></li>
+        <li class="nav-item"><a class="nav-link" href="#driver">Drivers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#constructor">Constructors</a></li>
+        <li class="nav-item"><a class="nav-link" href="#calendar">Calendar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="body" data-bs-spy="scroll" data-bs-smooth-scroll="true">
+    <div class="next" id="next">
+      <div class="nextheader row">
+        <div class="col text-start">
+          <p style="display: inline-block;" id="race-round"></p>
+          <p style="display: inline-block;" id="season-round"></p>
+        </div>
+        <div id="race-details-venue" class="col text-end"></div>
+      </div>
+      <button onclick="copyText()" id="race-details-name"></button>
+      <div id="race-details"></div>
+      <div id="race-details-track"></div>
+      <div id="trackData">
+        <div>
+          <div id="lapstxt">Laps:</div>
+          <div id="track-laps">00</div>
+        </div>
+        <div>
+          <div id="lengthtxt">Length:</div>
+          <div id="track-length">0.000 km</div>
+        </div>
+        <div>
+          <div id="distancetxt">Distance:</div>
+          <div id="track-distance">000.000 km</div>
+        </div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="driver" id="driver">
+      <p id="driver-year"></p>
+      <table id="driver-table" class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Driver</th>
+            <th>Nationality</th>
+            <th>Team</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="tableFooter">
+        <div id="driver-total"></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="constructor" id="constructor">
+      <p id="constructor-year"></p>
+      <table id="constructor-table" class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Nationality</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="tableFooter">
+        <div id="constructor-total"></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="calendar" id="calendar">
+      <p id="calendar-year"></p>
+      <table id="calendar-table" class="table table-responsive table-borderless">
+        <thead>
+          <tr>
+            <th>Round</th>
+            <th>Race</th>
+            <th>Venue</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="tableFooter">
+        <div id="calendar-total"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
