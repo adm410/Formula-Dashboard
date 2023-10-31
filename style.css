@@ -92,6 +92,7 @@ body.dark-mode {
 
 #next {
     margin-top: 6%;
+    font-size: 15px;
 }
 
 #race-details {
@@ -185,24 +186,24 @@ th {
 
 #header {
     transition: 0.2s;
-    padding: 8px 40px 5px 40px;
     height: fit-content;
+    padding: 8px 40px 5px;
     -webkit-backdrop-filter: blur(100px);
     backdrop-filter: blur(100px);
     border-bottom: solid var(--bordergray) 2px !important;
 }
 
 #headertxt {
+    scale: 1;
+    border: none;
+    padding: 0 15px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: 550;
+    transition: 0.3s;
+    border-radius: 8px;
     background-color: transparent;
     color: var(--textblack) !important;
-    scale: 1;
-    transition: 0.3s;
-    border: none;
-    font-size: 30px;
-    font-weight: 550;
-    cursor: pointer;
-    border-radius: 10px;
-    padding: 0 15px 0 15px;
 }
 
 #headertxt.dark-mode {
@@ -223,7 +224,7 @@ th {
 }
 
 #tabIcon {
-    font-size: 33px;
+    font-size: 30px;
     transition: 0.2s !important;
     scale: 1;
     color: var(--red);
@@ -234,11 +235,13 @@ th {
     text-decoration: none;
 }
 
-#copyIcon {
-    transition: 0.2s !important;
+.copyIcon {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 550;
+    transition: 0.3s;
     color: var(--green) !important;
-    font-size: 30px;
-    opacity: 0;
 }
 
 #yearPicker {
@@ -286,11 +289,11 @@ th {
     #headertxt {
         font-size: 20px;
         text-align: justify;
-        padding: 0 10px 0 10px;
+        padding: 0 10px;
     }
 
     #header {
-        padding: 1% 3% 1% 3%;
+        padding: 1% 3%;
     }
 
     #next {
@@ -298,9 +301,9 @@ th {
     }
 
     #calIcon {
-        font-size: 33px;
-        margin: 0 25px 0 10px;
         padding: 2px;
+        font-size: 30px;
+        margin: 0 10px;
     }
 
     #tabIcon {
@@ -308,22 +311,26 @@ th {
         display: inline-block;
     }
 
-    #copyIcon {
-        font-size: 25px;
+    #yearPicker {
+        margin: 0 3px;
+        width: 100px;
     }
 
-    #yearPicker {
-        margin: 0 5px 0 5px;
-        width: 100px;
+    #next {
+        font-size: 13px;
     }
 
     #driver-table th,
     #driver-table td,
     #constructor-table th,
-    #constructor-table td,
+    #constructor-table td {
+        font-size: 12px;
+    }
+
     #calendar-table th,
     #calendar-table td {
-        font-size: 12px;
+        font-size: 11px;
+        font-weight: 500;
     }
 
     #driver-table td,

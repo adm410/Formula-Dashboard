@@ -25,17 +25,17 @@ function openGitHub() {
 }
 
 function copyText() {
-    const copyIcon = document.getElementById('copyIcon');
-    copyIcon.style.opacity = "1";
-    const raceName = raceDetailsName;
+    setTimeout(() => {
+        document.getElementById("race-details-name").innerHTML = `<div class="copyIcon">Copied</div>`;
+    }, 100);
     if (navigator.clipboard) {
-        navigator.clipboard.writeText(`${raceName}\n\n${p1txt} ${p1dt}\n${p2txt} ${p2dt}\n\n${p3txt} ${p3dt}\n${qualitxt} ${qualidt}\n\n${racetxt} ${racedt}`)
+        navigator.clipboard.writeText(`${raceDetailsName}\n\n${p1txt} ${p1dt}\n${p2txt} ${p2dt}\n\n${p3txt} ${p3dt}\n${qualitxt} ${qualidt}\n\n${racetxt} ${racedt}`)
             .catch((error) => {
                 console.error(error);
             });
     }
     setTimeout(() => {
-        copyIcon.style.opacity = "0";
+        document.getElementById("race-details-name").innerHTML = raceDetailsName;
     }, 3000);
 }
 
@@ -116,7 +116,7 @@ function getRaceDetails() {
             const raceRound = `Round ${data.MRData.RaceTable["round"]}`
 
             const raceDetails = `
-    <div style="margin: auto; width:fit-content; text-align: justify;">
+    <div style="margin: auto; width: fit-content; text-align: justify;">
     <div>
         <div class="p1txt">${p1txt}</div>
         <div class="p1dt">${p1dt}</div>
