@@ -2,105 +2,170 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400&display=swap');
 
 :root {
-    --bordergray: rgba(223, 226, 233, 0.500) !important;
-    --red: #c8000d !important;
-    --green: #3cba54 !important;
-    --white: white !important;
-    --textwhite: white !important;
-    --lightwhite: rgb(250, 250, 250) !important;
-    --black: black !important;
-    --textblack: black !important;
-    --lightblack: rgb(20, 20, 20) !important;
+    --bordergray: rgba(223, 226, 233, 0.500);
+    --red: #c8000d;
+    --green: #3cba54;
+
+    --white: white;
+    --textwhite: white;
+    --lightwhite: rgb(250, 250, 250);
+
+    --black: black;
+    --textblack: black;
+    --lightblack: rgb(20, 20, 20);
 }
 
 body {
     margin: auto;
-    text-align: center !important;
-    background-color: var(--lightwhite) !important;
-    color: var(--textblack) !important;
+    font-size: 15px;
+    text-align: center;
+    color: var(--textblack);
+    background-color: var(--lightwhite);
     font-family: 'Noto Sans', sans-serif;
-    font-size: 15px !important;
 }
 
-#body {
-    padding: 0 25% 4% 25%;
+#header {
+    width: 100%;
+    height: 85px;
+    position: fixed;
+    user-select: none;
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
+    border-bottom: solid var(--bordergray) 2px;
 }
 
-#body.dark-mode,
-body.dark-mode {
-    background-color: var(--textblack) !important;
-    color: var(--textwhite) !important;
+#headertxt,
+#race-details-name,
+#driver-year,
+#constructor-year,
+#calendar-year {
+    float: left;
+    border: none;
+    font-size: 25px;
+    transition: 0.2s;
+    font-weight: 550;
+    padding: 5px 10px !important;
+    border-radius: 10px;
+    margin: 25px 0 0 50px;
+    color: var(--textblack);
+    background-color: transparent;
 }
 
-.next,
-.driver,
-.constructor,
-.calendar {
-    background-color: var(--white) !important;
-    color: var(--textblack) !important;
+#headertxt:hover,
+#race-details-name:hover {
+    color: var(--red);
+}
+
+#headertxt:active,
+#race-details-name:active {
+    scale: 0.95;
+    color: var(--textwhite);
+    background-color: var(--red);
+}
+
+.year {
+    display: flex;
+    margin: 25px 0;
+    align-items: center;
+    display: inline-block;
+}
+
+#yearPicker {
+    width: 100px;
+    padding: 6px;
+    font-size: 20px;
+    transition: 0.2s;
+    border-radius: 10px;
     border: solid var(--bordergray) 2px;
-    border-radius: 15px;
 }
 
-.next.dark-mode,
-.driver.dark-mode,
-.constructor.dark-mode,
-.calendar.dark-mode {
-    background-color: var(--lightblack) !important;
-    color: var(--textwhite) !important;
+#calIcon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: var(--red);
+    padding: 3px 5px 10x;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: transparent
+}
+
+#links {
+    float: right;
+    font-size: 30px;
+    margin: 25px 50px;
+}
+
+#links a {
+    margin-right: 5px;
+}
+
+#calIcon,
+#links a {
+    cursor: pointer;
+    color: var(--red);
+    padding: 3px 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+#calIcon:active,
+#links a:active {
+    color: var(--textwhite);
+    background-color: var(--red);
+}
+
+.content {
+    padding-top: 200px;
+}
+
+#next,
+#driver,
+#constructor,
+#calendar {
+    margin: 0 20% 5%;
+    text-align: center;
+    border-radius: 15px;
+    color: var(--textblack);
+    border: solid var(--bordergray) 2px;
+    background-color: var(--white);
+}
+
+.nextheader {
+    margin: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nextheader p {
+    display: inline-block;
+}
+
+#race-details-venue {
+    text-align: right;
 }
 
 #race-details-name {
-    background-color: transparent;
-    color: var(--textblack) !important;
-    scale: 1;
-    transition: 0.3s;
-    border: none;
-    font-size: 24px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 10px;
-    padding: 0 15px 0 15px;
+    margin: 0;
+    user-select: text;
+    float: none !important;
+    text-align: center !important;
 }
 
-#race-details-name.dark-mode {
-    color: var(--textwhite) !important;
-}
-
-#race-details-name:hover,
-#headertxt:hover {
-    color: var(--red) !important;
-}
-
-#race-details-name:active,
-#headertxt:active,
-#tabIcon:active,
-#calIcon:active {
-    background-color: var(--red) !important;
-    color: var(--textwhite) !important;
-    scale: 0.95;
-}
-
-#race-details-track,
-.nextheader {
-    font-weight: 520 !important;
-}
-
-.nextheader {
-    padding: 15px 20px 0 20px;
-}
-
-#next {
-    margin-top: 6%;
-    font-size: 15px;
+#driver-year,
+#constructor-year,
+#calendar-year {
+    margin: 0;
+    padding: 20px 0 10px !important;
+    float: none !important;
+    text-align: center !important;
 }
 
 #race-details {
-    padding: 20px 0 15px 0;
-}
-
-#race-details-track.dark-mode {
-    color: var(--textwhite) !important;
+    padding: 15px 0;
 }
 
 .p1txt,
@@ -111,7 +176,7 @@ body.dark-mode {
 #lapstxt,
 #lengthtxt,
 #distancetxt {
-    font-weight: 550 !important;
+    font-weight: 550;
     display: inline-block;
 }
 
@@ -123,6 +188,10 @@ body.dark-mode {
     display: inline-block;
 }
 
+#race-details-track,
+.nextheader {
+    font-weight: 500;
+}
 
 #trackData {
     margin: auto;
@@ -135,29 +204,21 @@ body.dark-mode {
 #track-length,
 #track-distance {
     font-family: 'Noto Sans Mono', monospace;
-    font-weight: 400 !important;
-    display: inline-block !important;
+    font-weight: 400;
+    display: inline-block;
 }
 
-#driver-year,
-#constructor-year,
-#calendar-year {
-    color: var(--textblack) !important;
-    font-size: 24px;
-    font-weight: 600;
-    padding: 15px 0 0 0;
-}
-
-#driver-year.dark-mode,
-#constructor-year.dark-mode,
-#calendar-year.dark-mode {
-    color: var(--textwhite) !important;
+#driver-table,
+#constructor-table,
+#calendar-table {
+    width: 100%;
+    margin: 0 auto;
 }
 
 #driver-table th,
 #constructor-table th,
 #calendar-table th {
-    padding: 0 10px 10px 10px;
+    padding: 0 10px 10px;
     border-bottom: solid var(--bordergray) 2px;
     font-weight: 600 !important;
 }
@@ -165,7 +226,11 @@ body.dark-mode {
 #driver-table td,
 #constructor-table td,
 #calendar-table td {
-    padding: 7px 0 7px 0;
+    padding: 7px 0;
+}
+
+table {
+    border-collapse: collapse
 }
 
 #tableFooter {
@@ -174,65 +239,8 @@ body.dark-mode {
     border-top: solid var(--bordergray) 2px;
 }
 
-#driver-table.dark-mode,
-#constructor-table.dark-mode,
-#calendar-table.dark-mode {
-    color: var(--textwhite) !important;
-}
-
 th {
     pointer-events: none;
-}
-
-#header {
-    transition: 0.2s;
-    height: fit-content;
-    padding: 8px 40px 5px;
-    -webkit-backdrop-filter: blur(100px);
-    backdrop-filter: blur(100px);
-    border-bottom: solid var(--bordergray) 2px !important;
-}
-
-#headertxt {
-    scale: 1;
-    border: none;
-    padding: 0 15px;
-    font-size: 30px;
-    cursor: pointer;
-    font-weight: 550;
-    transition: 0.3s;
-    border-radius: 8px;
-    background-color: transparent;
-    color: var(--textblack) !important;
-}
-
-#headertxt.dark-mode {
-    color: var(--textwhite) !important;
-}
-
-#calIcon {
-    cursor: pointer;
-    scale: 1;
-    transition: 0.2s !important;
-    font-size: 35px;
-    color: var(--red);
-    opacity: 0;
-    user-select: none !important;
-    cursor: pointer;
-    border-radius: 10px;
-    user-select: none !important;
-}
-
-#tabIcon {
-    font-size: 30px;
-    transition: 0.2s !important;
-    scale: 1;
-    color: var(--red);
-    display: none;
-    user-select: none !important;
-    cursor: pointer;
-    border-radius: 10px;
-    text-decoration: none;
 }
 
 .copyIcon {
@@ -244,91 +252,82 @@ th {
     color: var(--green) !important;
 }
 
-#yearPicker {
-    margin: 0 15px 0 20px;
-    width: 150px;
-    font-weight: 500;
-    border: solid 2px !important;
-    border-radius: 10px !important;
-    border-color: var(--bordergray) !important;
-    color: var(--textblack);
-}
-
-#yearPicker.dark-mode {
-    background-color: var(--lightblack) !important;
-    color: var(--textwhite);
-}
-
-.error-cell,
-.spinner-border {
-    color: var(--red) !important;
-}
-
-.nav-link {
-    display: block;
-    font-size: 15px !important;
-    font-weight: 500 !important;
-    color: var(--red) !important;
-    border-radius: 10px !important;
-}
-
-.nav-link.active {
-    color: var(--textwhite) !important;
-    background-color: var(--red) !important;
-}
-
-.spacer {
-    padding: 3% 0 3% 0;
-}
-
-@media (max-width: 768px) {
-    #body {
-        padding: 0 5% 5% 5%;
+@media (prefers-color-scheme: dark) {
+    body {
+        color: var(--textwhite);
+        background-color: var(--textblack);
     }
 
-    #headertxt {
-        font-size: 20px;
-        text-align: justify;
-        padding: 0 10px;
-    }
-
-    #header {
-        padding: 1% 3%;
-    }
-
-    #next {
-        margin-top: 5%;
-    }
-
-    #calIcon {
-        padding: 2px;
-        font-size: 30px;
-        margin: 0 10px;
-    }
-
-    #tabIcon {
-        padding: 2px;
-        display: inline-block;
+    #headertxt,
+    #race-details-name,
+    #driver-year,
+    #constructor-year,
+    #calendar-year {
+        color: var(--textwhite);
     }
 
     #yearPicker {
-        margin: 0 3px;
-        width: 100px;
+        color: var(--textwhite);
+        background-color: var(--lightblack);
     }
 
-    #next {
-        font-size: 13px;
+    #next,
+    #driver,
+    #constructor,
+    #calendar {
+        border: solid transparent 2px;
+        color: var(--textwhite);
+        background-color: var(--lightblack);
+    }
+}
+
+/*  */
+
+@media (max-width: 768px) {
+    #headertxt {
+        font-size: 18px;
+        margin: 10px 0 0 45px;
     }
 
-    #driver-table th,
-    #driver-table td,
-    #constructor-table th,
-    #constructor-table td {
+    .year {
+        float: right;
+        display: flex;
+        margin: 30px 45px 0 0;
+    }
+
+    #yearPicker {
+        margin: 0;
+        width: 80px;
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    #calIcon {
+        display: block;
+        font-size: 27px;
+    }
+
+    #links {
+        margin: 0;
+        float: left;
+        font-size: 25px;
+        margin: 5px 45px;
+    }
+
+    #next,
+    #driver,
+    #constructor,
+    #calendar {
+        margin: 0 5% 15%;
+    }
+
+    #driver-table,
+    #constructor-table,
+    #calendar-table {
         font-size: 12px;
     }
 
-    #calendar-table th,
-    #calendar-table td {
+    #calendar-table {
         font-size: 11px;
         font-weight: 500;
     }
@@ -337,19 +336,5 @@ th {
     #constructor-table td,
     #calendar-table td {
         border-top: solid var(--bordergray) 2px;
-    }
-
-    #driver-table,
-    #constructor-table,
-    #calendar-table {
-        overflow-x: auto;
-    }
-
-    .nav-link {
-        display: none !important;
-    }
-
-    .spacer {
-        padding: 5% 0 5% 0;
     }
 }

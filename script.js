@@ -121,7 +121,7 @@ function getRaceDetails() {
         <div class="p1txt">${p1txt}</div>
         <div class="p1dt">${p1dt}</div>
     </div>
-    <div>
+    <div style="padding-bottom: 20px">
         <div class="p2txt">${p2txt}</div>
         <div class="p2dt pb-4">${p2dt}</div>
     </div>
@@ -129,7 +129,7 @@ function getRaceDetails() {
         <div class="p3txt">${p3txt}</div>
         <div class="p3dt">${p3dt}</div>
     </div>
-    <div>
+    <div style="padding-bottom: 20px">
         <div class="qualitxt">${qualitxt}</div>
         <div class="qualidt pb-4">${qualidt}</div>
     </div>
@@ -408,9 +408,9 @@ document.addEventListener("DOMContentLoaded", function () {
             updateCalendarTable(selectedYear);
         }
         if (currentYear != selectedYear) {
-            document.getElementById("calIcon").style.opacity = "1";
+            document.getElementById("calIcon").style.display = "inline-block";
         } else {
-            document.getElementById("calIcon").style.opacity = "0";
+            document.getElementById("calIcon").style.display = "none";
         }
     });
 });
@@ -420,46 +420,15 @@ function updateYear() {
     const currentYear = new Date().getFullYear();
     yearPicker.value = currentYear;
     yearPicker.max = currentYear;
-    document.getElementById("calIcon").style.opacity = "0";
+    document.getElementById("calIcon").style.display = "none";
     updateDriverTable(currentYear);
     updateConstructorTable(currentYear);
     updateCalendarTable(currentYear);
 }
 
-
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.body.classList.add('dark-mode');
-    document.getElementById("body").classList.add('dark-mode');
-    document.getElementById("headertxt").classList.add('dark-mode');
-    document.getElementById("yearPicker").classList.add('dark-mode');
-    document.getElementById("next").classList.add('dark-mode');
-    document.getElementById("race-details-name").classList.add('dark-mode');
-    document.getElementById("race-details-track").classList.add('dark-mode');
-    document.getElementById("driver").classList.add('dark-mode');
-    document.getElementById("driver-year").classList.add('dark-mode');
-    document.getElementById("driver-table").classList.add('dark-mode');
-    document.getElementById("constructor").classList.add('dark-mode');
-    document.getElementById("constructor-year").classList.add('dark-mode');
-    document.getElementById("constructor-table").classList.add('dark-mode');
-    document.getElementById("tableFooter").classList.add('dark-mode');
+function enableDarkMode() {
+    body.classList.add('dark-mode');
 }
-window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
-    const darkModeOn = e.matches;
-    document.body.classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("body").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("headertxt").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("yearPicker").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("next").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("race-details-name").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("race-details-track").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("driver").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("driver-year").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("driver-table").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("constructor").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("constructor-year").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("constructor-table").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("calendar").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("calendar-year").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("calendar-table").classList.toggle('dark-mode', darkModeOn);
-    document.getElementById("tableFooter").classList.toggle('dark-mode', darkModeOn);
-});
+function disableDarkMode() {
+    body.classList.remove('dark-mode');
+}
