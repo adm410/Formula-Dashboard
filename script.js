@@ -183,10 +183,10 @@ function getTrackDetails() {
                 ${track.laps}
               `
                         const trackLength = `
-              ${track.length} km
+              ${track.length} Km
               `
                         const trackDistance = `
-              ${track.distance} km
+              ${track.distance} Km
               `
                             ;
                         document.getElementById("track-laps").innerHTML = trackLaps;
@@ -250,7 +250,6 @@ function updateDriverTable(year) {
             driverTable.innerHTML = `<tr><td colspan='5' class='error-cell'>Error: ${error}</td></tr>`;
         });
 }
-
 
 function updateConstructorTable(year) {
     const constructorTable = document.getElementById("constructor-table").getElementsByTagName('tbody')[0];
@@ -348,11 +347,13 @@ function updateCalendarTable(year) {
                 const row = calendarTable.insertRow();
                 const roundCell = row.insertCell(0);
                 const raceCell = row.insertCell(1);
-                const countryCell = row.insertCell(2);
-                const dateCell = row.insertCell(3);
+                const circuitCell = row.insertCell(2);
+                const countryCell = row.insertCell(3);
+                const dateCell = row.insertCell(4);
 
                 roundCell.textContent = round;
                 raceCell.textContent = raceName;
+                circuitCell.textContent = circuitName;
                 countryCell.textContent = country;
                 dateCell.textContent = date;
 
@@ -369,6 +370,9 @@ function updateCalendarTable(year) {
                             raceCell.style.backgroundColor = "var(--red)";
                             raceCell.style.color = "var(--white)";
                             raceCell.style.fontWeight = "500";
+                            circuitCell.style.backgroundColor = "var(--red)";
+                            circuitCell.style.color = "var(--white)";
+                            circuitCell.style.fontWeight = "500";
                             countryCell.style.backgroundColor = "var(--red)";
                             countryCell.style.color = "var(--white)";
                             countryCell.style.fontWeight = "500";
@@ -408,9 +412,11 @@ document.addEventListener("DOMContentLoaded", function () {
             updateCalendarTable(selectedYear);
         }
         if (currentYear != selectedYear) {
-            document.getElementById("calIcon").style.display = "inline-block";
+            document.getElementById("calIcon").style.opacity = "1";
+            document.getElementById("calIcon").style.pointerEvents = "all";
         } else {
-            document.getElementById("calIcon").style.display = "none";
+            document.getElementById("calIcon").style.opacity = "0";
+            document.getElementById("calIcon").style.pointerEvents = "none";
         }
     });
 });
@@ -420,7 +426,9 @@ function updateYear() {
     const currentYear = new Date().getFullYear();
     yearPicker.value = currentYear;
     yearPicker.max = currentYear;
-    document.getElementById("calIcon").style.display = "none";
+    document.getElementById("calIcon").style.opacity = "0";
+    document.getElementById("calIcon").style.pointerEvents = "none";
+
     updateDriverTable(currentYear);
     updateConstructorTable(currentYear);
     updateCalendarTable(currentYear);

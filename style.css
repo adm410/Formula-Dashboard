@@ -71,23 +71,26 @@ body {
 }
 
 #yearPicker {
-    width: 100px;
+    width: 80px;
     padding: 6px;
-    font-size: 20px;
+    font-size: 15px;
     transition: 0.2s;
+    font-weight: 500;
     border-radius: 10px;
     border: solid var(--bordergray) 2px;
 }
 
 #calIcon {
-    display: none;
+    opacity: 0;
     font-size: 30px;
     cursor: pointer;
     transition: 0.2s;
+    margin-left: 5px;
     color: var(--red);
-    padding: 3px 5px 10x;
     border-radius: 10px;
+    pointer-events: none;
     text-decoration: none;
+    padding: 3px 5px 10px;
     background-color: transparent
 }
 
@@ -134,8 +137,8 @@ body {
 }
 
 .nextheader {
-    margin: 0 30px;
     display: flex;
+    margin: 0 30px;
     align-items: center;
     justify-content: space-between;
 }
@@ -195,6 +198,7 @@ body {
 
 #trackData {
     margin: auto;
+    padding-top: 5px;
     width: fit-content;
     text-align: justify;
     padding-bottom: 15px;
@@ -234,8 +238,8 @@ table {
 }
 
 #tableFooter {
-    font-weight: 550 !important;
     padding: 5px 0 5px 0;
+    font-weight: 550 !important;
     border-top: solid var(--bordergray) 2px;
 }
 
@@ -284,34 +288,47 @@ th {
 /*  */
 
 @media (max-width: 768px) {
-    #headertxt {
-        font-size: 18px;
-        margin: 10px 0 0 45px;
+
+    #headertxt,
+    #headertxt:active {
+        scale: 0.7;
+        float: left;
+        padding: 3px;
+        margin: 10px 0 0;
     }
 
     .year {
         float: right;
         display: flex;
-        margin: 30px 45px 0 0;
+        margin: 10px 0 0;
     }
 
     #yearPicker {
         margin: 0;
         width: 80px;
-        padding: 6px;
         font-size: 14px;
     }
 
     #calIcon {
-        display: block;
+        opacity: 0;
         font-size: 27px;
+        margin-left: 3px;
     }
 
     #links {
         margin: 0;
         float: left;
         font-size: 25px;
-        margin: 5px 45px;
+        display: inline;
+        margin-left: 40px;
+    }
+
+    #links a {
+        padding: 5px;
+    }
+
+    .content {
+        padding-top: 120px;
     }
 
     #next,
@@ -321,9 +338,30 @@ th {
         margin: 0 5% 15%;
     }
 
+    #race-details-name,
+    #driver-year,
+    #constructor-year,
+    #calendar-year {
+        font-size: 18px;
+        padding: 10px 0 !important;
+    }
+
+    .nextheader {
+        margin-bottom: 3px;
+    }
+
+    #race-details-name {
+        padding: 2px 10px !important;
+    }
+
+    .nextheader p,
+    #race-details,
+    #race-details-track,
+    #trackData,
     #driver-table,
     #constructor-table,
-    #calendar-table {
+    #calendar-table,
+    #tableFooter {
         font-size: 12px;
     }
 
@@ -336,5 +374,20 @@ th {
     #constructor-table td,
     #calendar-table td {
         border-top: solid var(--bordergray) 2px;
+    }
+
+    #driver-table th:nth-child(3),
+    #driver-table td:nth-child(3),
+    #constructor-table th:nth-child(3),
+    #constructor-table td:nth-child(3),
+    #calendar-table th:nth-child(3),
+    #calendar-table td:nth-child(3),
+    #calendar-table th:nth-child(4),
+    #calendar-table td:nth-child(4) {
+        display: none;
+    }
+
+    .copyIcon {
+        font-size: 18px;
     }
 }
