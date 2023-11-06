@@ -17,7 +17,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 145px;
+    scroll-padding-top: 135px;
 }
 
 body {
@@ -81,7 +81,6 @@ body {
     transition: 0.2s;
     border-radius: 10px;
     align-items: center;
-    display: inline-block;
 }
 
 #yearPicker {
@@ -150,7 +149,7 @@ body {
 }
 
 .content {
-    padding-top: 140px;
+    padding-top: 130px;
     padding-bottom: 40px;
 }
 
@@ -326,9 +325,6 @@ th {
 /*  */
 
 @media (max-width: 768px) {
-    html {
-        scroll-padding-top: 135px;
-    }
 
     #header {
         height: 100px
@@ -341,6 +337,7 @@ th {
         padding: 3px;
         margin: 20px 0;
         scale: 0.7 !important;
+        background-color: transparent !important;
     }
 
     #yearPicker {
@@ -364,7 +361,6 @@ th {
     }
 
     .content {
-        padding-top: 130px;
         padding-bottom: 0;
     }
 
@@ -394,9 +390,7 @@ th {
 
     #headertxt:hover,
     #race-details-name:hover {
-        scale: 0.95;
-        color: var(--textwhite);
-        background-color: var(--red);
+        background-color: transparent !important;
     }
 
     .nextheader p,
