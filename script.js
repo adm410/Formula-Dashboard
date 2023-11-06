@@ -22,6 +22,7 @@ let racedt;
 
 function openGitHub() {
     window.open('https://github.com/adm410/Formula-Dashboard', '_blank');
+    console.log(window.scrollY)
 }
 
 function copyText() {
@@ -439,4 +440,45 @@ function enableDarkMode() {
 }
 function disableDarkMode() {
     body.classList.remove('dark-mode');
+}
+
+function scrollFunction() {
+    var scrollPosition = window.scrollY;
+    if (scrollPosition <= 380) {
+        document.getElementById("desktopMenu").children[0].style.backgroundColor = "var(--red)";
+        document.getElementById("desktopMenu").children[0].style.color = "white";
+        document.getElementById("desktopMenu").children[1].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[1].style.color = "var(--red)";
+        document.getElementById("desktopMenu").children[2].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[2].style.color = "var(--red)";
+        document.getElementById("desktopMenu").children[3].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[3].style.color = "var(--red)";
+    } if (scrollPosition >= 380) {
+        document.getElementById("desktopMenu").children[0].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[0].style.color = "var(--red)";
+        document.getElementById("desktopMenu").children[1].style.backgroundColor = "var(--red)";
+        document.getElementById("desktopMenu").children[1].style.color = "white";
+        document.getElementById("desktopMenu").children[2].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[2].style.color = "var(--red)";
+        document.getElementById("desktopMenu").children[3].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[3].style.color = "var(--red)";
+    } if (scrollPosition >= 1258) {
+        document.getElementById("desktopMenu").children[0].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[0].style.color = "var(--red)";
+        document.getElementById("desktopMenu").children[1].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[1].style.color = "var(--red)";
+        document.getElementById("desktopMenu").children[2].style.backgroundColor = "var(--red)";
+        document.getElementById("desktopMenu").children[2].style.color = "white";
+        document.getElementById("desktopMenu").children[3].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[3].style.color = "var(--red)";
+    } if (scrollPosition >= 1760) {
+        document.getElementById("desktopMenu").children[0].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[0].style.color = "var(--red)";
+        document.getElementById("desktopMenu").children[1].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[1].style.color = "var(--red)";
+        document.getElementById("desktopMenu").children[2].style.backgroundColor = "transparent";
+        document.getElementById("desktopMenu").children[2].style.color = "var(--red)";
+        document.getElementById("desktopMenu").children[3].style.backgroundColor = "var(--red)";
+        document.getElementById("desktopMenu").children[3].style.color = "white"
+    }
 }

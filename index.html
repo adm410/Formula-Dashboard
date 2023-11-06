@@ -14,15 +14,19 @@
 <body>
   <header id="header">
     <button onclick="openGitHub()" id="headertxt">Formula Dashboard</button>
-    <div class="year">
-      <input type="number" id="yearPicker" min="1950">
-      <i id="calIcon" onclick="updateYear()" class="ti ti-calendar-time"></i>
+    <input type="number" id="yearPicker" min="1950">
+    <i id="calIcon" onclick="updateYear()" class="ti ti-calendar-time"></i>
+    <div id="desktopMenu">
+      <a href="#next">Race</a>
+      <a href=" #driver">Drivers</a>
+      <a href="#constructor">Constructors</a>
+      <a href="#calendar">Calendar</a>
     </div>
-    <div id="links">
-      <a href="#next" id="tabIcon" class="ti ti-flag"></a>
-      <a href=" #driver" id="tabIcon" class="ti ti-helmet"></a>
-      <a href="#constructor" id="tabIcon" class="ti ti-trophy"></a>
-      <a href="#calendar" id="tabIcon" class="ti ti-calendar-event"></a>
+    <div id="mobileMenu">
+      <a href="#next" class="ti ti-flag"></a>
+      <a href=" #driver" class="ti ti-helmet"></a>
+      <a href="#constructor" class="ti ti-trophy"></a>
+      <a href="#calendar" class="ti ti-calendar-event"></a>
     </div>
   </header>
 
@@ -54,8 +58,6 @@
       </div>
     </div>
 
-    <br>
-
     <div id="driver">
       <div id="driver driverDesktop">
         <p id="driver-year"></p>
@@ -77,8 +79,6 @@
       </div>
     </div>
 
-    <br>
-
     <div id="constructor">
       <p id="constructor-year"></p>
       <table id="constructor-table">
@@ -96,8 +96,6 @@
         <div id="constructor-total"></div>
       </div>
     </div>
-
-    <br>
 
     <div id="calendar">
       <p id="calendar-year"></p>
