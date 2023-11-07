@@ -68,14 +68,14 @@ body {
 #calIcon {
     float: left;
     display: flex;
-    margin: 30px 5px;
+    margin: 25px 5px;
     transition: 0.2s;
     align-items: center;
 }
 
 #yearPicker {
     width: 80px;
-    padding: 8px;
+    padding: 6px;
     font-size: 15px;
     font-weight: 520;
     border-radius: 10px;
@@ -103,13 +103,13 @@ body {
 #desktopMenu a {
     font-weight: 500;
     transition: 0.1s;
-    padding: 5px 10px !important;
+    padding: 8px 12px !important;
 }
 
 #mobileMenu {
     float: left;
     width: 100%;
-    bottom: 70px;
+    bottom: 20px;
     display: none;
     font-size: 25px;
     position: relative;
@@ -176,7 +176,6 @@ body {
     cursor: pointer;
     user-select: text;
     float: none !important;
-    padding: 0px 10px !important;
     text-align: center !important;
 }
 
@@ -355,15 +354,15 @@ th {
     }
 
     #yearPicker {
-        width: 80px;
-        margin: 20px 0;
-        padding: 6px;
-        font-size: 14px;
+        width: 70px;
+        margin: 23px 0;
+        padding: 4px;
+        font-size: 13px;
     }
 
     #calIcon {
         font-size: 27px;
-        margin: 25px 5px 0 !important;
+        margin: 20px 5px 0 !important;
     }
 
     #desktopMenu {
