@@ -20,11 +20,6 @@ let qualidt;
 let racetxt;
 let racedt;
 
-function openGitHub() {
-    window.open('https://github.com/adm410/Formula-Dashboard', '_blank');
-    console.log(window.scrollY)
-}
-
 function copyText() {
     setTimeout(() => {
         document.getElementById("race-details-name").innerHTML = `<div class="copyIcon">Copied</div>`;
@@ -380,10 +375,10 @@ function updateCalendarTable(year) {
                             dateCell.style.backgroundColor = "var(--red)";
                             dateCell.style.color = "var(--white)";
                             dateCell.style.fontWeight = "500";
-                            roundCell.style.borderTopLeftRadius = "10px";
-                            roundCell.style.borderBottomLeftRadius = "10px";
-                            dateCell.style.borderTopRightRadius = "10px";
-                            dateCell.style.borderBottomRightRadius = "10px";
+                            roundCell.style.borderTopLeftRadius = "11px";
+                            roundCell.style.borderBottomLeftRadius = "11px";
+                            dateCell.style.borderTopRightRadius = "11px";
+                            dateCell.style.borderBottomRightRadius = "11px";
                         }
                     });
 
@@ -423,6 +418,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function updateYear() {
+    window.scrollY = window.scrollY
     const yearPicker = document.getElementById('yearPicker');
     const currentYear = new Date().getFullYear();
     yearPicker.value = currentYear;
@@ -444,41 +440,50 @@ function disableDarkMode() {
 
 function scrollFunction() {
     var scrollPosition = window.scrollY;
-    if (scrollPosition <= 380) {
-        document.getElementById("desktopMenu").children[0].style.backgroundColor = "var(--red)";
-        document.getElementById("desktopMenu").children[0].style.color = "white";
-        document.getElementById("desktopMenu").children[1].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[1].style.color = "var(--red)";
-        document.getElementById("desktopMenu").children[2].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[2].style.color = "var(--red)";
-        document.getElementById("desktopMenu").children[3].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[3].style.color = "var(--red)";
-    } if (scrollPosition >= 380) {
-        document.getElementById("desktopMenu").children[0].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[0].style.color = "var(--red)";
-        document.getElementById("desktopMenu").children[1].style.backgroundColor = "var(--red)";
-        document.getElementById("desktopMenu").children[1].style.color = "white";
-        document.getElementById("desktopMenu").children[2].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[2].style.color = "var(--red)";
-        document.getElementById("desktopMenu").children[3].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[3].style.color = "var(--red)";
-    } if (scrollPosition >= 1258) {
-        document.getElementById("desktopMenu").children[0].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[0].style.color = "var(--red)";
-        document.getElementById("desktopMenu").children[1].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[1].style.color = "var(--red)";
-        document.getElementById("desktopMenu").children[2].style.backgroundColor = "var(--red)";
-        document.getElementById("desktopMenu").children[2].style.color = "white";
-        document.getElementById("desktopMenu").children[3].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[3].style.color = "var(--red)";
-    } if (scrollPosition >= 1760) {
-        document.getElementById("desktopMenu").children[0].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[0].style.color = "var(--red)";
-        document.getElementById("desktopMenu").children[1].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[1].style.color = "var(--red)";
-        document.getElementById("desktopMenu").children[2].style.backgroundColor = "transparent";
-        document.getElementById("desktopMenu").children[2].style.color = "var(--red)";
-        document.getElementById("desktopMenu").children[3].style.backgroundColor = "var(--red)";
-        document.getElementById("desktopMenu").children[3].style.color = "white"
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        var menu = document.getElementById("mobileMenu").children;
+    } else {
+        var menu = document.getElementById("desktopMenu").children;
+    }
+
+    var styles = [
+        { backgroundColor: "var(--red)", color: "white" },
+        { backgroundColor: "transparent", color: "var(--red)" },
+    ];
+
+    if (scrollPosition < 380) {
+        menu[0].style.backgroundColor = styles[0].backgroundColor;
+        menu[0].style.color = styles[0].color;
+        for (var i = 1; i < menu.length; i++) {
+            menu[i].style.backgroundColor = styles[1].backgroundColor;
+            menu[i].style.color = styles[1].color;
+        }
+    } else if (scrollPosition >= 380 && scrollPosition < 1258) {
+        menu[1].style.backgroundColor = styles[0].backgroundColor;
+        menu[1].style.color = styles[0].color;
+        for (var i = 0; i < menu.length; i++) {
+            if (i !== 1) {
+                menu[i].style.backgroundColor = styles[1].backgroundColor;
+                menu[i].style.color = styles[1].color;
+            }
+        }
+    } else if (scrollPosition >= 1258 && scrollPosition < 1760) {
+        menu[2].style.backgroundColor = styles[0].backgroundColor;
+        menu[2].style.color = styles[0].color;
+        for (var i = 0; i < menu.length; i++) {
+            if (i !== 2) {
+                menu[i].style.backgroundColor = styles[1].backgroundColor;
+                menu[i].style.color = styles[1].color;
+            }
+        }
+    } else if (scrollPosition >= 1760) {
+        menu[3].style.backgroundColor = styles[0].backgroundColor;
+        menu[3].style.color = styles[0].color;
+        for (var i = 0; i < menu.length; i++) {
+            if (i !== 3) {
+                menu[i].style.backgroundColor = styles[1].backgroundColor;
+                menu[i].style.color = styles[1].color;
+            }
+        }
     }
 }

@@ -16,25 +16,26 @@
 }
 
 html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 135px;
-}
-
-body {
-    margin: auto;
     font-size: 15px;
     user-select: text;
     text-align: center;
     color: var(--textblack);
-    background-color: var(--lightwhite);
+    scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
+    background-color: var(--lightwhite);
+    scroll-padding-top: 135px !important;
+}
+
+body {
+    margin: auto;
 }
 
 #header {
+    z-index: 1;
     width: 100%;
     height: 85px;
-    position: fixed;
     user-select: none;
+    position: fixed !important;
     backdrop-filter: blur(100px);
     -webkit-backdrop-filter: blur(100px);
     border-bottom: solid var(--bordergray) 2px;
@@ -47,29 +48,20 @@ body {
 #calendar-year {
     float: left;
     border: none;
+    cursor: text;
     font-size: 25px;
     transition: 0.2s;
     font-weight: 550;
-    border-radius: 10px;
+    border-radius: 11px;
     margin: 25px 0 0 50px;
     color: var(--textblack);
     padding: 5px 10px !important;
     background-color: transparent;
-}
-
-#headertxt:hover,
-#race-details-name:hover {
-    color: var(--red);
-}
-
-#headertxt:active,
-#race-details-name:active {
-    scale: 0.95;
-    color: var(--textwhite);
-    background-color: var(--red);
+    font-family: 'Poppins', sans-serif !important;
 }
 
 #headertxt {
+    cursor: pointer;
     margin-right: 20px;
 }
 
@@ -77,17 +69,17 @@ body {
 #calIcon {
     float: left;
     display: flex;
-    margin: 25px 5px;
+    margin: 30px 5px;
     transition: 0.2s;
-    border-radius: 10px;
     align-items: center;
 }
 
 #yearPicker {
     width: 80px;
-    padding: 6px;
+    padding: 8px;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 520;
+    border-radius: 10px;
     border: solid var(--bordergray) 2px;
 }
 
@@ -110,9 +102,9 @@ body {
 }
 
 #desktopMenu a {
-    font-weight: 550;
-    transition: 0.2s;
-    padding: 8px 12px !important;
+    font-weight: 500;
+    transition: 0.1s;
+    padding: 5px 10px !important;
 }
 
 #mobileMenu {
@@ -126,7 +118,7 @@ body {
 
 #mobileMenu a {
     font-weight: 550;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 #calIcon,
@@ -149,8 +141,8 @@ body {
 }
 
 .content {
-    padding-top: 130px;
     padding-bottom: 40px;
+    padding-top: 130px !important;
 }
 
 #next,
@@ -182,9 +174,21 @@ body {
 
 #race-details-name {
     margin: 0;
+    cursor: pointer;
     user-select: text;
     float: none !important;
+    padding: 0px 10px !important;
     text-align: center !important;
+}
+
+#race-details-name:hover {
+    color: var(--red);
+}
+
+#race-details-name:active {
+    scale: 0.95;
+    color: var(--textwhite);
+    background-color: var(--red);
 }
 
 #driver-year,
@@ -200,15 +204,17 @@ body {
     padding: 15px 0;
 }
 
+.nextheader p,
 .p1txt,
 .p2txt,
 .p3txt,
 .qualitxt,
 .racetxt,
+#race-details-track,
 #lapstxt,
 #lengthtxt,
 #distancetxt {
-    font-weight: 500;
+    font-weight: 520;
     display: inline-block;
 }
 
@@ -217,12 +223,8 @@ body {
 .p3dt,
 .qualidt,
 .racedt {
+    font-weight: 400;
     display: inline-block;
-}
-
-#race-details-track,
-.nextheader p {
-    font-weight: 500;
 }
 
 #trackData {
@@ -251,8 +253,8 @@ body {
 #driver-table th,
 #constructor-table th,
 #calendar-table th {
+    font-weight: 530;
     padding: 0 10px 10px;
-    font-weight: 550 !important;
     border-bottom: solid var(--bordergray) 2px;
 }
 
@@ -271,7 +273,7 @@ table {
 }
 
 #tableFooter {
-    font-weight: 550;
+    font-weight: 520;
     padding: 5px 0 5px 0;
     border-top: solid var(--bordergray) 2px;
 }
@@ -282,7 +284,7 @@ th {
 
 .copyIcon {
     margin: 0;
-    padding: 0;
+    padding: 1px 0;
     font-size: 24px;
     font-weight: 550;
     transition: 0.3s;
@@ -295,9 +297,9 @@ th {
         --red: #ac000b;
     }
 
-    body {
+    html {
         color: var(--textwhite);
-        background-color: var(--textblack);
+        background-color: var(--black);
     }
 
     #headertxt,
@@ -320,6 +322,15 @@ th {
         color: var(--textwhite);
         background-color: var(--lightblack);
     }
+
+    @media (max-width: 768px) {
+
+        #race-details-name,
+        #race-details-name:hover,
+        #race-details-name:active {
+            color: var(--textwhite) !important;
+        }
+    }
 }
 
 /*  */
@@ -327,7 +338,7 @@ th {
 @media (max-width: 768px) {
 
     #header {
-        height: 100px
+        height: 110px
     }
 
     #headertxt,
@@ -342,14 +353,14 @@ th {
 
     #yearPicker {
         width: 80px;
-        margin: 20px 0;
+        margin: 25px 0;
+        padding: 6px;
         font-size: 14px;
     }
 
     #calIcon {
         font-size: 27px;
-        margin: 10px 0;
-        margin-left: 0px;
+        margin: 25px 5px 0 !important;
     }
 
     #desktopMenu {
@@ -384,12 +395,18 @@ th {
         margin-bottom: 3px;
     }
 
-    #race-details-name {
-        padding: 2px 10px !important;
+    #race-details-name,
+    #race-details-name:hover,
+    #race-details-name:active {
+        scale: 1 !important;
+        color: var(--textblack);
+        padding: 0 !important;
     }
 
     #headertxt:hover,
-    #race-details-name:hover {
+    #headertxt:active,
+    #race-details-name:hover,
+    #race-details-name:active {
         background-color: transparent !important;
     }
 
@@ -424,6 +441,7 @@ th {
     }
 
     .copyIcon {
+        padding: 0;
         font-size: 18px;
     }
 
