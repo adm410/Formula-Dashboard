@@ -451,14 +451,14 @@ function scrollFunction() {
         { backgroundColor: "transparent", color: "var(--red)" },
     ];
 
-    if (scrollPosition < 380) {
+    if (scrollPosition < 370) {
         menu[0].style.backgroundColor = styles[0].backgroundColor;
         menu[0].style.color = styles[0].color;
         for (var i = 1; i < menu.length; i++) {
             menu[i].style.backgroundColor = styles[1].backgroundColor;
             menu[i].style.color = styles[1].color;
         }
-    } else if (scrollPosition >= 380 && scrollPosition < 1258) {
+    } else if (scrollPosition >= 370 && scrollPosition < 1248) {
         menu[1].style.backgroundColor = styles[0].backgroundColor;
         menu[1].style.color = styles[0].color;
         for (var i = 0; i < menu.length; i++) {
@@ -467,7 +467,7 @@ function scrollFunction() {
                 menu[i].style.color = styles[1].color;
             }
         }
-    } else if (scrollPosition >= 1258 && scrollPosition < 1760) {
+    } else if (scrollPosition >= 1248 && scrollPosition < 1750) {
         menu[2].style.backgroundColor = styles[0].backgroundColor;
         menu[2].style.color = styles[0].color;
         for (var i = 0; i < menu.length; i++) {
@@ -476,7 +476,7 @@ function scrollFunction() {
                 menu[i].style.color = styles[1].color;
             }
         }
-    } else if (scrollPosition >= 1760) {
+    } else if (scrollPosition >= 1750) {
         menu[3].style.backgroundColor = styles[0].backgroundColor;
         menu[3].style.color = styles[0].color;
         for (var i = 0; i < menu.length; i++) {
