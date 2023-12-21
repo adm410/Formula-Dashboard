@@ -58,6 +58,10 @@
                 "flag": "🇭🇺"
             },
             {
+                "name": "india",
+                "flag": "🇮🇳"
+            },
+            {
                 "name": "israel",
                 "flag": "🇮🇱"
             },
@@ -222,6 +226,10 @@
             {
                 "name": "hungarian",
                 "flag": "🇭🇺"
+            },
+            {
+                "name": "indian",
+                "flag": "🇮🇳"
             },
             {
                 "name": "israeli",
