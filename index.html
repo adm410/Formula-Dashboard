@@ -2,120 +2,121 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="document-name"></title>
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-  <script src="./script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="document-name"></title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <script src="./script.js"></script>
 </head>
 
 
 <body>
-  <div id="header" style="position: fixed !important;">
-    <p id="headertxt">Formula Dashboard</p>
-    <input type="number" id="yearPicker" min="1950">
-    <i id="calIcon" onclick="updateYear()" class="ti ti-calendar-time"></i>
-    <div id="desktopMenu">
-      <a href="#next">Race</a>
-      <a href=" #driver">Drivers</a>
-      <a href="#constructor">Constructors</a>
-      <a href="#calendar">Calendar</a>
-    </div>
-    <div id="mobileMenu">
-      <a href="#next" class="ti ti-flag"></a>
-      <a href=" #driver" class="ti ti-helmet"></a>
-      <a href="#constructor" class="ti ti-trophy"></a>
-      <a href="#calendar" class="ti ti-calendar-event"></a>
-    </div>
-  </div>
-
-  <div class="content">
-    <div id="next">
-      <div class="nextheader">
-        <div>
-          <p id="race-round">0</p>
-          <p id="season-round">0</p>
+    <div id="header" style="position: fixed !important;">
+        <p id="headertxt">Formula Dashboard</p>
+        <input type="number" id="yearPicker" min="1950">
+        <i id="calIcon" onclick="updateYear()" class="ti ti-calendar-time"></i>
+        <div id="desktopMenu">
+            <a href="#next">Race</a>
+            <a href=" #driver">Drivers</a>
+            <a href="#constructor">Constructors</a>
+            <a href="#calendar">Calendar</a>
         </div>
-        <p id="race-details-venue"></p>
-      </div>
-      <button onclick="copyText()" id="race-details-name"></button>
-      <div id="race-details"></div>
-      <div id="race-details-track"></div>
-      <div id="trackData">
-        <div>
-          <div id="lapstxt">Laps:</div>
-          <div id="track-laps">00</div>
+        <div id="mobileMenu">
+            <a href="#next" class="ti ti-flag"></a>
+            <a href=" #driver" class="ti ti-helmet"></a>
+            <a href="#constructor" class="ti ti-trophy"></a>
+            <a href="#calendar" class="ti ti-calendar-event"></a>
         </div>
-        <div>
-          <div id="lengthtxt">Length:</div>
-          <div id="track-length">0.000 Km</div>
-        </div>
-        <div>
-          <div id="distancetxt">Distance:</div>
-          <div id="track-distance">000.000 Km</div>
-        </div>
-      </div>
     </div>
 
-    <div id="driver">
-      <div id="driver driverDesktop">
-        <p id="driver-year"></p>
-        <table id="driver-table">
-          <thead>
-            <tr>
-              <th>Position</th>
-              <th>Driver</th>
-              <th>Nationality</th>
-              <th>Team</th>
-              <th>Points</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <div id="tableFooter">
-          <div id="driver-total"></div>
+    <div class="content">
+        <div id="next">
+            <div class="nextheader">
+                <div>
+                    <p id="race-round">0</p>
+                    <p id="season-round">0</p>
+                </div>
+                <p id="race-details-venue"></p>
+            </div>
+            <button onclick="copyText()" id="race-details-name"></button>
+            <div id="copyTxt">Copied</div>
+            <div id="race-details"></div>
+            <div id="race-details-track"></div>
+            <div id="trackData">
+                <div>
+                    <div id="lapstxt">Laps:</div>
+                    <div id="track-laps">00</div>
+                </div>
+                <div>
+                    <div id="lengthtxt">Length:</div>
+                    <div id="track-length">0.000 Km</div>
+                </div>
+                <div>
+                    <div id="distancetxt">Distance:</div>
+                    <div id="track-distance">000.000 Km</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div id="constructor">
-      <p id="constructor-year"></p>
-      <table id="constructor-table">
-        <thead>
-          <tr>
-            <th>Position</th>
-            <th>Team</th>
-            <th>Nationality</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <div id="tableFooter">
-        <div id="constructor-total"></div>
-      </div>
-    </div>
+        <div id="driver">
+            <div id="driver driverDesktop">
+                <p id="driver-year"></p>
+                <table id="driver-table">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Driver</th>
+                            <th>Nationality</th>
+                            <th>Team</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div id="tableFooter">
+                    <div id="driver-total"></div>
+                </div>
+            </div>
+        </div>
 
-    <div id="calendar">
-      <p id="calendar-year"></p>
-      <table id="calendar-table">
-        <thead>
-          <tr>
-            <th>Round</th>
-            <th>Race</th>
-            <th>Circuit</th>
-            <th>Venue</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <div id="tableFooter">
-        <div id="calendar-total"></div>
-      </div>
+        <div id="constructor">
+            <p id="constructor-year"></p>
+            <table id="constructor-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Team</th>
+                        <th>Nationality</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="tableFooter">
+                <div id="constructor-total"></div>
+            </div>
+        </div>
+
+        <div id="calendar">
+            <p id="calendar-year"></p>
+            <table id="calendar-table">
+                <thead>
+                    <tr>
+                        <th>Round</th>
+                        <th>Race</th>
+                        <th>Circuit</th>
+                        <th>Venue</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="tableFooter">
+                <div id="calendar-total"></div>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 
 </html>

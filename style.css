@@ -35,7 +35,7 @@ body {
     width: 100%;
     height: 85px;
     user-select: none;
-    /* position: fixed !important; */
+    position: fixed !important;
     background-color: var(--lightwhite);
     border-bottom: solid var(--bordergray) 2px;
 }
@@ -61,7 +61,7 @@ body {
 
 #headertxt {
     cursor: pointer;
-    margin-right: 20px;
+    margin: 20px 20px 0;
 }
 
 #yearPicker,
@@ -97,7 +97,7 @@ body {
     float: right;
     display: block;
     font-size: 15px;
-    margin: 35px 50px;
+    margin: 33px 50px;
 }
 
 #desktopMenu a {
@@ -172,7 +172,7 @@ body {
 }
 
 #race-details-name {
-    margin: 0;
+    margin: auto !important;
     cursor: pointer;
     user-select: text;
     float: none !important;
@@ -252,6 +252,7 @@ body {
 #constructor-table th,
 #calendar-table th {
     font-weight: 530;
+    padding-left: 20px;
     padding: 0 10px 10px;
     border-bottom: solid var(--bordergray) 2px;
 }
@@ -259,14 +260,16 @@ body {
 #driver-table td,
 #constructor-table td,
 #calendar-table td {
-    padding: 7px 0;
+    padding: 5px 0;
+    padding-left: 25px;
 }
 
-#calendar-table {
-    font-size: 14px;
+#calendar {
+    margin: 0 10% 5% !important;
 }
 
 table {
+    text-align: justify;
     border-collapse: collapse
 }
 
@@ -280,19 +283,21 @@ th {
     pointer-events: none;
 }
 
-.copyIcon {
+#copyTxt {
     margin: 0;
-    padding: 1px 0;
-    font-size: 24px;
+    display: none;
+    padding: 5px;
+    font-size: 25px;
     font-weight: 550;
     transition: 0.3s;
     color: var(--green) !important;
 }
 
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
     :root {
-        --bordergray: rgba(75, 75, 75, 0.5);
         --red: #ac000b;
+        --bordergray: rgba(75, 75, 75, 0.5);
     }
 
     html {
@@ -335,7 +340,7 @@ th {
     }
 }
 
-/*  */
+/* Mobile Scaling */
 
 @media (max-width: 768px) {
 
@@ -424,7 +429,7 @@ th {
     }
 
     #calendar-table {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     #driver-table th:nth-child(3),
@@ -442,7 +447,7 @@ th {
         font-weight: 450;
     }
 
-    .copyIcon {
+    #copyTxt {
         padding: 0;
         font-size: 18px;
     }

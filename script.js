@@ -22,7 +22,8 @@ let racedt;
 
 function copyText() {
     setTimeout(() => {
-        document.getElementById("race-details-name").innerHTML = `<div class="copyIcon">Copied</div>`;
+        document.getElementById("race-details-name").style.display = "none";
+        document.getElementById("copyTxt").style.display = "block";
     }, 100);
     if (navigator.clipboard) {
         navigator.clipboard.writeText(`${raceDetailsName}\n\n${p1txt} ${p1dt}\n${p2txt} ${p2dt}\n\n${p3txt} ${p3dt}\n${qualitxt} ${qualidt}\n\n${racetxt} ${racedt}`)
@@ -31,7 +32,8 @@ function copyText() {
             });
     }
     setTimeout(() => {
-        document.getElementById("race-details-name").innerHTML = raceDetailsName;
+        document.getElementById("copyTxt").style.display = "none";
+        document.getElementById("race-details-name").style.display = "block";
     }, 3000);
 }
 
@@ -91,14 +93,14 @@ function getRaceDetails() {
             racedt = rDate.toLocaleString(locale, options);
 
             if (p3d === "P3_Date") {
-                p2txt = "Qualifying:"
-                p2dt = qDate.toLocaleString(locale, options);
+                qualitxt = "Qualifying:"
+                qualidt = qDate.toLocaleString(locale, options);
 
-                p3txt = "Sprint Shootout:"
-                p3dt = p2Date.toLocaleString(locale, options);
+                p2txt = "Sprint Qualifying:"
+                p2dt = p2Date.toLocaleString(locale, options);
 
-                qualitxt = "Sprint:"
-                qualidt = sDate.toLocaleString(locale, options);
+                p3txt = "Sprint:"
+                p3dt = sDate.toLocaleString(locale, options);
             }
 
             const documentName = `
@@ -330,7 +332,7 @@ function updateCalendarTable(year) {
                 const rd = race ? race.date : "Race_Date";
                 let rt;
                 let format;
-                if (year >= 2005) {
+                if (race.time) {
                     rt = race ? race.time : "Race_Time";
                     format = options
                 } else {
@@ -451,14 +453,14 @@ function scrollFunction() {
         { backgroundColor: "transparent", color: "var(--red)" },
     ];
 
-    if (scrollPosition < 370) {
+    if (scrollPosition < 380) {
         menu[0].style.backgroundColor = styles[0].backgroundColor;
         menu[0].style.color = styles[0].color;
         for (var i = 1; i < menu.length; i++) {
             menu[i].style.backgroundColor = styles[1].backgroundColor;
             menu[i].style.color = styles[1].color;
         }
-    } else if (scrollPosition >= 370 && scrollPosition < 1248) {
+    } else if (scrollPosition >= 380 && scrollPosition < 1258) {
         menu[1].style.backgroundColor = styles[0].backgroundColor;
         menu[1].style.color = styles[0].color;
         for (var i = 0; i < menu.length; i++) {
@@ -467,7 +469,7 @@ function scrollFunction() {
                 menu[i].style.color = styles[1].color;
             }
         }
-    } else if (scrollPosition >= 1248 && scrollPosition < 1750) {
+    } else if (scrollPosition >= 1258 && scrollPosition < 1760) {
         menu[2].style.backgroundColor = styles[0].backgroundColor;
         menu[2].style.color = styles[0].color;
         for (var i = 0; i < menu.length; i++) {
@@ -476,7 +478,7 @@ function scrollFunction() {
                 menu[i].style.color = styles[1].color;
             }
         }
-    } else if (scrollPosition >= 1750) {
+    } else if (scrollPosition >= 1760) {
         menu[3].style.backgroundColor = styles[0].backgroundColor;
         menu[3].style.color = styles[0].color;
         for (var i = 0; i < menu.length; i++) {
