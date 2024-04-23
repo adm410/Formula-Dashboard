@@ -420,6 +420,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function updateYear() {
+    console.log(window.scrollY);
     window.scrollY = window.scrollY
     const yearPicker = document.getElementById('yearPicker');
     const currentYear = new Date().getFullYear();
@@ -441,51 +442,27 @@ function disableDarkMode() {
 }
 
 function scrollFunction() {
-    var scrollPosition = window.scrollY;
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        var menu = document.getElementById("mobileMenu").children;
-    } else {
-        var menu = document.getElementById("desktopMenu").children;
-    }
+    const driverElement = document.getElementById("driver");
+    const constructorElement = document.getElementById("constructor");
+    const calendarElement = document.getElementById("calendar");
 
-    var styles = [
-        { backgroundColor: "var(--red)", color: "white" },
-        { backgroundColor: "transparent", color: "var(--red)" },
-    ];
-
-    if (scrollPosition < 380) {
-        menu[0].style.backgroundColor = styles[0].backgroundColor;
-        menu[0].style.color = styles[0].color;
-        for (var i = 1; i < menu.length; i++) {
-            menu[i].style.backgroundColor = styles[1].backgroundColor;
-            menu[i].style.color = styles[1].color;
+    window.addEventListener("scroll", function () {
+        const scrollPosition = window.scrollY;
+        const nextPosition = driverElement.getBoundingClientRect().top;
+        if (scrollPosition > nextPosition) {
+            document.getElementById("raceBtn").style.color = "var(--white)";
+            document.getElementById("raceBtn").style.backgroundColor = "var(--red)";
+        } else if (scrollPosition > driverElement) {
+            document.getElementById("driverBtn").style.color = "var(--white)";
+            document.getElementById("driverBtn").style.backgroundColor = "var(--red)";
+            console.log("Scrolled past #driver");
+        } else if (scrollPosition > constructorElement) {
+            document.getElementById("constructorBtn").style.color = "var(--white)";
+            document.getElementById("constructorBtn").style.backgroundColor = "var(--red)";
         }
-    } else if (scrollPosition >= 380 && scrollPosition < 1258) {
-        menu[1].style.backgroundColor = styles[0].backgroundColor;
-        menu[1].style.color = styles[0].color;
-        for (var i = 0; i < menu.length; i++) {
-            if (i !== 1) {
-                menu[i].style.backgroundColor = styles[1].backgroundColor;
-                menu[i].style.color = styles[1].color;
-            }
+        else if (scrollPosition > calendarElement) {
+            document.getElementById("calendarBtn").style.color = "var(--white)";
+            document.getElementById("calendarBtn").style.backgroundColor = "var(--red)";
         }
-    } else if (scrollPosition >= 1258 && scrollPosition < 1760) {
-        menu[2].style.backgroundColor = styles[0].backgroundColor;
-        menu[2].style.color = styles[0].color;
-        for (var i = 0; i < menu.length; i++) {
-            if (i !== 2) {
-                menu[i].style.backgroundColor = styles[1].backgroundColor;
-                menu[i].style.color = styles[1].color;
-            }
-        }
-    } else if (scrollPosition >= 1760) {
-        menu[3].style.backgroundColor = styles[0].backgroundColor;
-        menu[3].style.color = styles[0].color;
-        for (var i = 0; i < menu.length; i++) {
-            if (i !== 3) {
-                menu[i].style.backgroundColor = styles[1].backgroundColor;
-                menu[i].style.color = styles[1].color;
-            }
-        }
-    }
+    });
 }

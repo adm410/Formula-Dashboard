@@ -252,7 +252,7 @@ body {
 #constructor-table th,
 #calendar-table th {
     font-weight: 530;
-    padding-left: 20px;
+    padding-left: 25px;
     padding: 0 10px 10px;
     border-bottom: solid var(--bordergray) 2px;
 }
@@ -261,7 +261,7 @@ body {
 #constructor-table td,
 #calendar-table td {
     padding: 5px 0;
-    padding-left: 25px;
+    padding-left: 20px;
 }
 
 #calendar {
@@ -277,10 +277,6 @@ table {
     font-weight: 520;
     padding: 5px 0 5px 0;
     border-top: solid var(--bordergray) 2px;
-}
-
-th {
-    pointer-events: none;
 }
 
 #copyTxt {
@@ -345,7 +341,7 @@ th {
 @media (max-width: 768px) {
 
     #header {
-        height: 100px
+        height: 80px
     }
 
     #headertxt,
@@ -358,16 +354,20 @@ th {
         background-color: transparent !important;
     }
 
+    #headertxt {
+        margin: 3px 0;
+    }
+
     #yearPicker {
         width: 70px;
-        margin: 23px 0;
+        margin: 13px 0;
         padding: 4px;
         font-size: 13px;
     }
 
     #calIcon {
         font-size: 27px;
-        margin: 20px 5px 0 !important;
+        margin: 10px 5px 0 !important;
     }
 
     #desktopMenu {
@@ -375,6 +375,7 @@ th {
     }
 
     #mobileMenu {
+        padding-top: 15px;
         display: block;
     }
 
@@ -386,8 +387,9 @@ th {
     #driver,
     #constructor,
     #calendar {
-        margin: 0 5% 15%;
+        margin: 0 5% 15% !important;
     }
+
 
     #race-details-name,
     #driver-year,
