@@ -146,7 +146,7 @@ function getRaceDetails() {
             document.getElementById("race-round").innerHTML = raceRound;
         })
         .catch(error => {
-            document.getElementById("race-details-name").innerHTML = `<p class='error-cell'>Error: ${error}</p>`;
+            document.getElementById("race-details-name").innerHTML = `<p class='errorTxt'>Error: ${error}</p>`;
         });
 }
 
@@ -191,22 +191,22 @@ function getTrackDetails() {
                         document.getElementById("track-length").innerHTML = trackLength;
                         document.getElementById("track-distance").innerHTML = trackDistance;
                     } else {
-                        document.getElementById("trackData").innerHTML = `<p class='error-cell'>Error: Track Not Found.</p>`;
+                        document.getElementById("trackData").innerHTML = `<p class='errorTxt'>Error: Track Not Found.</p>`;
                     }
                 })
                 .catch(error => {
-                    document.getElementById("trackData").innerHTML = `<p class='error-cell'>Error: ${error}</p>`;
+                    document.getElementById("trackData").innerHTML = `<p class='errorTxt'>Error: ${error}</p>`;
                 });
         })
         .catch(error => {
-            document.getElementById("trackData").innerHTML = `<p class='error-cell'>Error: ${error}</p>`;
+            document.getElementById("trackData").innerHTML = `<p class='errorTxt'>Error: ${error}</p>`;
         });
 }
 
 
 function updateDriverTable(year) {
     const driverTable = document.getElementById("driver-table").getElementsByTagName('tbody')[0];
-    driverTable.innerHTML = "<tr><td colspan='5' class='loading-cell'><span class='spinner-border' role='status' aria-hidden='true'></span></td></tr>";
+    driverTable.innerHTML = "<tr><td colspan='5'><i class='ti ti-loader-2'></i></td></tr>";
 
     fetch(`https://ergast.com/api/f1/${year}/driverstandings.json`)
         .then(response => response.json())
@@ -245,13 +245,13 @@ function updateDriverTable(year) {
             });
         })
         .catch(error => {
-            driverTable.innerHTML = `<tr><td colspan='5' class='error-cell'>Error: ${error}</td></tr>`;
+            driverTable.innerHTML = `<tr><td class='errorTxt'>Error: ${error}</td></tr>`;
         });
 }
 
 function updateConstructorTable(year) {
     const constructorTable = document.getElementById("constructor-table").getElementsByTagName('tbody')[0];
-    constructorTable.innerHTML = "<tr><td colspan='4' class='loading-cell'><span class='spinner-border spinner-border' role='status' aria-hidden='true'></span></td></tr>";
+    constructorTable.innerHTML = "<tr><td colspan='4'><i class='ti ti-loader-2'></i></td></tr>";
     fetch(`https://ergast.com/api/f1/${year}/constructorstandings.json`)
         .then(response => response.json())
         .then(data => {
@@ -284,14 +284,14 @@ function updateConstructorTable(year) {
             });
         })
         .catch(error => {
-            constructorTable.innerHTML = `<tr><td colspan='4' class='error-cell'>Error: ${error}</td></tr>`;
+            constructorTable.innerHTML = `<tr><td colspan='4' class='errorTxt'>Error: ${error}</td></tr>`;
         });
 }
 
 
 function updateCalendarTable(year) {
     const calendarTable = document.getElementById("calendar-table").getElementsByTagName('tbody')[0];
-    calendarTable.innerHTML = "<tr><td colspan='4' class='loading-cell'><span class='spinner-border spinner-border' role='status' aria-hidden='true'></span></td></tr>";
+    calendarTable.innerHTML = "<tr><td colspan='5'><span><i class='ti ti-loader-2'></i></span></td></tr>";
 
     fetch(`https://ergast.com/api/f1/${year}.json`)
         .then(response => response.json())
@@ -377,17 +377,24 @@ function updateCalendarTable(year) {
                             dateCell.style.backgroundColor = "var(--red)";
                             dateCell.style.color = "var(--white)";
                             dateCell.style.fontWeight = "500";
-                            roundCell.style.borderTopLeftRadius = "11px";
-                            roundCell.style.borderBottomLeftRadius = "11px";
-                            dateCell.style.borderTopRightRadius = "11px";
-                            dateCell.style.borderBottomRightRadius = "11px";
+                            if (window.innerWidth > 786) {
+                                roundCell.style.borderTopLeftRadius = "11px";
+                                roundCell.style.borderBottomLeftRadius = "11px";
+                                dateCell.style.borderTopRightRadius = "11px";
+                                dateCell.style.borderBottomRightRadius = "11px";
+                            } else {
+                                roundCell.style.borderTopLeftRadius = "6px";
+                                roundCell.style.borderBottomLeftRadius = "6px";
+                                dateCell.style.borderTopRightRadius = "6px";
+                                dateCell.style.borderBottomRightRadius = "6px";
+                            }
                         }
                     });
 
             });
         })
         .catch(error => {
-            calendarTable.innerHTML = `<tr><td colspan='4' class='error-cell'>Error: ${error}</td></tr>`;
+            calendarTable.innerHTML = `<tr><td colspan='4' class='errorTxt'>Error: ${error}</td></tr>`;
         });
 }
 
@@ -442,27 +449,83 @@ function disableDarkMode() {
 }
 
 function scrollFunction() {
-    const driverElement = document.getElementById("driver");
-    const constructorElement = document.getElementById("constructor");
-    const calendarElement = document.getElementById("calendar");
+    const nextElement = document.getElementById("next").getBoundingClientRect().top;
+    const driverElement = document.getElementById("driver").getBoundingClientRect().top;
+    const constructorElement = document.getElementById("constructor").getBoundingClientRect().top;
+    const calendarElement = document.getElementById("calendar").getBoundingClientRect().top;
 
     window.addEventListener("scroll", function () {
         const scrollPosition = window.scrollY;
-        const nextPosition = driverElement.getBoundingClientRect().top;
-        if (scrollPosition > nextPosition) {
-            document.getElementById("raceBtn").style.color = "var(--white)";
-            document.getElementById("raceBtn").style.backgroundColor = "var(--red)";
-        } else if (scrollPosition > driverElement) {
-            document.getElementById("driverBtn").style.color = "var(--white)";
-            document.getElementById("driverBtn").style.backgroundColor = "var(--red)";
-            console.log("Scrolled past #driver");
-        } else if (scrollPosition > constructorElement) {
-            document.getElementById("constructorBtn").style.color = "var(--white)";
-            document.getElementById("constructorBtn").style.backgroundColor = "var(--red)";
+        if (window.innerWidth > 786) {
+            if (scrollPosition > 25) {
+                document.getElementById("header").style.height = "65px";
+                document.getElementById("header").style.boxShadow = "0 4px 10px 0 rgba(0, 0, 0, 0.2)";
+                document.getElementById("headerTxt").style.margin = "10px 15px 0";
+                document.getElementById("yearPicker").style.margin = "15px 0px";
+                document.getElementById("calIcon").style.margin = "13px 5px";
+                document.getElementById("desktopMenu").style.margin = "23px 30px";
+            } else {
+                document.getElementById("header").style.height = "80px";
+                document.getElementById("header").style.boxShadow = "";
+                document.getElementById("headerTxt").style.margin = "20px 20px 0";
+                document.getElementById("yearPicker").style.margin = "24px 5px";
+                document.getElementById("calIcon").style.margin = "22px 5px";
+                document.getElementById("desktopMenu").style.margin = "33px 50px";
+            }
+        } else {
+            if (scrollPosition > 25) {
+                document.getElementById("header").style.height = "70px";
+                document.getElementById("header").style.boxShadow = "0 4px 10px 0 rgba(0, 0, 0, 0.2)";
+                document.getElementById("headerTxt").style.margin = "0";
+                document.getElementById("yearPicker").style.margin = "8px 0";
+                document.getElementById("calIcon").style.margin = "4px 5px 0";
+                document.getElementById("mobileMenu").style.paddingTop = "13px";
+            } else {
+                document.getElementById("header").style.height = "85px";
+                document.getElementById("header").style.boxShadow = "";
+                document.getElementById("headerTxt").style.margin = "6px 0";
+                document.getElementById("yearPicker").style.margin = "12px 0";
+                document.getElementById("calIcon").style.margin = "8px 5px 0";
+                document.getElementById("mobileMenu").style.paddingTop = "16px";
+            }
         }
-        else if (scrollPosition > calendarElement) {
-            document.getElementById("calendarBtn").style.color = "var(--white)";
-            document.getElementById("calendarBtn").style.backgroundColor = "var(--red)";
-        }
+
+        // if (scrollPosition > nextElement) {
+        //     document.getElementById("raceBtn").style.color = "var(--textwhite)";
+        //     document.getElementById("raceBtn").style.backgroundColor = "var(--red)";
+        //     document.getElementById("driverBtn").style.color = "var(--textblack)";
+        //     document.getElementById("driverBtn").style.backgroundColor = "transparent";
+        //     document.getElementById("constructorBtn").style.color = "var(--textblack)";
+        //     document.getElementById("constructorBtn").style.backgroundColor = "transparent";
+        //     document.getElementById("calendarBtn").style.color = "var(--textblack)";
+        //     document.getElementById("calendarBtn").style.backgroundColor = "transparent";
+        // } if (scrollPosition > driverElement) {
+        //     document.getElementById("raceBtn").style.color = "var(--textblack)";
+        //     document.getElementById("raceBtn").style.backgroundColor = "transparent";
+        //     document.getElementById("driverBtn").style.color = "var(--textwhite)";
+        //     document.getElementById("driverBtn").style.backgroundColor = "var(--red)";
+        //     document.getElementById("constructorBtn").style.color = "var(--textblack)";
+        //     document.getElementById("constructorBtn").style.backgroundColor = "transparent";
+        //     document.getElementById("calendarBtn").style.color = "var(--textblack)";
+        //     document.getElementById("calendarBtn").style.backgroundColor = "transparent";
+        // } if (scrollPosition > constructorElement) {
+        //     document.getElementById("raceBtn").style.color = "var(--textblack)";
+        //     document.getElementById("raceBtn").style.backgroundColor = "transparent";
+        //     document.getElementById("driverBtn").style.color = "var(--textblack)";
+        //     document.getElementById("driverBtn").style.backgroundColor = "transparent";
+        //     document.getElementById("constructorBtn").style.color = "var(--textwhite)";
+        //     document.getElementById("constructorBtn").style.backgroundColor = "var(--red)";
+        //     document.getElementById("calendarBtn").style.color = "var(--textblack)";
+        //     document.getElementById("calendarBtn").style.backgroundColor = "transparent";
+        // } if (scrollPosition > calendarElement) {
+        //     document.getElementById("raceBtn").style.color = "var(--textblack)";
+        //     document.getElementById("raceBtn").style.backgroundColor = "transparent";
+        //     document.getElementById("driverBtn").style.color = "var(--textblack)";
+        //     document.getElementById("driverBtn").style.backgroundColor = "transparent";
+        //     document.getElementById("constructorBtn").style.color = "var(--textblack)";
+        //     document.getElementById("constructorBtn").style.backgroundColor = "transparent";
+        //     document.getElementById("calendarBtn").style.color = "var(--textwhite)";
+        //     document.getElementById("calendarBtn").style.backgroundColor = "var(--red)";
+        // }
     });
 }

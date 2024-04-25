@@ -33,14 +33,15 @@ body {
 #header {
     z-index: 1;
     width: 100%;
-    height: 85px;
+    height: 80px;
+    transition: 0.2s;
     user-select: none;
     position: fixed !important;
     background-color: var(--lightwhite);
     border-bottom: solid var(--bordergray) 2px;
 }
 
-#headertxt,
+#headerTxt,
 #race-details-name,
 #driver-year,
 #constructor-year,
@@ -59,7 +60,7 @@ body {
     font-family: 'Poppins', sans-serif !important;
 }
 
-#headertxt {
+#headerTxt {
     cursor: pointer;
     margin: 20px 20px 0;
 }
@@ -68,7 +69,7 @@ body {
 #calIcon {
     float: left;
     display: flex;
-    margin: 25px 5px;
+    margin: 0 5px;
     transition: 0.2s;
     align-items: center;
 }
@@ -78,6 +79,7 @@ body {
     padding: 6px;
     font-size: 15px;
     font-weight: 520;
+    margin-top: 24px;
     border-radius: 10px;
     border: solid var(--bordergray) 2px;
 }
@@ -86,7 +88,7 @@ body {
     opacity: 0;
     font-size: 30px;
     cursor: pointer;
-    margin-left: 5px;
+    margin-top: 22px;
     color: var(--red);
     pointer-events: none;
     text-decoration: none;
@@ -97,6 +99,7 @@ body {
     float: right;
     display: block;
     font-size: 15px;
+    transition: 0.2s;
     margin: 33px 50px;
 }
 
@@ -125,16 +128,23 @@ body {
 #mobileMenu a {
     cursor: pointer;
     padding: 3px 5px;
-    color: var(--red);
+    color: var(--textblack);
     border-radius: 10px;
     text-decoration: none;
     background-color: transparent;
 }
 
-#calIcon:active,
-#desktopMenu a:active,
+#calIcon,
+#mobileMenu a,
 #mobileMenu a:hover,
-#mobileMenu a:active {
+#mobileMenu a:active,
+#desktopMenu a:hover {
+    color: var(--red);
+}
+
+#calIcon:active,
+#desktopMenu a:active {
+    scale: 0.9;
     color: var(--textwhite);
     background-color: var(--red);
 }
@@ -252,7 +262,7 @@ body {
 #constructor-table th,
 #calendar-table th {
     font-weight: 530;
-    padding-left: 25px;
+    padding-left: 20px !important;
     padding: 0 10px 10px;
     border-bottom: solid var(--bordergray) 2px;
 }
@@ -261,7 +271,7 @@ body {
 #constructor-table td,
 #calendar-table td {
     padding: 5px 0;
-    padding-left: 20px;
+    padding-left: 20px !important;
 }
 
 #calendar {
@@ -279,6 +289,10 @@ table {
     border-top: solid var(--bordergray) 2px;
 }
 
+.errorTxt {
+    color: var(--red) !important;
+}
+
 #copyTxt {
     margin: 0;
     display: none;
@@ -287,6 +301,23 @@ table {
     font-weight: 550;
     transition: 0.3s;
     color: var(--green) !important;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.ti-loader-2 {
+    font-size: 35px;
+    color: var(--red);
+    display: inline-block;
+    animation: rotate 1.5s linear infinite;
 }
 
 /* Dark Mode */
@@ -305,17 +336,18 @@ table {
         background-color: var(--black);
     }
 
-    #headertxt,
+    #headerTxt,
     #race-details-name,
     #driver-year,
     #constructor-year,
-    #calendar-year {
+    #calendar-year,
+    #desktopMenu a {
         color: var(--textwhite);
     }
 
     #yearPicker {
         color: var(--textwhite);
-        background-color: var(--lightblack);
+        background-color: var(--black);
     }
 
     #next,
@@ -341,12 +373,12 @@ table {
 @media (max-width: 768px) {
 
     #header {
-        height: 80px
+        height: 85px
     }
 
-    #headertxt,
-    #headertxt:hover,
-    #headertxt:active {
+    #headerTxt,
+    #headerTxt:hover,
+    #headerTxt:active {
         float: left;
         padding: 3px;
         margin: 20px 0;
@@ -354,20 +386,27 @@ table {
         background-color: transparent !important;
     }
 
-    #headertxt {
-        margin: 3px 0;
+    #headerTxt {
+        margin: 6px 0;
     }
 
     #yearPicker {
         width: 70px;
-        margin: 13px 0;
+        margin: 12px 0;
         padding: 4px;
         font-size: 13px;
+        border-radius: 9px;
     }
 
     #calIcon {
         font-size: 27px;
-        margin: 10px 5px 0 !important;
+        margin: 8px 5px 0;
+    }
+
+    #calIcon:active {
+        scale: 1;
+        color: var(--red);
+        background-color: transparent;
     }
 
     #desktopMenu {
@@ -375,7 +414,7 @@ table {
     }
 
     #mobileMenu {
-        padding-top: 15px;
+        padding-top: 16px;
         display: block;
     }
 
@@ -412,8 +451,8 @@ table {
         padding: 0 !important;
     }
 
-    #headertxt:hover,
-    #headertxt:active,
+    #headerTxt:hover,
+    #headerTxt:active,
     #race-details-name:hover,
     #race-details-name:active {
         background-color: transparent !important;
@@ -449,6 +488,16 @@ table {
         font-weight: 450;
     }
 
+    #driver-table th,
+    #constructor-table th,
+    #calendar-table th {
+        padding-left: 21px !important;
+    }
+
+    .ti-loader-2 {
+        font-size: 20px;
+    }
+
     #copyTxt {
         padding: 0;
         font-size: 18px;
@@ -456,5 +505,24 @@ table {
 
     #desktopMenu {
         display: none;
+    }
+
+    #yearPicker,
+    #next,
+    #driver,
+    #constructor,
+    #calendar {
+        border: solid var(--bordergray) 1px;
+        border-radius: 9px;
+    }
+
+    #driver-table th,
+    #constructor-table th,
+    #calendar-table th {
+        border-bottom: solid var(--bordergray) 1px;
+    }
+
+    #tableFooter {
+        border-top: solid var(--bordergray) 1px;
     }
 }
