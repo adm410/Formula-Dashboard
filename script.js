@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", getSeasonDetails);
 document.addEventListener("DOMContentLoaded", getTrackDetails);
 window.onscroll = function () { scrollFunction() };
 
-const urlSeason = "https://ergast.com/api/f1/current.json"
-const urlNext = "https://ergast.com/api/f1/current/next.json"
+const urlSeason = "https://api.jolpi.ca/ergast/f1/current.json"
+const urlNext = "https://api.jolpi.ca/ergast/f1/current/next.json"
 const urlFlag = "https://raw.githubusercontent.com/adm410/Sports-Flags/main/track.json"
 const localeType = "en-IN"
 
@@ -208,27 +208,27 @@ function updateDriverTable(year) {
     const driverTable = document.getElementById("driver-table").getElementsByTagName('tbody')[0];
     driverTable.innerHTML = "<tr><td colspan='5'><i class='ti ti-loader-2'></i></td></tr>";
 
-    fetch(`https://ergast.com/api/f1/${year}/driverstandings.json`)
+    fetch(`https://api.jolpi.ca/ergast/f1/${year}/drivers.json`)
         .then(response => response.json())
         .then(data => {
-            const drivers = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+            const drivers = data.MRData.DriverTable.Drivers;
 
             while (driverTable.firstChild) {
                 driverTable.removeChild(driverTable.firstChild);
             }
 
             const driverTotal = `
-          ${data.MRData["total"]} Drivers
-        `
+          ${data.MRData.total} Drivers
+        `;
             document.getElementById("driver-total").innerHTML = driverTotal;
-            document.getElementById("driver-year").innerHTML = year + " Drivers Standings";
+            document.getElementById("driver-year").innerHTML = year + " Drivers";
 
-            drivers.forEach(driver => {
-                const position = driver.position;
-                const driverName = `${driver.Driver.givenName} ${driver.Driver.familyName}`;
-                const nationality = driver.Driver.nationality;
-                const constructor = driver.Constructors[0].name;
-                const points = driver.points;
+            drivers.forEach((driver, index) => {
+                const position = index + 1;  // The position can be based on the index in the array
+                const driverName = `${driver.givenName} ${driver.familyName}`;
+                const nationality = driver.nationality;
+                const constructor = "N/A";  // There is no constructor in the new data, so we can set it to "N/A"
+                const points = "N/A";  // There are no points in this data either
 
                 const row = driverTable.insertRow();
                 const positionCell = row.insertCell(0);
@@ -239,7 +239,7 @@ function updateDriverTable(year) {
 
                 positionCell.textContent = position;
                 driverCell.textContent = driverName;
-                nationalityCell.textContent = nationality
+                nationalityCell.textContent = nationality;
                 constructorCell.textContent = constructor;
                 pointsCell.textContent = points;
             });
@@ -252,10 +252,11 @@ function updateDriverTable(year) {
 function updateConstructorTable(year) {
     const constructorTable = document.getElementById("constructor-table").getElementsByTagName('tbody')[0];
     constructorTable.innerHTML = "<tr><td colspan='4'><i class='ti ti-loader-2'></i></td></tr>";
-    fetch(`https://ergast.com/api/f1/${year}/constructorstandings.json`)
+
+    fetch(`https://api.jolpi.ca/ergast/f1/${year}/constructors.json`)
         .then(response => response.json())
         .then(data => {
-            const constructors = data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+            const constructors = data.MRData.ConstructorTable.Constructors;
 
             while (constructorTable.firstChild) {
                 constructorTable.removeChild(constructorTable.firstChild);
@@ -263,13 +264,13 @@ function updateConstructorTable(year) {
 
             const constructorTotal = `${constructors.length} Teams`;
             document.getElementById("constructor-total").innerHTML = constructorTotal;
-            document.getElementById("constructor-year").innerHTML = year + " Constructors Standings";
+            document.getElementById("constructor-year").innerHTML = year + " Constructors";
 
-            constructors.forEach(constructor => {
-                const position = constructor.position;
-                const constructorName = constructor.Constructor.name;
-                const nationality = constructor.Constructor.nationality;
-                const points = constructor.points;
+            constructors.forEach((constructor, index) => {
+                const position = index + 1;  // Position based on array index
+                const constructorName = constructor.name;
+                const nationality = constructor.nationality;
+                const points = "N/A";  // No points data in this structure, so set to "N/A"
 
                 const row = constructorTable.insertRow();
                 const positionCell = row.insertCell(0);
@@ -293,7 +294,7 @@ function updateCalendarTable(year) {
     const calendarTable = document.getElementById("calendar-table").getElementsByTagName('tbody')[0];
     calendarTable.innerHTML = "<tr><td colspan='5'><span><i class='ti ti-loader-2'></i></span></td></tr>";
 
-    fetch(`https://ergast.com/api/f1/${year}.json`)
+    fetch(`https://api.jolpi.ca/ergast/f1/${year}.json`)
         .then(response => response.json())
         .then(data => {
             locale = localeType
