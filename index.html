@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-UK">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title id="document-name"></title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <script src="./script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>
-
 
 <body>
     <div id="header" style="position: fixed !important;">
@@ -39,7 +38,7 @@
                 </div>
                 <p id="race-details-venue"></p>
             </div>
-            <button onclick="copyText()" id="race-details-name"></button>
+            <button ondblclick="copyRace()" onclick="copyText()" id="race-details-name"></button>
             <div id="copyTxt">Copied</div>
             <div id="race-details"></div>
             <div id="race-details-track"></div>
@@ -76,6 +75,7 @@
                 </table>
                 <div id="tableFooter">
                     <div id="driver-total"></div>
+                    <div id="driverError"></div>
                 </div>
             </div>
         </div>
@@ -95,6 +95,7 @@
             </table>
             <div id="tableFooter">
                 <div id="constructor-total"></div>
+                <div id="constructorError"></div>
             </div>
         </div>
 
@@ -114,6 +115,7 @@
             </table>
             <div id="tableFooter">
                 <div id="calendar-total"></div>
+                <div id="calendarError"></div>
             </div>
         </div>
     </div>

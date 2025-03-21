@@ -76,10 +76,10 @@ body {
 
 #yearPicker {
     width: 80px;
-    padding: 6px;
+    padding: 5px;
     font-size: 15px;
     font-weight: 520;
-    margin-top: 24px;
+    margin: 28px 0;
     border-radius: 10px;
     border: solid var(--bordergray) 2px;
 }
@@ -150,7 +150,7 @@ body {
 }
 
 .content {
-    padding-bottom: 40px;
+    padding-bottom: 0px;
     padding-top: 130px !important;
 }
 
@@ -289,7 +289,11 @@ table {
     border-top: solid var(--bordergray) 2px;
 }
 
-.errorTxt {
+.errorTxt,
+#driverError,
+#constructorError,
+#calendarError {
+    display: none;
     color: var(--red) !important;
 }
 
