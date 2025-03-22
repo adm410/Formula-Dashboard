@@ -473,10 +473,7 @@ table {
         font-size: 12px;
     }
     
-    #driver-table {
-        font-size: 11px;
-    }
-    
+    #driver-table,
     #calendar-table {
         font-size: 10px;
     }
