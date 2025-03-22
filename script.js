@@ -215,6 +215,7 @@ function updateDriverTable(year) {
             drivers.forEach((driver, index) => {
                 const position = index + 1;
                 const driverName = `${driver.Driver.givenName} ${driver.Driver.familyName}`;
+                const driverNameMobile = `${driver.Driver.givenName.charAt(0)}. ${driver.Driver.familyName}`;
                 const nationality = driver.Driver.nationality;
                 const constructor = driver.Constructors.map(constructor => constructor.name).join(", ");
                 const points = driver.points;
@@ -222,12 +223,14 @@ function updateDriverTable(year) {
                 const row = driverTable.insertRow();
                 const positionCell = row.insertCell(0);
                 const driverCell = row.insertCell(1);
-                const nationalityCell = row.insertCell(2);
-                const constructorCell = row.insertCell(3);
-                const pointsCell = row.insertCell(4);
+                const driverCellMobile = row.insertCell(2);
+                const nationalityCell = row.insertCell(3);
+                const constructorCell = row.insertCell(4);
+                const pointsCell = row.insertCell(5);
 
                 positionCell.textContent = position;
                 driverCell.textContent = driverName;
+                driverCellMobile.textContent = driverNameMobile;
                 nationalityCell.textContent = nationality;
                 constructorCell.textContent = constructor;
                 pointsCell.textContent = points;

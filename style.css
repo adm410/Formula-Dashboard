@@ -274,6 +274,11 @@ body {
     padding-left: 20px !important;
 }
 
+#driver-table th:nth-child(3),
+#driver-table td:nth-child(3) {
+    display: none;
+}
+
 #calendar {
     margin: 0 10% 5% !important;
 }
@@ -472,14 +477,20 @@ table {
     #tableFooter {
         font-size: 12px;
     }
-    
-    #driver-table,
+
     #calendar-table {
         font-size: 10px;
     }
 
     #driver-table th:nth-child(3),
-    #driver-table td:nth-child(3),
+    #driver-table td:nth-child(3) {
+        display: block;
+    }
+
+    #driver-table th:nth-child(2),
+    #driver-table td:nth-child(2),
+    #driver-table th:nth-child(4),
+    #driver-table td:nth-child(4),
     #constructor-table th:nth-child(3),
     #constructor-table td:nth-child(3),
     #calendar-table th:nth-child(3),
