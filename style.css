@@ -472,7 +472,11 @@ table {
     #tableFooter {
         font-size: 12px;
     }
-
+    
+    #driver-table {
+        font-size: 11px;
+    }
+    
     #calendar-table {
         font-size: 10px;
     }
