@@ -315,7 +315,7 @@ function updateCalendarTable(year) {
                 day: 'numeric',
                 month: 'long',
                 hour12: true,
-                year: 'numeric';
+                year: 'numeric',
             };
             if (wideScreen) {
                 options.year = 'numeric';
