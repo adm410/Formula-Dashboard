@@ -84,7 +84,7 @@ function getRaceDetails() {
             const p2txt = race.SprintQualifying ? "Sprint Qualifying:" : "Practice 2:";
             const p2dt = formatEvent(race.SprintQualifying || race.SecondPractice, "Not Available");
 
-            const p3txt = race.Sprint ? "Sprint:" : "Practice 3:";
+            const p3txt = race.Sprint ? "Sprint Race:" : "Practice 3:";
             const p3dt = formatEvent(race.Sprint || race.ThirdPractice, "Not Available");
 
             const qualitxt = "Qualifying:";
