@@ -79,7 +79,7 @@ body {
     padding: 5px;
     font-size: 15px;
     font-weight: 520;
-    margin: 28px 0;
+    margin: 23px 0;
     border-radius: 10px;
     border: solid var(--bordergray) 2px;
 }
@@ -105,8 +105,9 @@ body {
 
 #desktopMenu a {
     font-weight: 500;
-    transition: 0.1s;
-    padding: 8px 12px !important;
+    transition: 0.2s;
+    padding: 5px 10px !important;
+    border: solid 2px transparent;
 }
 
 #mobileMenu {
@@ -132,19 +133,23 @@ body {
     border-radius: 10px;
     text-decoration: none;
     background-color: transparent;
+    scale: 1;
 }
 
 #calIcon,
 #mobileMenu a,
 #mobileMenu a:hover,
-#mobileMenu a:active,
-#desktopMenu a:hover {
+#mobileMenu a:active {
     color: var(--red);
+}
+
+#desktopMenu a:hover {
+    border: solid 2px var(--red);
 }
 
 #calIcon:active,
 #desktopMenu a:active {
-    scale: 0.9;
+    scale: 0.9 !important;
     color: var(--textwhite);
     background-color: var(--red);
 }
@@ -329,6 +334,13 @@ table {
     animation: rotate 1.5s linear infinite;
 }
 
+footer {
+    color: var(--textblack);
+    background-color: var(--lightwhite);
+    border-top: solid var(--bordergray) 2px;
+    padding: 15px;
+}
+
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
     :root {
@@ -336,7 +348,8 @@ table {
         --bordergray: rgba(75, 75, 75, 0.5);
     }
 
-    html {
+    html,
+    footer {
         color: var(--textwhite);
         background-color: var(--black);
     }

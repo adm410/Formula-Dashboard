@@ -20,22 +20,27 @@ let qualidt;
 let racetxt;
 let racedt;
 
+
 function copyText() {
     setTimeout(() => {
         document.getElementById("race-details-name").style.display = "none";
         document.getElementById("copyTxt").style.display = "block";
     }, 100);
+
     if (navigator.clipboard) {
-        navigator.clipboard.writeText(`${raceDetailsName}\n\n${p1txt} ${p1dt}\n${p2txt} ${p2dt}\n\n${p3txt} ${p3dt}\n${qualitxt} ${qualidt}\n\n${racetxt} ${racedt}`)
-            .catch((error) => {
-                console.error(error);
-            });
+        const textToCopy = `${raceDetailsName}\n\n${p1txt} ${p1dt}\n${p2txt} ${p2dt}\n\n${p3txt} ${p3dt}\n${qualitxt} ${qualidt}\n\n${racetxt} ${racedt}`;
+
+        navigator.clipboard.writeText(textToCopy).catch((error) => {
+            console.error(error);
+        });
     }
+
     setTimeout(() => {
         document.getElementById("copyTxt").style.display = "none";
         document.getElementById("race-details-name").style.display = "block";
     }, 3000);
 }
+
 
 function copyRace() {
     setTimeout(() => {
@@ -53,6 +58,8 @@ function copyRace() {
         document.getElementById("race-details-name").style.display = "block";
     }, 3000);
 }
+
+
 function getRaceDetails() {
     fetch(urlNext)
         .then(response => response.json())
@@ -78,23 +85,24 @@ function getRaceDetails() {
                 return defaultText;
             };
 
-            const p1txt = "Practice 1:";
-            const p1dt = formatEvent(race.FirstPractice, "Not Available");
+            p1txt = "Practice 1:";
+            p1dt = formatEvent(race.FirstPractice, "Not Available");
 
-            const p2txt = race.SprintQualifying ? "Sprint Qualifying:" : "Practice 2:";
-            const p2dt = formatEvent(race.SprintQualifying || race.SecondPractice, "Not Available");
+            p2txt = race.SprintQualifying ? "Sprint Qualifying:" : "Practice 2:";
+            p2dt = formatEvent(race.SprintQualifying || race.SecondPractice, "Not Available");
 
-            const p3txt = race.Sprint ? "Sprint Race:" : "Practice 3:";
-            const p3dt = formatEvent(race.Sprint || race.ThirdPractice, "Not Available");
+            p3txt = race.Sprint ? "Sprint Race:" : "Practice 3:";
+            p3dt = formatEvent(race.Sprint || race.ThirdPractice, "Not Available");
 
-            const qualitxt = "Qualifying:";
-            const qualidt = formatEvent(race.Qualifying, "Not Available");
+            qualitxt = "Qualifying:";
+            qualidt = formatEvent(race.Qualifying, "Not Available");
 
-            const racetxt = "Race:";
-            const racedt = formatEvent({ date: race.date, time: race.time }, "Not Available");
+            racetxt = "Race:";
+            racedt = formatEvent({ date: race.date, time: race.time }, "Not Available");
+
+            raceDetailsName = `${race.raceName}`;
 
             const documentName = `Next: ${race.Circuit.Location.locality} ${data.MRData.RaceTable.season}`;
-            raceDetailsName = `${race.raceName}`;
             const raceDetailsTrack = `${race.Circuit.circuitName}`;
             const raceCountry = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
             const raceRound = `Round ${data.MRData.RaceTable["round"]}`;
@@ -135,7 +143,6 @@ function getRaceDetails() {
             document.getElementById("race-details-name").innerHTML = `<p class='errorTxt'>Error: ${error}</p>`;
         });
 }
-
 
 
 function getSeasonDetails() {
@@ -197,7 +204,14 @@ function getTrackDetails() {
 function updateDriverTable(year) {
     const driverTable = document.getElementById("driver-table").getElementsByTagName('tbody')[0];
     const driverError = document.getElementById("driverError");
-    driverTable.innerHTML = "<tr><td colspan='5'><i class='ti ti-loader-2'></i></td></tr>";
+    while (driverTable.firstChild) {
+        driverTable.removeChild(driverTable.firstChild);
+    }
+    const loadingRow = driverTable.insertRow();
+    const loadingCell = loadingRow.insertCell(0);
+    loadingCell.colSpan = 6;
+    loadingCell.innerHTML = "<i class='ti ti-loader-2'></i>";
+    loadingCell.style.textAlign = "center";
 
     fetch(`https://api.jolpi.ca/ergast/f1/${year}/driverstandings.json`)
         .then(response => response.json())
@@ -221,29 +235,18 @@ function updateDriverTable(year) {
                 const points = driver.points;
 
                 const row = driverTable.insertRow();
-                const positionCell = row.insertCell(0);
-                const driverCell = row.insertCell(1);
-                const driverCellMobile = row.insertCell(2);
-                const nationalityCell = row.insertCell(3);
-                const constructorCell = row.insertCell(4);
-                const pointsCell = row.insertCell(5);
-
-                positionCell.textContent = position;
-                driverCell.textContent = driverName;
-                driverCellMobile.textContent = driverNameMobile;
-                nationalityCell.textContent = nationality;
-                constructorCell.textContent = constructor;
-                pointsCell.textContent = points;
+                row.insertCell(0).textContent = position;
+                row.insertCell(1).textContent = driverName;
+                row.insertCell(2).textContent = driverNameMobile;
+                row.insertCell(3).textContent = nationality;
+                row.insertCell(4).textContent = constructor;
+                row.insertCell(5).textContent = points;
             });
         })
         .catch(error => {
-            if (error) {
-                updateDriverTable(--year);
-                driverError.style.display = "block";
-                driverError.innerHTML = `Error loading ${year + 1} data.`;
-            } else {
-                driverError.style.display = "none";
-            }
+            updateDriverTable(--year);
+            driverError.style.display = "block";
+            driverError.innerHTML = `Error loading ${year + 1} data.`;
         });
 }
 
@@ -251,7 +254,14 @@ function updateDriverTable(year) {
 function updateConstructorTable(year) {
     const constructorTable = document.getElementById("constructor-table").getElementsByTagName('tbody')[0];
     const constructorError = document.getElementById("constructorError");
-    constructorTable.innerHTML = "<tr><td colspan='4'><i class='ti ti-loader-2'></i></td></tr>";
+    while (constructorTable.firstChild) {
+        constructorTable.removeChild(constructorTable.firstChild);
+    }
+    const loadingRow = constructorTable.insertRow();
+    const loadingCell = loadingRow.insertCell(0);
+    loadingCell.colSpan = 4;
+    loadingCell.innerHTML = "<i class='ti ti-loader-2'></i>";
+    loadingCell.style.textAlign = "center";
 
     fetch(`https://api.jolpi.ca/ergast/f1/${year}/constructorstandings.json`)
         .then(response => response.json())
@@ -273,15 +283,10 @@ function updateConstructorTable(year) {
                 const points = constructor.points;
 
                 const row = constructorTable.insertRow();
-                const positionCell = row.insertCell(0);
-                const constructorCell = row.insertCell(1);
-                const nationalityCell = row.insertCell(2);
-                const pointsCell = row.insertCell(3);
-
-                positionCell.textContent = position;
-                constructorCell.textContent = constructorName;
-                nationalityCell.textContent = nationality;
-                pointsCell.textContent = points;
+                row.insertCell(0).textContent = position;
+                row.insertCell(1).textContent = constructorName;
+                row.insertCell(2).textContent = nationality;
+                row.insertCell(3).textContent = points;
             });
         })
         .catch(error => {
@@ -298,13 +303,21 @@ function updateConstructorTable(year) {
 
 function updateCalendarTable(year) {
     const calendarTable = document.getElementById("calendar-table").getElementsByTagName('tbody')[0];
-    calendarTable.innerHTML = "<tr><td colspan='5'><span><i class='ti ti-loader-2'></i></span></td></tr>";
+    while (calendarTable.firstChild) {
+        calendarTable.removeChild(calendarTable.firstChild);
+    }
+    const loadingRow = calendarTable.insertRow();
+    const loadingCell = loadingRow.insertCell(0);
+    loadingCell.colSpan = 5;
+    loadingCell.innerHTML = "<i class='ti ti-loader-2'></i>";
+    loadingCell.style.textAlign = "center";
 
     fetch(`https://api.jolpi.ca/ergast/f1/${year}.json`)
         .then(response => response.json())
         .then(data => {
-            locale = localeType
+            const locale = localeType;
             const wideScreen = window.innerWidth > 786;
+
             const options = {
                 weekday: wideScreen ? 'long' : 'short',
                 day: 'numeric',
@@ -312,19 +325,18 @@ function updateCalendarTable(year) {
                 hour: 'numeric',
                 minute: 'numeric',
                 hour12: true,
+                ...(wideScreen && { year: 'numeric' })
             };
+
             const options2 = {
                 weekday: 'long',
                 day: 'numeric',
                 month: 'long',
-                hour12: true,
                 year: 'numeric',
+                hour12: true
             };
-            if (wideScreen) {
-                options.year = 'numeric';
-            };
-            const races = data.MRData.RaceTable.Races;
 
+            const races = data.MRData.RaceTable.Races;
             while (calendarTable.firstChild) {
                 calendarTable.removeChild(calendarTable.firstChild);
             }
@@ -336,20 +348,13 @@ function updateCalendarTable(year) {
             races.forEach(race => {
                 const round = race.round;
                 const raceName = race.raceName;
-                const circuitName = `${race.Circuit.circuitName}`;
+                const circuitName = race.Circuit.circuitName;
                 const country = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
-                const rd = race ? race.date : "Race_Date";
-                let rt;
-                let format;
-                if (race.time) {
-                    rt = race ? race.time : "Race_Time";
-                    format = options
-                } else {
-                    rt = "00:00:00Z";
-                    format = options2
-                }
+                const rd = race.date || "Race_Date";
+                const rt = race.time || "00:00:00Z";
+                const format = race.time ? options : options2;
                 const rDate = new Date(rd + "T" + rt);
-                let date = rDate.toLocaleString(locale, format);
+                const date = rDate.toLocaleString(locale, format);
 
                 const row = calendarTable.insertRow();
                 const roundCell = row.insertCell(0);
@@ -364,28 +369,19 @@ function updateCalendarTable(year) {
                 countryCell.textContent = country;
                 dateCell.textContent = date;
 
-
                 fetch(urlNext)
                     .then(response => response.json())
                     .then(data => {
                         const roundNum = `${data.MRData.RaceTable.round}`;
 
                         if (round === roundNum && new Date().getFullYear() === year) {
-                            roundCell.style.backgroundColor = "var(--red)";
-                            roundCell.style.color = "var(--white)";
-                            roundCell.style.fontWeight = "500";
-                            raceCell.style.backgroundColor = "var(--red)";
-                            raceCell.style.color = "var(--white)";
-                            raceCell.style.fontWeight = "500";
-                            circuitCell.style.backgroundColor = "var(--red)";
-                            circuitCell.style.color = "var(--white)";
-                            circuitCell.style.fontWeight = "500";
-                            countryCell.style.backgroundColor = "var(--red)";
-                            countryCell.style.color = "var(--white)";
-                            countryCell.style.fontWeight = "500";
-                            dateCell.style.backgroundColor = "var(--red)";
-                            dateCell.style.color = "var(--white)";
-                            dateCell.style.fontWeight = "500";
+                            const cells = [roundCell, raceCell, circuitCell, countryCell, dateCell];
+                            cells.forEach(cell => {
+                                cell.style.backgroundColor = "var(--red)";
+                                cell.style.color = "var(--white)";
+                                cell.style.fontWeight = "500";
+                            });
+
                             if (window.innerWidth > 786) {
                                 roundCell.style.borderTopLeftRadius = "11px";
                                 roundCell.style.borderBottomLeftRadius = "11px";
@@ -399,11 +395,10 @@ function updateCalendarTable(year) {
                             }
                         }
                     });
-
             });
         })
         .catch(error => {
-            calendarTable.innerHTML = `<tr><td colspan='4' class='errorTxt'>Error: ${error}</td></tr>`;
+            calendarTable.innerHTML = `<tr><td colspan='5' class='errorTxt'>Error: ${error}</td></tr>`;
         });
 }
 
@@ -452,12 +447,14 @@ function updateYear() {
     updateCalendarTable(currentYear);
 }
 
+
 function enableDarkMode() {
     body.classList.add('dark-mode');
 }
 function disableDarkMode() {
     body.classList.remove('dark-mode');
 }
+
 
 function scrollFunction() {
     const nextElement = document.getElementById("next").getBoundingClientRect().top;
@@ -472,14 +469,14 @@ function scrollFunction() {
                 document.getElementById("header").style.height = "65px";
                 document.getElementById("header").style.boxShadow = "0 4px 10px 0 rgba(0, 0, 0, 0.2)";
                 document.getElementById("headerTxt").style.margin = "10px 15px 0";
-                document.getElementById("yearPicker").style.margin = "18px 0px";
+                document.getElementById("yearPicker").style.margin = "13px 0px";
                 document.getElementById("calIcon").style.margin = "13px 5px";
                 document.getElementById("desktopMenu").style.margin = "23px 30px";
             } else {
                 document.getElementById("header").style.height = "80px";
                 document.getElementById("header").style.boxShadow = "";
                 document.getElementById("headerTxt").style.margin = "20px 20px 0";
-                document.getElementById("yearPicker").style.margin = "28px 0";
+                document.getElementById("yearPicker").style.margin = "23px 0";
                 document.getElementById("calIcon").style.margin = "22px 5px";
                 document.getElementById("desktopMenu").style.margin = "33px 50px";
             }
