@@ -84,23 +84,39 @@ function getRaceDetails() {
                 }
                 return defaultText;
             };
+            const now = new Date();
 
             p1txt = "Practice 1:";
             p1dt = formatEvent(race.FirstPractice, "Not Available");
+            if (now > new Date(p1dt) && now < new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
+                p1txt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + p1txt;
+            }
 
             p2txt = race.SprintQualifying ? "Sprint Qualifying:" : "Practice 2:";
             p2dt = formatEvent(race.SprintQualifying || race.SecondPractice, "Not Available");
+            if (now > new Date(p2dt) && now < new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
+                p2txt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + p2txt;
+            }
 
             p3txt = race.Sprint ? "Sprint Race:" : "Practice 3:";
             p3dt = formatEvent(race.Sprint || race.ThirdPractice, "Not Available");
+            if (now > new Date(p3dt) && now < new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
+                p3txt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + p3txt;
+            }
 
             qualitxt = "Qualifying:";
             qualidt = formatEvent(race.Qualifying, "Not Available");
+            if (now > new Date(qualidt) && now < new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
+                qualitxt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + qualitxt;
+            }
 
             racetxt = "Race:";
             racedt = formatEvent({ date: race.date, time: race.time }, "Not Available");
 
             raceDetailsName = `${race.raceName}`;
+            if (now > new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
+                raceDetailsName = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + raceDetailsName;
+            }
 
             const documentName = `Next: ${race.Circuit.Location.locality} ${data.MRData.RaceTable.season}`;
             const raceDetailsTrack = `${race.Circuit.circuitName}`;

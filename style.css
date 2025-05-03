@@ -339,6 +339,8 @@ footer {
     background-color: var(--lightwhite);
     border-top: solid var(--bordergray) 2px;
     padding: 15px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 /* Dark Mode */
