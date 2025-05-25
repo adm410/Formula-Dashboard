@@ -339,7 +339,7 @@ footer {
     background-color: var(--lightwhite);
     border-top: solid var(--bordergray) 2px;
     padding: 15px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -493,8 +493,10 @@ footer {
         font-size: 12px;
     }
 
+    #driver-table,
     #calendar-table {
         font-size: 10px;
+
     }
 
     #driver-table th:nth-child(3),
