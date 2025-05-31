@@ -42,24 +42,6 @@ function copyText() {
 }
 
 
-function copyRace() {
-    setTimeout(() => {
-        document.getElementById("race-details-name").style.display = "none";
-        document.getElementById("copyTxt").style.display = "block";
-    }, 100);
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(`${raceDetailsName}\n${racetxt} ${racedt}`)
-            .catch((error) => {
-                console.error(error);
-            });
-    }
-    setTimeout(() => {
-        document.getElementById("copyTxt").style.display = "none";
-        document.getElementById("race-details-name").style.display = "block";
-    }, 3000);
-}
-
-
 function getRaceDetails() {
     fetch(urlNext)
         .then(response => response.json())
@@ -85,40 +67,44 @@ function getRaceDetails() {
                 return defaultText;
             };
             const now = new Date();
-
-            p1txt = "Practice 1:";
-            p1dt = formatEvent(race.FirstPractice, "Not Available");
-            if (now > new Date(p1dt) && now < new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
-                p1txt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + p1txt;
-            }
-
-            p2txt = race.SprintQualifying ? "Sprint Qualifying:" : "Practice 2:";
-            p2dt = formatEvent(race.SprintQualifying || race.SecondPractice, "Not Available");
-            if (now > new Date(p2dt) && now < new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
-                p2txt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + p2txt;
-            }
-
-            p3txt = race.Sprint ? "Sprint Race:" : "Practice 3:";
-            p3dt = formatEvent(race.Sprint || race.ThirdPractice, "Not Available");
-            if (now > new Date(p3dt) && now < new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
-                p3txt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + p3txt;
-            }
-
-            qualitxt = "Qualifying:";
-            qualidt = formatEvent(race.Qualifying, "Not Available");
-            if (now > new Date(qualidt) && now < new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
-                qualitxt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + qualitxt;
-            }
+            const flagTxt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i>`;
+            isLastRace = false;
 
             racetxt = "Race:";
             racedt = formatEvent({ date: race.date, time: race.time }, "Not Available");
-
             raceDetailsName = `${race.raceName}`;
+            raceMain = `<div class="racetxt">${racetxt}</div>
+                    <div class="racedt">${racedt}</div>`;
+
             if (now > new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
-                raceDetailsName = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i> ` + raceDetailsName;
+                isLastRace = true;
             }
 
-            const documentName = `Next: ${race.Circuit.Location.locality} ${data.MRData.RaceTable.season}`;
+            p1txt = "Practice 1:";
+            p1dt = formatEvent(race.FirstPractice, "Not Available");
+            isOld = now > new Date(p1dt) && !isLastRace;
+            p1 = `<div class="p1txt">${isOld ? flagTxt : ""}${p1txt}</div>
+                <div class="p1dt">${p1dt}</div>`;
+
+            p2txt = race.SprintQualifying ? "Sprint Qualifying:" : "Practice 2:";
+            p2dt = formatEvent(race.SprintQualifying || race.SecondPractice, "Not Available");
+            isOld = now > new Date(p2dt) && !isLastRace;
+            p2 = `<div class="p2txt">${isOld ? flagTxt : ""} ${p2txt}</div>
+                <div class="p2dt pb-4">${p2dt}</div>`;
+
+            p3txt = race.Sprint ? "Sprint Race:" : "Practice 3:";
+            p3dt = formatEvent(race.Sprint || race.ThirdPractice, "Not Available");
+            isOld = now > new Date(p3dt) && !isLastRace;
+            p3 = `<div class="p3txt">${isOld ? flagTxt : ""} ${p3txt}</div>
+                <div class="p3dt">${p3dt}</div>`;
+
+            qualitxt = "Qualifying:";
+            qualidt = formatEvent(race.Qualifying, "Not Available");
+            isOld = now > new Date(qualidt) && !isLastRace;
+            quali = `<div class="qualitxt">${isOld ? flagTxt : ""} ${qualitxt}</div>
+                    <div class="qualidt pb-4">${qualidt}</div>`;
+
+            const documentName = `Next: ${race.Circuit.Location.country} ${data.MRData.RaceTable.season}`;
             const raceDetailsTrack = `${race.Circuit.circuitName}`;
             const raceCountry = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
             const raceRound = `Round ${data.MRData.RaceTable["round"]}`;
@@ -126,30 +112,25 @@ function getRaceDetails() {
             const raceDetails = `
                 <div style="margin: auto; width: fit-content; text-align: justify;">
                     <div>
-                        <div class="p1txt">${p1txt}</div>
-                        <div class="p1dt">${p1dt}</div>
+                        ${p1}
                     </div>
                     <div style="padding-bottom: 20px">
-                        <div class="p2txt">${p2txt}</div>
-                        <div class="p2dt pb-4">${p2dt}</div>
+                        ${p2}
                     </div>
                     <div>
-                        <div class="p3txt">${p3txt}</div>
-                        <div class="p3dt">${p3dt}</div>
+                        ${p3}
                     </div>
                     <div style="padding-bottom: 20px">
-                        <div class="qualitxt">${qualitxt}</div>
-                        <div class="qualidt pb-4">${qualidt}</div>
+                        ${quali}
                     </div>
                     <div>
-                        <div class="racetxt">${racetxt}</div>
-                        <div class="racedt">${racedt}</div>
+                        ${raceMain}
                     </div>
                 </div>
             `;
 
             document.getElementById("document-name").innerHTML = documentName;
-            document.getElementById("race-details-name").innerHTML = raceDetailsName;
+            document.getElementById("race-details-name").innerHTML = `${isLastRace ? flagTxt : ""} ${race.raceName} `;
             document.getElementById("race-details-track").innerHTML = raceDetailsTrack;
             document.getElementById("race-details-venue").innerHTML = raceCountry;
             document.getElementById("race-details").innerHTML = raceDetails;
@@ -200,9 +181,7 @@ function getTrackDetails() {
               ${track.distance} Km
               `
                             ;
-                        document.getElementById("race-details-name").innerHTML = raceDetailsName;
-                        var combinedText = raceDetailsName + " " + trackFlag;
-                        document.getElementById("race-details-name").innerHTML = combinedText;
+                        document.getElementById("race-details-name").innerHTML += trackFlag;
                         document.getElementById("track-laps").innerHTML = trackLaps;
                         document.getElementById("track-length").innerHTML = trackLength;
                         document.getElementById("track-distance").innerHTML = trackDistance;
