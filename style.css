@@ -22,12 +22,13 @@ html {
     color: var(--textblack);
     scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--lightwhite);
+    background-color: var(--red);
     scroll-padding-top: 135px !important;
 }
 
 body {
     margin: auto;
+    background-color: var(--lightwhite);
 }
 
 #header {
@@ -350,7 +351,7 @@ footer {
         --bordergray: rgba(75, 75, 75, 0.5);
     }
 
-    html,
+    body,
     footer {
         color: var(--textwhite);
         background-color: var(--black);
