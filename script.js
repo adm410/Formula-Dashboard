@@ -175,10 +175,10 @@ function getTrackDetails() {
                 ${track.laps}
               `
                         const trackLength = `
-              ${track.length} Km
+              ${track.length}Km
               `
                         const trackDistance = `
-              ${track.distance} Km
+              ${track.distance}Km
               `
                             ;
                         document.getElementById("race-details-name").innerHTML += trackFlag;
@@ -461,14 +461,14 @@ function scrollFunction() {
         const scrollPosition = window.scrollY;
         if (window.innerWidth > 786) {
             if (scrollPosition > 25) {
-                document.getElementById("header").style.height = "65px";
+                document.getElementById("header").style.height = "55px";
                 document.getElementById("header").style.boxShadow = "0 4px 10px 0 rgba(0, 0, 0, 0.2)";
                 document.getElementById("headerTxt").style.margin = "10px 15px 0";
                 document.getElementById("yearPicker").style.margin = "13px 0px";
                 document.getElementById("calIcon").style.margin = "13px 5px";
                 document.getElementById("desktopMenu").style.margin = "23px 30px";
             } else {
-                document.getElementById("header").style.height = "80px";
+                document.getElementById("header").style.height = "70px";
                 document.getElementById("header").style.boxShadow = "";
                 document.getElementById("headerTxt").style.margin = "20px 20px 0";
                 document.getElementById("yearPicker").style.margin = "23px 0";
