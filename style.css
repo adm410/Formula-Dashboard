@@ -22,7 +22,6 @@ html {
     color: var(--textblack);
     scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--red);
     scroll-padding-top: 135px !important;
 }
 
@@ -277,7 +276,7 @@ body {
 #constructor-table td,
 #calendar-table td {
     padding: 5px 0;
-    padding-left: 20px !important;
+    padding-left: 23px !important;
 }
 
 #driver-table th:nth-child(3),
@@ -295,6 +294,7 @@ table {
 }
 
 #tableFooter {
+    margin-top: 4px;
     font-weight: 520;
     padding: 5px 0 5px 0;
     border-top: solid var(--bordergray) 2px;
