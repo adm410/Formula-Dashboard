@@ -41,7 +41,6 @@ function copyText() {
     }, 3000);
 }
 
-
 function getRaceDetails() {
     fetch(urlNext)
         .then(response => response.json())
@@ -58,6 +57,23 @@ function getRaceDetails() {
             };
 
             const race = data.MRData.RaceTable.Races[0];
+            const now = new Date();
+            isLastRace = false;
+
+            const getStatusIcon = (eventDate) => {
+                const now = new Date();
+                const timeDiff = now - eventDate;
+                const oneHour = 60 * 60 * 1000;
+
+                if (timeDiff >= 0 && timeDiff <= oneHour) {
+                    return `🕝`;
+                    // return `<i class="ti ti-stopwatch" style="color: var(--red);"></i>`;
+                } else if (now > eventDate) {
+                    // return `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i>`;
+                    return `<i class="ti ti-stopwatch" style="color: var(--red);"></i>`;
+                }
+                return "";
+            };
 
             const formatEvent = (event, defaultText) => {
                 if (event) {
@@ -66,42 +82,49 @@ function getRaceDetails() {
                 }
                 return defaultText;
             };
-            const now = new Date();
-            const flagTxt = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i>`;
-            isLastRace = false;
 
             racetxt = "Race:";
             racedt = formatEvent({ date: race.date, time: race.time }, "Not Available");
             raceDetailsName = `${race.raceName}`;
-            raceMain = `<div class="racetxt">${racetxt}</div>
+            const raceDateObj = new Date(race.date + "T" + race.time);
+            const raceIcon = getStatusIcon(raceDateObj);
+            const raceMain = `<div class="racetxt">${raceIcon} ${racetxt}</div>
                     <div class="racedt">${racedt}</div>`;
 
-            if (now > new Date(formatEvent({ date: race.date, time: race.time }, "Not Available"))) {
+            if (now > raceDateObj) {
                 isLastRace = true;
             }
 
+            // Practice 1
             p1txt = "Practice 1:";
             p1dt = formatEvent(race.FirstPractice, "Not Available");
-            isOld = now > new Date(p1dt) && !isLastRace;
-            p1 = `<div class="p1txt">${isOld ? flagTxt : ""}${p1txt}</div>
+            const p1DateObj = new Date(race.FirstPractice?.date + "T" + race.FirstPractice?.time);
+            const p1Icon = getStatusIcon(p1DateObj);
+            const p1 = `<div class="p1txt">${p1Icon} ${p1txt}</div>
                 <div class="p1dt">${p1dt}</div>`;
 
+            // Practice 2 or Sprint Qualifying
             p2txt = race.SprintQualifying ? "Sprint Qualifying:" : "Practice 2:";
             p2dt = formatEvent(race.SprintQualifying || race.SecondPractice, "Not Available");
-            isOld = now > new Date(p2dt) && !isLastRace;
-            p2 = `<div class="p2txt">${isOld ? flagTxt : ""} ${p2txt}</div>
+            const p2DateObj = new Date((race.SprintQualifying || race.SecondPractice)?.date + "T" + (race.SprintQualifying || race.SecondPractice)?.time);
+            const p2Icon = getStatusIcon(p2DateObj);
+            const p2 = `<div class="p2txt">${p2Icon} ${p2txt}</div>
                 <div class="p2dt pb-4">${p2dt}</div>`;
 
+            // Practice 3 or Sprint Race
             p3txt = race.Sprint ? "Sprint Race:" : "Practice 3:";
             p3dt = formatEvent(race.Sprint || race.ThirdPractice, "Not Available");
-            isOld = now > new Date(p3dt) && !isLastRace;
-            p3 = `<div class="p3txt">${isOld ? flagTxt : ""} ${p3txt}</div>
+            const p3DateObj = new Date((race.Sprint || race.ThirdPractice)?.date + "T" + (race.Sprint || race.ThirdPractice)?.time);
+            const p3Icon = getStatusIcon(p3DateObj);
+            const p3 = `<div class="p3txt">${p3Icon} ${p3txt}</div>
                 <div class="p3dt">${p3dt}</div>`;
 
+            // Qualifying
             qualitxt = "Qualifying:";
             qualidt = formatEvent(race.Qualifying, "Not Available");
-            isOld = now > new Date(qualidt) && !isLastRace;
-            quali = `<div class="qualitxt">${isOld ? flagTxt : ""} ${qualitxt}</div>
+            const qualiDateObj = new Date(race.Qualifying?.date + "T" + race.Qualifying?.time);
+            const qualiIcon = getStatusIcon(qualiDateObj);
+            const quali = `<div class="qualitxt">${qualiIcon} ${qualitxt}</div>
                     <div class="qualidt pb-4">${qualidt}</div>`;
 
             const documentName = `Next: ${race.Circuit.Location.country} ${data.MRData.RaceTable.season}`;
@@ -130,7 +153,7 @@ function getRaceDetails() {
             `;
 
             document.getElementById("document-name").innerHTML = documentName;
-            document.getElementById("race-details-name").innerHTML = `${isLastRace ? flagTxt : ""} ${race.raceName} `;
+            document.getElementById("race-details-name").innerHTML = `${isLastRace ? raceIcon : ""} ${race.raceName} `;
             document.getElementById("race-details-track").innerHTML = raceDetailsTrack;
             document.getElementById("race-details-venue").innerHTML = raceCountry;
             document.getElementById("race-details").innerHTML = raceDetails;
