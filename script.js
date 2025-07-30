@@ -20,6 +20,9 @@ let qualidt;
 let racetxt;
 let racedt;
 
+function openGitHub() {
+    window.open('https://github.com/adm410/Formula-Dashboard', '_blank');
+}
 
 function copyText() {
     setTimeout(() => {

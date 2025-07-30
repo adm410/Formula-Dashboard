@@ -344,6 +344,27 @@ footer {
     font-weight: 500;
 }
 
+#footerBtn {
+    scale: 1;
+    font-size: 15px;
+    transition: 0.2s;
+    border-radius: 9px;
+    color: var(--textblack);
+    border: solid 2px transparent;
+    background-color: transparent;
+}
+
+#footerBtn:hover {
+    border: solid 2px var(--red);
+}
+
+#footerBtn:active {
+    scale: .95;
+    color: var(--textwhite);
+    border: solid 2px var(--red);
+    background-color: var(--red);
+}
+
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
     :root {
@@ -383,6 +404,10 @@ footer {
         background-color: var(--lightblack);
     }
 
+    #footerBtn {
+        color: var(--textwhite);
+    }
+
     @media (max-width: 768px) {
 
         #race-details-name,
@@ -392,6 +417,7 @@ footer {
         }
     }
 }
+
 
 /* Mobile Scaling */
 
