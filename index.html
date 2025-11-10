@@ -4,28 +4,28 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title id="document-name"></title>
+    <title id="document-name">Formula Dashboard</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
     <div id="header" style="position: fixed !important;">
         <p id="headerTxt">Formula Dashboard</p>
         <input type="number" id="yearPicker" min="1950">
-        <i id="calIcon" onclick="updateYear()" class="ti ti-calendar-time"></i>
+        <i id="calIcon" class="ti ti-calendar-time"></i>
         <div id="desktopMenu">
             <a href="#next" id="raceBtn">Race</a>
-            <a href=" #driver" id="driverBtn">Drivers</a>
+            <a href="#driver" id="driverBtn">Drivers</a>
             <a href="#constructor" id="constructorBtn">Constructors</a>
             <a href="#calendar" id="calendarBtn">Calendar</a>
         </div>
         <div id="mobileMenu">
-            <a href="#next" id="raceBtn" class="ti ti-flag"></a>
-            <a href=" #driver" id="driverBtn" class="ti ti-helmet"></a>
-            <a href="#constructor" id="constructorBtn" class="ti ti-trophy"></a>
-            <a href="#calendar" id="calendarBtn" class=" ti ti-calendar-event"></a>
+            <a href="#next" id="raceBtn" class="ti ti-flag" aria-label="Next Race"></a>
+            <a href="#driver" id="driverBtn" class="ti ti-helmet" aria-label="Drivers"></a>
+            <a href="#constructor" id="constructorBtn" class="ti ti-trophy" aria-label="Constructors"></a>
+            <a href="#calendar" id="calendarBtn" class="ti ti-calendar-event" aria-label="Calendar"></a>
         </div>
     </div>
 
@@ -38,8 +38,7 @@
                 </div>
                 <p id="race-details-venue"></p>
             </div>
-            <button ondblclick="copyRace()" onclick="copyText()" id="race-details-name"></button>
-            <div id="copyTxt">Copied</div>
+            <button onclick="copyText()" id="race-details-name"></button>
             <div id="race-details"></div>
             <div id="race-details-track"></div>
             <div id="trackData">
@@ -59,7 +58,7 @@
         </div>
 
         <div id="driver">
-            <div id="driver driverDesktop">
+            <div id="driverDesktop">
                 <p id="driver-year"></p>
                 <table id="driver-table">
                     <thead>
@@ -70,6 +69,7 @@
                             <th>Nationality</th>
                             <th>Team</th>
                             <th>Points</th>
+                            <th>Gap</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -90,6 +90,7 @@
                         <th>Team</th>
                         <th>Nationality</th>
                         <th>Points</th>
+                        <th>Gap</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -120,8 +121,9 @@
             </div>
         </div>
     </div>
+
     <footer>
-        <button id="footerBtn" onclick="openGitHub()">Aditya More</button>
+        <button id="footerBtn">Aditya More</button>
     </footer>
 </body>
 
