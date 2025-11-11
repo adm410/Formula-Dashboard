@@ -13,8 +13,10 @@
 <body>
     <div id="header" style="position: fixed !important;">
         <p id="headerTxt">Formula Dashboard</p>
-        <input type="number" id="yearPicker" min="1950">
-        <i id="calIcon" class="ti ti-calendar-time"></i>
+        <div id="yearPickerWrapper" style="float:left; position:relative;">
+            <select id="yearPicker" style="appearance:none; -webkit-appearance:none;"></select>
+            <i id="calIcon" class="ti ti-calendar-time"></i>
+        </div>
         <div id="desktopMenu">
             <a href="#next" id="raceBtn">Race</a>
             <a href="#driver" id="driverBtn">Drivers</a>

@@ -121,7 +121,6 @@ async function copyText() {
 }
 
 // === NEXT RACE ===
-// === NEXT RACE ===
 async function loadNextRace() {
     try {
         const [nextData, seasonData, flagData] = await Promise.all([
@@ -310,33 +309,36 @@ async function loadCalendar(year) {
 }
 
 // === YEAR PICKER ===
-let debounceTimer;
-function initYearPicker() {
-    const picker = els.yearPicker();
-    picker.value = currentYear;
-    picker.min = 1950;
-    picker.max = currentYear;
 
-    picker.addEventListener("input", () => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            const year = parseInt(picker.value.trim(), 10);
-            if (Number.isInteger(year) && year >= 1950 && year <= currentYear) {
-                updateAllTables(year);
-                setCalIconVisibility(year !== currentYear);
-            } else {
-                picker.value = currentYear;
-                updateAllTables(currentYear);
-                setCalIconVisibility(false);
-            }
-        }, 300);
+function initYearPicker() {
+    let currentYear = new Date().getFullYear();
+    const select = els.yearPicker();
+    const icon = els.calIcon();
+
+    const frag = document.createDocumentFragment();
+    for (let y = 1950; y <= currentYear; y++) {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y;
+        frag.appendChild(opt);
+    }
+    select.appendChild(frag);
+    select.value = currentYear;
+    select.addEventListener('change', () => {
+        const year = parseInt(select.value, 10);
+        updateAllTables(year);
+        setCalIconVisibility(year !== currentYear);
     });
+
+    icon.style.opacity = '0';
+    icon.style.pointerEvents = 'none';
+    icon.onclick = null;
 }
 
 function setCalIconVisibility(show) {
     const icon = els.calIcon();
-    icon.style.opacity = show ? "1" : "0";
-    icon.style.pointerEvents = show ? "all" : "none";
+    icon.style.opacity = show ? '1' : '0';
+    icon.style.pointerEvents = show ? 'all' : 'none';
     icon.onclick = show ? () => {
         els.yearPicker().value = currentYear;
         updateAllTables(currentYear);
