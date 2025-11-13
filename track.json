@@ -3,308 +3,308 @@
         "country": [
             {
                 "name": "australia",
-                "flag": "🇦🇺"
+                "flag": "AU"
             },
             {
                 "name": "austria",
-                "flag": "🇦🇹"
+                "flag": "AT"
             },
             {
                 "name": "azerbaijan",
-                "flag": "🇦🇿"
+                "flag": "AZ"
             },
             {
                 "name": "bahrain",
-                "flag": "🇧🇭"
+                "flag": "BH"
             },
             {
                 "name": "belgium",
-                "flag": "🇧🇪"
+                "flag": "BE"
             },
             {
                 "name": "brazil",
-                "flag": "🇧🇷"
+                "flag": "BR"
             },
             {
                 "name": "canada",
-                "flag": "🇨🇦"
+                "flag": "CA"
             },
             {
                 "name": "china",
-                "flag": "🇨🇳"
+                "flag": "CN"
             },
             {
                 "name": "denmark",
-                "flag": "🇩🇰"
+                "flag": "DK"
             },
             {
                 "name": "estonia",
-                "flag": "🇪🇪"
+                "flag": "EE"
             },
             {
                 "name": "finland",
-                "flag": "🇫🇮"
+                "flag": "FI"
             },
             {
                 "name": "france",
-                "flag": "🇫🇷"
+                "flag": "FR"
             },
             {
                 "name": "germany",
-                "flag": "🇩🇪"
+                "flag": "DE"
             },
             {
                 "name": "hungary",
-                "flag": "🇭🇺"
+                "flag": "HU"
             },
             {
                 "name": "india",
-                "flag": "🇮🇳"
+                "flag": "IN"
             },
             {
                 "name": "israel",
-                "flag": "🇮🇱"
+                "flag": "IL"
             },
             {
                 "name": "italy",
-                "flag": "🇮🇹"
+                "flag": "IT"
             },
             {
                 "name": "japan",
-                "flag": "🇯🇵"
+                "flag": "JP"
             },
             {
                 "name": "korea",
-                "flag": "🇰🇷"
+                "flag": "KR"
             },
             {
                 "name": "malaysia",
-                "flag": "🇲🇾"
+                "flag": "MY"
             },
             {
                 "name": "mexico",
-                "flag": "🇲🇽"
+                "flag": "MX"
             },
             {
                 "name": "monaco",
-                "flag": "🇲🇨"
+                "flag": "MC"
             },
             {
                 "name": "netherlands",
-                "flag": "🇳🇱"
+                "flag": "NL"
             },
             {
                 "name": "new zealand",
-                "flag": "🇳🇿"
+                "flag": "NZ"
             },
             {
                 "name": "portugal",
-                "flag": "🇵🇹"
+                "flag": "PT"
             },
             {
                 "name": "qatar",
-                "flag": "🇶🇦"
+                "flag": "QA"
             },
             {
                 "name": "russia",
-                "flag": "🇷🇺"
+                "flag": "RU"
             },
             {
                 "name": "saudi arabia",
-                "flag": "🇸🇦"
+                "flag": "SA"
             },
             {
                 "name": "singapore",
-                "flag": "🇸🇬"
+                "flag": "SG"
             },
             {
                 "name": "spain",
-                "flag": "🇪🇸"
+                "flag": "ES"
             },
             {
                 "name": "south africa",
-                "flag": "🇿🇦"
+                "flag": "ZA"
             },
             {
                 "name": "thailand",
-                "flag": "🇹🇭"
+                "flag": "TH"
             },
             {
                 "name": "turkey",
-                "flag": "🇹🇷"
+                "flag": "TR"
             },
             {
                 "name": "uae",
-                "flag": "🇦🇪"
+                "flag": "AE"
             },
             {
                 "name": "united kingdom",
-                "flag": "🇬🇧"
+                "flag": "GB"
             },
             {
                 "name": "uk",
-                "flag": "🇬🇧"
+                "flag": "GB"
             },
             {
                 "name": "usa",
-                "flag": "🇺🇸"
+                "flag": "US"
             },
             {
                 "name": "united states",
-                "flag": "🇺🇸"
+                "flag": "US"
             }
         ],
         "nationality": [
             {
                 "name": "american",
-                "flag": "🇺🇸"
+                "flag": "US"
             },
             {
                 "name": "australian",
-                "flag": "🇦🇺"
+                "flag": "AU"
             },
             {
                 "name": "austrian",
-                "flag": "🇦🇹"
+                "flag": "AT"
             },
             {
                 "name": "azerbaijani",
-                "flag": "🇦🇿"
+                "flag": "AZ"
             },
             {
                 "name": "bahraini",
-                "flag": "🇧🇭"
+                "flag": "BH"
             },
             {
                 "name": "belgian",
-                "flag": "🇧🇪"
+                "flag": "BE"
             },
             {
                 "name": "brazilian",
-                "flag": "🇧🇷"
+                "flag": "BR"
             },
             {
                 "name": "british",
-                "flag": "🇬🇧"
+                "flag": "GB"
             },
             {
                 "name": "canadian",
-                "flag": "🇨🇦"
+                "flag": "CA"
             },
             {
                 "name": "chinese",
-                "flag": "🇨🇳"
+                "flag": "CN"
             },
             {
                 "name": "danish",
-                "flag": "🇩🇰"
+                "flag": "DK"
             },
             {
                 "name": "dutch",
-                "flag": "🇳🇱"
+                "flag": "NL"
             },
             {
                 "name": "emirati",
-                "flag": "🇦🇪"
+                "flag": "AE"
             },
             {
                 "name": "estonian",
-                "flag": "🇪🇪"
+                "flag": "EE"
             },
             {
                 "name": "finnish",
-                "flag": "🇫🇮"
+                "flag": "FI"
             },
             {
                 "name": "french",
-                "flag": "🇫🇷"
+                "flag": "FR"
             },
             {
                 "name": "german",
-                "flag": "🇩🇪"
+                "flag": "DE"
             },
             {
                 "name": "hungarian",
-                "flag": "🇭🇺"
+                "flag": "HU"
             },
             {
                 "name": "indian",
-                "flag": "🇮🇳"
+                "flag": "IN"
             },
             {
                 "name": "israeli",
-                "flag": "🇮🇱"
+                "flag": "IL"
             },
             {
                 "name": "italian",
-                "flag": "🇮🇹"
+                "flag": "IT"
             },
             {
                 "name": "japanese",
-                "flag": "🇯🇵"
+                "flag": "JP"
             },
             {
                 "name": "korean",
-                "flag": "🇰🇷"
+                "flag": "KR"
             },
             {
                 "name": "malaysian",
-                "flag": "🇲🇾"
+                "flag": "MY"
             },
             {
                 "name": "mexican",
-                "flag": "🇲🇽"
+                "flag": "MX"
             },
             {
                 "name": "monegasque",
-                "flag": "🇲🇨"
+                "flag": "MC"
             },
             {
                 "name": "new zealander",
-                "flag": "🇳🇿"
+                "flag": "NZ"
             },
             {
                 "name": "portuguese",
-                "flag": "🇵🇹"
+                "flag": "PT"
             },
             {
                 "name": "qatari",
-                "flag": "🇶🇦"
+                "flag": "QA"
             },
             {
                 "name": "russian",
-                "flag": "🇷🇺"
+                "flag": "RU"
             },
             {
                 "name": "saudi",
-                "flag": "🇸🇦"
+                "flag": "SA"
             },
             {
                 "name": "singaporean",
-                "flag": "🇸🇬"
+                "flag": "SG"
             },
             {
                 "name": "spanish",
-                "flag": "🇪🇸"
+                "flag": "ES"
             },
             {
                 "name": "south african",
-                "flag": "🇿🇦"
+                "flag": "ZA"
             },
             {
                 "name": "thai",
-                "flag": "🇹🇭"
+                "flag": "TH"
             },
             {
                 "name": "turkish",
-                "flag": "🇹🇷"
+                "flag": "TR"
             }
         ],
         "track": [
             {
                 "name": "Albert Park Grand Prix Circuit",
                 "event": "Australian Grand Prix",
-                "flag": "🇦🇺",
+                "flag": "AU",
                 "laps": "58",
                 "length": "5.278",
                 "distance": "306.124",
@@ -314,7 +314,7 @@
             {
                 "name": "Autodromo Enzo e Dino Ferrari",
                 "event": "Emilia Romagna Grand Prix",
-                "flag": "🇮🇹",
+                "flag": "IT",
                 "laps": "63",
                 "length": "4.909",
                 "distance": "309.049",
@@ -322,19 +322,9 @@
                 "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245032/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Emilia%20Romagna%20carbon.png.transform/3col-retina/image.png"
             },
             {
-                "name": "Autodromo Internazionale del Mugello",
-                "event": "Tuscan Grand Prix",
-                "flag": "🇮🇹",
-                "laps": "59",
-                "length": "5.245",
-                "distance": "309.497",
-                "image": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Tuscany_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Tuscany%20carbon.png.transform/3col-retina/image.png"
-            },
-            {
                 "name": "Autodromo Nazionale di Monza",
                 "event": "Italian Grand Prix",
-                "flag": "🇮🇹",
+                "flag": "IT",
                 "laps": "53",
                 "length": "5.793",
                 "distance": "306.72",
@@ -344,7 +334,7 @@
             {
                 "name": "Autódromo Hermanos Rodríguez",
                 "event": "Mexico City Grand Prix",
-                "flag": "🇲🇽",
+                "flag": "MX",
                 "laps": "71",
                 "length": "4.304",
                 "distance": "305.354",
@@ -352,19 +342,9 @@
                 "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Mexico%20carbon.png.transform/3col-retina/image.png"
             },
             {
-                "name": "Autódromo Internacional do Algarve",
-                "event": "Portuguese Grand Prix",
-                "flag": "🇵🇹",
-                "laps": "66",
-                "length": "4.653",
-                "distance": "306.826",
-                "image": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Portugal_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Portugal%20carbon.png.transform/3col-retina/image.png"
-            },
-            {
                 "name": "Autódromo José Carlos Pace",
                 "event": "São Paulo Grand Prix",
-                "flag": "🇧🇷",
+                "flag": "BR",
                 "laps": "71",
                 "length": "4.309",
                 "distance": "305.879",
@@ -374,7 +354,7 @@
             {
                 "name": "Bahrain International Circuit",
                 "event": "Bahrain Grand Prix",
-                "flag": "🇧🇭",
+                "flag": "BH",
                 "laps": "57",
                 "length": "5.412",
                 "distance": "308.238",
@@ -382,19 +362,9 @@
                 "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245035/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Bahrain%20carbon.png.transform/3col-retina/image.png"
             },
             {
-                "name": "Bahrain International Circuit Outer",
-                "event": "Sakhir Grand Prix",
-                "flag": "🇧🇭",
-                "laps": "87",
-                "length": "3.543",
-                "distance": "307.995",
-                "image": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Sakhir_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Sakhir%20carbon.png.transform/3col-retina/image.png"
-            },
-            {
                 "name": "Baku City Circuit",
                 "event": "Azerbaijan Grand Prix",
-                "flag": "🇦🇿",
+                "flag": "AZ",
                 "laps": "51",
                 "length": "6.003",
                 "distance": "306.049",
@@ -402,19 +372,9 @@
                 "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245030/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Azerbaijan%20carbon.png.transform/3col-retina/image.png"
             },
             {
-                "name": "Buddh International Circuit",
-                "event": "Indian Grand Prix",
-                "flag": "🇮🇳",
-                "laps": "60",
-                "length": "5.125",
-                "distance": "307.249",
-                "image": "",
-                "imagemini": ""
-            },
-            {
                 "name": "Circuit Gilles Villeneuve",
                 "event": "Canadian Grand Prix",
-                "flag": "🇨🇦",
+                "flag": "CA",
                 "laps": "70",
                 "length": "4.361",
                 "distance": "305.27",
@@ -424,7 +384,7 @@
             {
                 "name": "Circuit Park Zandvoort",
                 "event": "Dutch Grand Prix",
-                "flag": "🇳🇱",
+                "flag": "NL",
                 "laps": "72",
                 "length": "4.259",
                 "distance": "306.587",
@@ -434,7 +394,7 @@
             {
                 "name": "Circuit Paul Ricard",
                 "event": "French Grand Prix",
-                "flag": "🇫🇷",
+                "flag": "FR",
                 "laps": "53",
                 "length": "5.842",
                 "distance": "309.69",
@@ -444,7 +404,7 @@
             {
                 "name": "Circuit de Barcelona-Catalunya",
                 "event": "Spanish Grand Prix",
-                "flag": "🇪🇸",
+                "flag": "ES",
                 "laps": "66",
                 "length": "4.657",
                 "distance": "307.236",
@@ -454,7 +414,7 @@
             {
                 "name": "Circuit de Monaco",
                 "event": "Monaco Grand Prix",
-                "flag": "🇲🇨",
+                "flag": "MC",
                 "laps": "78",
                 "length": "3.337",
                 "distance": "260.286",
@@ -464,7 +424,7 @@
             {
                 "name": "Circuit de Spa-Francorchamps",
                 "event": "Belgian Grand Prix",
-                "flag": "🇧🇪",
+                "flag": "BE",
                 "laps": "44",
                 "length": "7.004",
                 "distance": "308.052",
@@ -474,7 +434,7 @@
             {
                 "name": "Circuit of the Americas",
                 "event": "United States Grand Prix",
-                "flag": "🇺🇸",
+                "flag": "US",
                 "laps": "56",
                 "length": "5.513",
                 "distance": "308.405",
@@ -484,7 +444,7 @@
             {
                 "name": "Hockenheimring",
                 "event": "German Grand Prix",
-                "flag": "🇩🇪",
+                "flag": "DE",
                 "laps": "67",
                 "length": "4.574",
                 "distance": "306.458",
@@ -494,7 +454,7 @@
             {
                 "name": "Hungaroring",
                 "event": "Hungarian Grand Prix",
-                "flag": "🇭🇺",
+                "flag": "HU",
                 "laps": "70",
                 "length": "4.381",
                 "distance": "306.63",
@@ -504,7 +464,7 @@
             {
                 "name": "Istanbul Park",
                 "event": "Turkish Grand Prix",
-                "flag": "🇹🇷",
+                "flag": "TR",
                 "laps": "58",
                 "length": "5.338",
                 "distance": "309.396",
@@ -514,7 +474,7 @@
             {
                 "name": "Jeddah Corniche Circuit",
                 "event": "Saudi Arabian Grand Prix",
-                "flag": "🇸🇦",
+                "flag": "SA",
                 "laps": "50",
                 "length": "6.174",
                 "distance": "308.45",
@@ -522,19 +482,9 @@
                 "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245030/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Saudi%20Arabia%20carbon.png.transform/3col-retina/image.png"
             },
             {
-                "name": "Korean International Circuit",
-                "event": "Korean Grand Prix",
-                "flag": "🇰🇷",
-                "laps": "55",
-                "length": "5.615",
-                "distance": "308.825",
-                "image": "",
-                "imagemini": ""
-            },
-            {
                 "name": "Las Vegas Strip Street Circuit",
                 "event": "Las Vegas Grand Prix",
-                "flag": "🇺🇸",
+                "flag": "US",
                 "laps": "50",
                 "length": "6.201",
                 "distance": "310.05",
@@ -544,7 +494,7 @@
             {
                 "name": "Losail International Circuit",
                 "event": "Qatar Grand Prix",
-                "flag": "🇶🇦",
+                "flag": "QA",
                 "laps": "57",
                 "length": "5.38",
                 "distance": "306.66",
@@ -554,7 +504,7 @@
             {
                 "name": "Marina Bay Street Circuit",
                 "event": "Singapore Grand Prix",
-                "flag": "🇸🇬",
+                "flag": "SG",
                 "laps": "62",
                 "length": "5.063",
                 "distance": "308.706",
@@ -564,7 +514,7 @@
             {
                 "name": "Miami International Autodrome",
                 "event": "Miami Grand Prix",
-                "flag": "🇺🇸",
+                "flag": "US",
                 "laps": "57",
                 "length": "5.412",
                 "distance": "308.326",
@@ -572,19 +522,9 @@
                 "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245035/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Miami%20carbon.png.transform/3col-retina/image.png"
             },
             {
-                "name": "Nürburgring",
-                "event": "Eifel Grand Prix",
-                "flag": "🇩🇪",
-                "laps": "60",
-                "length": "5.148",
-                "distance": "308.617",
-                "image": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Germany_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Germany%20carbon.png.transform/3col-retina/image.png"
-            },
-            {
                 "name": "Red Bull Ring",
                 "event": "Austrian Grand Prix",
-                "flag": "🇦🇹",
+                "flag": "AT",
                 "laps": "71",
                 "length": "4.318",
                 "distance": "306.452",
@@ -594,7 +534,7 @@
             {
                 "name": "Red Bull Ring",
                 "event": "Styrian Grand Prix",
-                "flag": "🇦🇹",
+                "flag": "AT",
                 "laps": "71",
                 "length": "4.318",
                 "distance": "306.452",
@@ -602,19 +542,9 @@
                 "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Austria%20carbon.png.transform/3col-retina/image.png"
             },
             {
-                "name": "Sepang International Circuit",
-                "event": "Malaysian Grand Prix",
-                "flag": "🇲🇾",
-                "laps": "56",
-                "length": "5.543",
-                "distance": "310.408",
-                "image": "",
-                "imagemini": ""
-            },
-            {
                 "name": "Shanghai International Circuit",
                 "event": "Chinese Grand Prix",
-                "flag": "🇨🇳",
+                "flag": "CN",
                 "laps": "56",
                 "length": "5.451",
                 "distance": "305.066",
@@ -624,7 +554,7 @@
             {
                 "name": "Silverstone Circuit",
                 "event": "British Grand Prix",
-                "flag": "🇬🇧",
+                "flag": "GB",
                 "laps": "52",
                 "length": "5.891",
                 "distance": "306.198",
@@ -634,7 +564,7 @@
             {
                 "name": "Sochi Autodrom",
                 "event": "Russian Grand Prix",
-                "flag": "🇷🇺",
+                "flag": "RU",
                 "laps": "53",
                 "length": "5.848",
                 "distance": "309.745",
@@ -644,7 +574,7 @@
             {
                 "name": "Suzuka Circuit",
                 "event": "Japanese Grand Prix",
-                "flag": "🇯🇵",
+                "flag": "JP",
                 "laps": "53",
                 "length": "5.807",
                 "distance": "307.471",
@@ -654,7 +584,7 @@
             {
                 "name": "Yas Marina Circuit",
                 "event": "Abu Dhabi Grand Prix",
-                "flag": "🇦🇪",
+                "flag": "AE",
                 "laps": "58",
                 "length": "5.281",
                 "distance": "306.183",

@@ -422,6 +422,7 @@ footer {
     color: var(--textblack);
     border: solid 2px transparent;
     background-color: transparent;
+    cursor: pointer !important;
 }
 
 #footerBtn:hover {
@@ -519,7 +520,7 @@ footer {
 
     #calIcon {
         font-size: 27px;
-        margin: 8px 5px 0;
+        margin: 0px 5px 0 !important;
     }
 
     #calIcon:active {
