@@ -124,35 +124,55 @@ async function copyText() {
 async function loadNextRace() {
     try {
         const [nextData, seasonData, flagData] = await Promise.all([
-            fetchJSON(API.next), fetchJSON(API.season), fetchJSON(API.flag)
+            fetchJSON(API.next),
+            fetchJSON(API.season),
+            fetchJSON(API.flag)
         ]);
 
         const race = nextData.MRData.RaceTable.Races[0];
-        const now = new Date();
-        const isPast = (dt) => now > new Date(dt);
-        const flagIcon = `<i class="ti ti-flag-2-filled" style="color: var(--red);"></i>`;
+        const now = Date.now();
+
+        const flagIcon = `<i class="ti ti-flag-2-filled" style="color: var(--red);margin-right:6px;"></i>`;
+
+        const getTime = (session) => {
+            if (!session?.date) return 0;
+            const time = session.time || "00:00:00Z";
+            return new Date(`${session.date}T${time}`).getTime();
+        };
 
         const events = [
             { label: "Practice 1:", date: race.FirstPractice },
-            { label: race.SprintQualifying ? "Sprint Qualifying:" : "Practice 2:", date: race.SprintQualifying || race.SecondPractice },
-            { label: race.Sprint ? "Sprint Race:" : "Practice 3:", date: race.Sprint || race.ThirdPractice },
+            {
+                label: race.Sprint ? "Sprint Qualifying:" : "Practice 2:",
+                date: race.SprintQualifying || race.SecondPractice
+            },
+            {
+                label: race.Sprint ? "Sprint Race:" : "Practice 3:",
+                date: race.Sprint || race.ThirdPractice
+            },
             { label: "Qualifying:", date: race.Qualifying },
             { label: "Race:", date: { date: race.date, time: race.time } },
         ];
 
+        const raceStarted = getTime(events[4].date) < now;
+
         const scheduleHTML = events.map((e, i) => {
             const dt = formatDate(e.date?.date, e.date?.time);
-            const isOld = i === 0 && isPast(dt) && !isPast(formatDate(race.date, race.time));
-            const labelClass = "schedule-label";
-            const dateClass = "schedule-date";
+            const sessionTime = getTime(e.date);
+            const isFinished = sessionTime < now;
+
+            // CRITICAL FIX:
+            // If race has started → show NO flags in the session list at all
+            // Otherwise → show flag only on sessions that have actually finished
+            const showFlagHere = raceStarted ? false : isFinished;
 
             let wrapperClass = "pb-4";
             if (i === 2) wrapperClass = "pt-5 pb-4";
             if (i === 4) wrapperClass = "pt-5 pb-0";
 
             return `<div class="${wrapperClass}">
-                <div class="${labelClass}">${isOld ? flagIcon : ""} ${e.label}</div>
-                <div class="${dateClass}">${dt}</div>
+                <div class="schedule-label">${showFlagHere ? flagIcon : ""} ${e.label}</div>
+                <div class="schedule-date">${dt}</div>
             </div>`;
         }).join("");
 
@@ -166,7 +186,10 @@ async function loadNextRace() {
         };
 
         document.getElementById("document-name").textContent = `Next: ${race.Circuit.Location.country} ${nextData.MRData.RaceTable.season}`;
-        els.raceNameBtn().innerHTML = `${isPast(formatDate(race.date, race.time)) ? flagIcon : ""} ${race.raceName}`;
+
+        // Race name button: show flag ONLY if the main race has started
+        els.raceNameBtn().innerHTML = `${raceStarted ? flagIcon : ""} ${race.raceName}`;
+
         els.raceTrack().textContent = race.Circuit.circuitName;
         els.raceVenue().textContent = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
         els.raceDetails().innerHTML = `<div style="margin:auto;width:fit-content;text-align:justify">${scheduleHTML}</div>`;

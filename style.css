@@ -298,7 +298,7 @@ body {
 }
 
 #driver-table td:nth-child(6),
-#driver-table td:nth-child(6),
+#driver-table td:nth-child(7),
 #constructor-table td:nth-child(4),
 #constructor-table td:nth-child(5) {
     font-family: 'Noto Sans Mono', monospace;
