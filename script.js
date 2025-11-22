@@ -12,7 +12,6 @@ const API = {
 const els = {
     yearPicker: () => document.getElementById("yearPicker"),
     calIcon: () => document.getElementById("calIcon"),
-    copyBadge: () => document.getElementById("copyTxt"),
     raceNameBtn: () => document.getElementById("race-details-name"),
     raceDetails: () => document.getElementById("race-details"),
     raceTrack: () => document.getElementById("race-details-track"),
@@ -54,52 +53,46 @@ const formatDate = (dateStr, timeStr, fallback = "Not Available") => {
 const showLoading = (tbody, colSpan = 6) => {
     const table = tbody.closest("table");
     table.setAttribute("aria-busy", "true");
-    tbody.innerHTML = `<tr><td colspan="${colSpan}" style="text-align:center; padding:20px;">
-        <i class="ti ti-loader-2"></i>
-    </td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="${colSpan}" style="padding:0;border:none;"></td></tr>`;
+    const container = table.closest("div[id]");
+    container.querySelector(".table-loader")?.remove();
+    const loader = document.createElement("div");
+    loader.className = "table-loader";
+    loader.innerHTML = `<i class="ti ti-loader-2"></i>`;
+    container.style.position = "relative";
+    container.appendChild(loader);
 };
 
-const hideLoading = (table) => table?.removeAttribute("aria-busy");
+const hideLoading = (table) => {
+    table?.removeAttribute("aria-busy");
+    const container = table?.closest("div[id]");
+    container?.querySelector(".table-loader")?.remove();
+};
 
 const showError = (el, msg) => { el.style.display = "block"; el.textContent = msg; };
 const hideError = (el) => { el.style.display = "none"; };
 
-// === FETCH WITH FALLBACK ===
 const fetchJSON = async (url) => {
-    const jolpiUrl = url.includes("ergast.com")
-        ? url.replace("ergast.com", "api.jolpi.ca/ergast")
-        : url;
-
+    const jolpiUrl = url.includes("ergast.com") ? url.replace("ergast.com", "api.jolpi.ca/ergast") : url;
     const res = await fetch(jolpiUrl);
     if (!res.ok) throw new Error(`HTTP ${res.status} - ${jolpiUrl}`);
     return await res.json();
 };
 
-// === COPY TEXT (Updated: Replaces race name button) ===
+// === NEXT RACE VISIBILITY ===
+function toggleNextRaceVisibility(year) {
+    const nextSection = document.getElementById("next");
+    nextSection.style.display = year === currentYear ? "block" : "none";
+}
+
+// === COPY TEXT ===
 async function copyText() {
     const raceNameBtn = els.raceNameBtn();
-    const originalHTML = raceNameBtn.innerHTML; // Save original
-
+    const originalHTML = raceNameBtn.innerHTML;
     const text = `${copyData.raceName}\n\n${copyData.p1}\n${copyData.p2}\n\n${copyData.p3}\n${copyData.quali}\n\n${copyData.race}`;
 
     try {
         await navigator.clipboard.writeText(text);
-        showCopySuccess();
-    } catch {
-        const textarea = document.createElement("textarea");
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        const success = document.execCommand("copy");
-        document.body.removeChild(textarea);
-        if (success) {
-            showCopySuccess();
-        } else {
-            showCopyFail();
-        }
-    }
-
-    function showCopySuccess() {
         raceNameBtn.innerHTML = `<i class="ti ti-circle-check-filled" style="color:var(--green);margin-right:6px;"></i> Copied!`;
         raceNameBtn.style.color = "var(--green)";
         raceNameBtn.style.fontWeight = "600";
@@ -108,15 +101,10 @@ async function copyText() {
             raceNameBtn.style.color = "";
             raceNameBtn.style.fontWeight = "";
         }, 2500);
-    }
-
-    function showCopyFail() {
+    } catch {
         raceNameBtn.innerHTML = `<i class="ti ti-x" style="color:var(--red);margin-right:6px;"></i> Failed`;
         raceNameBtn.style.color = "var(--red)";
-        setTimeout(() => {
-            raceNameBtn.innerHTML = originalHTML;
-            raceNameBtn.style.color = "";
-        }, 2500);
+        setTimeout(() => { raceNameBtn.innerHTML = originalHTML; raceNameBtn.style.color = ""; }, 2500);
     }
 }
 
@@ -133,23 +121,12 @@ async function loadNextRace() {
         const now = Date.now();
 
         const flagIcon = `<i class="ti ti-flag-2-filled" style="color: var(--red);margin-right:6px;"></i>`;
-
-        const getTime = (session) => {
-            if (!session?.date) return 0;
-            const time = session.time || "00:00:00Z";
-            return new Date(`${session.date}T${time}`).getTime();
-        };
+        const getTime = (session) => new Date(`${session?.date || race.date}T${session?.time || race.time || "00:00:00Z"}`).getTime();
 
         const events = [
             { label: "Practice 1:", date: race.FirstPractice },
-            {
-                label: race.Sprint ? "Sprint Qualifying:" : "Practice 2:",
-                date: race.SprintQualifying || race.SecondPractice
-            },
-            {
-                label: race.Sprint ? "Sprint Race:" : "Practice 3:",
-                date: race.Sprint || race.ThirdPractice
-            },
+            { label: race.Sprint ? "Sprint Qualifying:" : "Practice 2:", date: race.SprintQualifying || race.SecondPractice },
+            { label: race.Sprint ? "Sprint Race:" : "Practice 3:", date: race.Sprint || race.ThirdPractice },
             { label: "Qualifying:", date: race.Qualifying },
             { label: "Race:", date: { date: race.date, time: race.time } },
         ];
@@ -158,22 +135,12 @@ async function loadNextRace() {
 
         const scheduleHTML = events.map((e, i) => {
             const dt = formatDate(e.date?.date, e.date?.time);
-            const sessionTime = getTime(e.date);
-            const isFinished = sessionTime < now;
-
-            // CRITICAL FIX:
-            // If race has started → show NO flags in the session list at all
-            // Otherwise → show flag only on sessions that have actually finished
+            const isFinished = getTime(e.date) < now;
             const showFlagHere = raceStarted ? false : isFinished;
-
             let wrapperClass = "pb-4";
             if (i === 2) wrapperClass = "pt-5 pb-4";
             if (i === 4) wrapperClass = "pt-5 pb-0";
-
-            return `<div class="${wrapperClass}">
-                <div class="schedule-label">${showFlagHere ? flagIcon : ""} ${e.label}</div>
-                <div class="schedule-date">${dt}</div>
-            </div>`;
+            return `<div class="${wrapperClass}"><div class="schedule-label">${showFlagHere ? flagIcon : ""} ${e.label}</div>   <div class="schedule-date">${dt}</div></div>`;
         }).join("");
 
         copyData = {
@@ -186,10 +153,7 @@ async function loadNextRace() {
         };
 
         document.getElementById("document-name").textContent = `Next: ${race.Circuit.Location.country} ${nextData.MRData.RaceTable.season}`;
-
-        // Race name button: show flag ONLY if the main race has started
         els.raceNameBtn().innerHTML = `${raceStarted ? flagIcon : ""} ${race.raceName}`;
-
         els.raceTrack().textContent = race.Circuit.circuitName;
         els.raceVenue().textContent = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
         els.raceDetails().innerHTML = `<div style="margin:auto;width:fit-content;text-align:justify">${scheduleHTML}</div>`;
@@ -233,10 +197,36 @@ async function loadStandings(type, year) {
         tbody.innerHTML = "";
         const frag = document.createDocumentFragment();
 
+        const isCurrentSeason = year === currentYear;
+        const isPastSeason = year < currentYear;
+
+        // For current season: check if champion is mathematically decided (FIXED!)
+        let championDecided = isPastSeason; // past = always decided
+
+        if (isCurrentSeason && items.length >= 2) {
+            const leader = parseFloat(items[0].points);
+            const second = parseFloat(items[1].points);
+
+            // 2025 rules: max 33/driver (25 race + 8 sprint), 66/team (2 drivers)
+            const MAX_PER_WEEKEND = isDriver ? 33 : 66;
+
+            // FIXED: Correctly parse remaining races
+            // #season-round = "of 24" → extract "24"
+            const seasonRoundText = document.querySelector("#season-round")?.textContent || "";
+            const totalRaces = parseInt(seasonRoundText.match(/of (\d+)/)?.[1] || "24", 10);
+            // #race-round = "Round 22" → extract "22" (next upcoming)
+            const raceRoundText = document.querySelector("#race-round")?.textContent || "";
+            const nextRound = parseInt(raceRoundText.match(/Round (\d+)/)?.[1] || "1", 10);
+            // Remaining = total - (next - 1) = races still to be run
+            const remainingRaces = Math.max(0, totalRaces - (nextRound - 1));
+
+            const maxSecondCanReach = second + (remainingRaces * MAX_PER_WEEKEND);
+            championDecided = leader > maxSecondCanReach;
+        }
+
         items.forEach((item, i) => {
             const row = document.createElement("tr");
 
-            // Points difference
             let diff = "";
             if (i > 0) {
                 const prev = parseFloat(items[i - 1].points);
@@ -250,20 +240,27 @@ async function loadStandings(type, year) {
                 ? `<td>${item.points}${diff ? ` (${diff})` : ""}</td>`
                 : `<td>${item.points}</td><td class="delta">${diff || "-"}</td>`;
 
+            // Show trophies: past years always, current year only if decided
+            let trophy = "";
+            if ((isPastSeason || championDecided) && i < 3) {
+                const posClass = i === 0 ? "trophy-1st" : i === 1 ? "trophy-2nd" : "trophy-3rd";
+                trophy = `<i class="ti ti-trophy-filled trophy-podium ${posClass}"></i>`;
+            }
+
             if (isDriver) {
                 const name = `${item.Driver.givenName} ${item.Driver.familyName}`;
                 const short = `${item.Driver.givenName[0]}. ${item.Driver.familyName}`;
                 row.innerHTML = `
                     <td>${i + 1}</td>
-                    <td>${name}</td>
-                    <td class="desktop-only">${short}</td>
+                    <td>${trophy}${name}</td>
+                    <td class="desktop-only">${trophy}${short}</td>
                     <td class="desktop-only">${item.Driver.nationality}</td>
                     <td class="desktop-only">${item.Constructors.map(c => c.name).join(", ")}</td>
                     ${pointsCell}`;
             } else {
                 row.innerHTML = `
                     <td>${i + 1}</td>
-                    <td>${item.Constructor.name}</td>
+                    <td>${trophy}${item.Constructor.name}</td>
                     <td class="desktop-only">${item.Constructor.nationality}</td>
                     ${pointsCell}`;
             }
@@ -288,7 +285,6 @@ async function loadCalendar(year) {
     const errorEl = els.calendarError();
 
     showLoading(tbody, 5);
-    1;
     hideError(errorEl);
 
     try {
@@ -332,9 +328,7 @@ async function loadCalendar(year) {
 }
 
 // === YEAR PICKER ===
-
 function initYearPicker() {
-    let currentYear = new Date().getFullYear();
     const select = els.yearPicker();
     const icon = els.calIcon();
 
@@ -347,15 +341,16 @@ function initYearPicker() {
     }
     select.appendChild(frag);
     select.value = currentYear;
+
     select.addEventListener('change', () => {
         const year = parseInt(select.value, 10);
         updateAllTables(year);
+        toggleNextRaceVisibility(year);
         setCalIconVisibility(year !== currentYear);
     });
 
     icon.style.opacity = '0';
     icon.style.pointerEvents = 'none';
-    icon.onclick = null;
 }
 
 function setCalIconVisibility(show) {
@@ -365,6 +360,7 @@ function setCalIconVisibility(show) {
     icon.onclick = show ? () => {
         els.yearPicker().value = currentYear;
         updateAllTables(currentYear);
+        toggleNextRaceVisibility(currentYear);
         setCalIconVisibility(false);
     } : null;
 }
@@ -388,7 +384,6 @@ function initScroll() {
         const wide = window.innerWidth > 786;
 
         if (wide) {
-            // Desktop
             if (y > 25) {
                 headerEle.style.height = "55px";
                 headerEle.style.boxShadow = "0 4px 10px 0 rgba(0, 0, 0, 0.2)";
@@ -405,7 +400,6 @@ function initScroll() {
                 desktopMenuEle.style.margin = "33px 50px";
             }
         } else {
-            // Mobile
             if (y > 25) {
                 headerEle.style.height = "70px";
                 headerEle.style.boxShadow = "0 4px 10px 0 rgba(0, 0, 0, 0.2)";
@@ -422,11 +416,9 @@ function initScroll() {
                 desktopMenuEle.style.margin = "16px";
             }
         }
-
         lastScrollY = y;
     };
 
-    // Throttle scroll for performance
     let ticking = false;
     window.addEventListener("scroll", () => {
         if (!ticking) {
@@ -437,8 +429,6 @@ function initScroll() {
             ticking = true;
         }
     });
-
-    // Initial call
     updateHeader();
 }
 
@@ -448,6 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateAllTables(currentYear);
     initYearPicker();
     initScroll();
+    toggleNextRaceVisibility(currentYear);
 
     document.getElementById("footerBtn").onclick = () => {
         window.open("https://github.com/adm410/Formula-Dashboard", "_blank");

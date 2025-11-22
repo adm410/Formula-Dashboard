@@ -165,6 +165,16 @@ body {
     padding-top: 130px !important;
 }
 
+#next {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#next[style*="display: none"] {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
 #next,
 #driver,
 #constructor,
@@ -264,6 +274,58 @@ body {
     font-family: 'Noto Sans Mono', monospace;
 }
 
+.table-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: var(--red);
+    pointer-events: none;
+    z-index: 10;
+    animation: rotate 1.4s linear infinite;
+}
+
+.table-loader i {
+    display: block;
+}
+
+.trophy-1st {
+    background: linear-gradient(180deg, #ffd700 0%, #b8860b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ffd700;
+}
+
+.trophy-2nd {
+    background: linear-gradient(180deg, #d8d8d8 0%, #aaaaaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #c0c0c0;
+}
+
+.trophy-3rd {
+    background: linear-gradient(180deg, #ffb366 0%, #cd7f32 100%);
+    color: #cd7f32;
+}
+
+.trophy-1st,
+.trophy-2nd,
+.trophy-3rd {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.trophy-podium {
+    margin-right: 7px;
+    font-size: 1.18em;
+    vertical-align: middle;
+    display: inline-block;
+}
+
 #driver-table,
 #constructor-table,
 #calendar-table {
@@ -282,7 +344,13 @@ body {
     font-weight: 530;
     padding: 0 10px 10px;
     padding-left: 20px !important;
-    border-bottom: solid var(--bordergray) 2px;
+    border-bottom: none !important;
+}
+
+#driver-table thead tr,
+#constructor-table thead tr,
+#calendar-table thead tr {
+    border-bottom: 2px solid var(--bordergray);
 }
 
 #driver-table td,
@@ -366,7 +434,7 @@ table {
 #tableFooter {
     margin-top: 4px;
     font-weight: 520;
-    padding: 5px 0;
+    padding: 6px 0 5px;
     border-top: solid var(--bordergray) 2px;
 }
 
@@ -466,6 +534,10 @@ footer {
     #yearPicker {
         color: var(--textwhite);
         background-color: var(--black);
+    }
+
+    .table-loader {
+        color: #ff1a2b;
     }
 
     #next,
@@ -588,6 +660,10 @@ footer {
         font-size: 12px;
     }
 
+    .table-loader {
+        font-size: 38px;
+    }
+
     #driver-table,
     #calendar-table {
         font-size: 10px;
@@ -658,10 +734,17 @@ footer {
     #driver-table th,
     #constructor-table th,
     #calendar-table th {
-        border-bottom: solid var(--bordergray) 1px;
+        border-bottom: none !important;
+    }
+
+    #driver-table thead tr,
+    #constructor-table thead tr,
+    #calendar-table thead tr {
+        border-bottom: 1px solid var(--bordergray);
     }
 
     #tableFooter {
+        padding: 5px 0 4px;
         border-top: solid var(--bordergray) 1px;
     }
 
