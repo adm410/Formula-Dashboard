@@ -1,0 +1,647 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400&display=swap');
+
+:root {
+    /* Semantic Colors */
+    --bg-main: rgb(250, 250, 250);
+    --bg-card: white;
+    --bg-header: rgb(250, 250, 250);
+    --text-main: black;
+    --text-inverse: white;
+    --border-color: rgba(220, 220, 220, 0.5);
+
+    /* Brand Colors */
+    --accent: #c8000d;
+    --accent-hover: #b50814;
+    --success: #3cba54;
+    --loader: var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-main: black;
+        --bg-card: rgb(20, 20, 20);
+        --bg-header: black;
+        --text-main: white;
+        --border-color: rgba(75, 75, 75, 0.5);
+        --accent: #980710;
+        --accent-hover: #a00f19;
+        --loader: var(--accent);
+    }
+}
+
+html {
+    font-size: 15px;
+    user-select: text;
+    text-align: center;
+    color: var(--text-main);
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+    scroll-padding-top: 135px !important;
+}
+
+body {
+    margin: auto;
+    background-color: var(--bg-main);
+}
+
+/* Header Flexbox Layout */
+#header {
+    z-index: 1000;
+    width: 100%;
+    height: 70px;
+    padding: 0 4%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.2s ease;
+    user-select: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--bg-header);
+    border-bottom: solid var(--border-color) 2px;
+}
+
+#header.scrolled {
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 769px) {
+    #header.scrolled {
+        height: 55px;
+    }
+}
+
+.header-left,
+.header-center,
+.header-nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Header Text (Brand) */
+#headerTxt {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-main);
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
+    transition: font-size 0.2s;
+}
+
+@media (min-width: 769px) {
+    #header.scrolled #headerTxt {
+        font-size: 24px;
+    }
+}
+
+/* Year Picker & Calendar Icon */
+.header-center {
+    gap: 8px;
+}
+
+#yearPicker {
+    width: 76px;
+    padding: 5px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: solid var(--border-color) 2px;
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Poppins', sans-serif;
+    scale: 1;
+}
+
+#calIcon {
+    opacity: 0;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--accent);
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+@media (min-width: 769px) {
+    #header.scrolled #yearPicker {
+        width: 72px;
+        scale: 0.85;
+    }
+}
+
+/* Navigation */
+.header-nav {
+    gap: 15px;
+    margin-left: auto;
+}
+
+.header-nav a {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: solid 2px transparent;
+    transition: all 0.2s ease;
+}
+
+@media (min-width: 769px) {
+    #header.scrolled .header-nav a {
+        font-size: 14px;
+    }
+}
+
+.header-nav.mobile-only {
+    gap: 8px;
+}
+
+.header-nav.mobile-only a {
+    font-size: 24px;
+    padding: 4px;
+}
+
+.header-nav a:hover,
+#calIcon:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+#calIcon:hover {
+    border-color: transparent;
+}
+
+.header-nav a:active,
+#calIcon:active {
+    transform: scale(0.95);
+    color: var(--text-inverse);
+    background-color: var(--accent);
+    border-color: var(--accent);
+    border-radius: 8px;
+}
+
+/* General Layout */
+.content {
+    padding-bottom: 0px;
+    padding-top: 130px !important;
+}
+
+#next {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#next[style*="display: none"] {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+.section-card {
+    margin: 0 20% 5%;
+    text-align: center;
+    border-radius: 15px;
+    color: var(--text-main);
+    background-color: var(--bg-card);
+    border: solid var(--border-color) 2px;
+}
+
+.nextheader {
+    display: flex;
+    margin: 0 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nextheader p {
+    display: inline-block;
+}
+
+.section-title {
+    border: none;
+    cursor: text;
+    font-size: 25px;
+    transition: 0.2s;
+    font-weight: 550;
+    border-radius: 11px;
+    color: var(--text-main);
+    padding: 5px 10px !important;
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+#race-details-venue {
+    text-align: right;
+}
+
+#race-details-name {
+    margin: auto !important;
+    cursor: pointer;
+    user-select: text;
+    float: none !important;
+    text-align: center !important;
+}
+
+#race-details-name:hover {
+    color: var(--accent);
+}
+
+#race-details-name:active {
+    scale: 0.95;
+    color: var(--text-inverse);
+    background-color: var(--accent);
+}
+
+.section-title:not(#race-details-name) {
+    margin: 0;
+    float: none !important;
+    text-align: center !important;
+    padding: 20px 0 10px !important;
+}
+
+#race-details {
+    padding: 15px 0;
+}
+
+.nextheader p,
+.p1txt,
+.p2txt,
+.p3txt,
+.schedule-label,
+#race-details-track,
+#lapstxt,
+#lengthtxt,
+#distancetxt {
+    font-weight: 520;
+    display: inline-block;
+}
+
+.p1dt,
+.p2dt,
+.p3dt,
+.schedule-date {
+    font-weight: 400;
+    display: inline-block;
+}
+
+.pt-5 {
+    padding-top: 20px;
+}
+
+#trackData {
+    margin: auto;
+    padding-top: 5px;
+    width: fit-content;
+    text-align: justify;
+    padding-bottom: 15px;
+}
+
+#track-laps,
+#track-length,
+#track-distance {
+    font-weight: 400;
+    display: inline-block;
+    font-family: 'Noto Sans Mono', monospace;
+}
+
+.table-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: var(--loader);
+    pointer-events: none;
+    z-index: 10;
+    animation: rotate 1.4s linear infinite;
+}
+
+.table-loader i {
+    display: block;
+}
+
+.data-table {
+    width: 100%;
+    margin: 0 auto;
+    text-align: justify;
+    border-collapse: collapse;
+}
+
+/* Hardcoded Table Adjustments */
+#driver-table td:nth-child(6),
+#driver-table td:nth-child(7),
+#constructor-table td:nth-child(4),
+#constructor-table td:nth-child(5) {
+    font-family: 'Noto Sans Mono', monospace;
+}
+
+/* Standings Specific Columns Alignment */
+#driver-table th:nth-child(7),
+#constructor-table th:nth-child(5) {
+    font-weight: 530;
+}
+
+.data-table th {
+    font-weight: 530;
+    padding: 0 10px 10px 20px !important;
+    border-bottom: none !important;
+}
+
+.data-table thead tr {
+    border-bottom: 2px solid var(--border-color);
+}
+
+.data-table td {
+    font-weight: 450;
+    padding: 5px 0 5px 20px !important;
+}
+
+#calendar {
+    margin: 0 10% 5% !important;
+}
+
+.data-table tbody tr {
+    transition: background-color 0.18s ease;
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--accent-hover) !important;
+    color: var(--text-inverse);
+    cursor: pointer;
+}
+
+.data-table th:first-child,
+.data-table td:first-child {
+    border-top-left-radius: 11px;
+    border-bottom-left-radius: 11px;
+}
+
+.data-table th:last-child,
+.data-table td:last-child {
+    border-top-right-radius: 11px;
+    border-bottom-right-radius: 11px;
+}
+
+/* Highlight Current Race in Calendar */
+.data-table tbody tr.current-race {
+    background-color: var(--accent) !important;
+    color: var(--text-inverse) !important;
+    font-weight: 500;
+}
+
+.data-table tbody tr.current-race td:first-child {
+    border-top-left-radius: 11px;
+    border-bottom-left-radius: 11px;
+}
+
+.data-table tbody tr.current-race td:last-child {
+    border-top-right-radius: 11px;
+    border-bottom-right-radius: 11px;
+}
+
+.table-footer {
+    margin-top: 4px;
+    font-weight: 520;
+    padding: 6px 0 5px;
+    border-top: solid var(--border-color) 2px;
+}
+
+.errorTxt,
+.section-error {
+    display: none;
+    color: var(--accent) !important;
+}
+
+#copyTxt {
+    margin: 0;
+    display: none;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: 550;
+    transition: 0.3s;
+    color: var(--success) !important;
+    cursor: pointer;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.ti-loader-2 {
+    font-size: 35px;
+    color: var(--accent);
+    display: inline-block;
+    animation: rotate 1.5s linear infinite;
+}
+
+footer {
+    color: var(--text-main);
+    background-color: var(--bg-main);
+    border-top: solid var(--border-color) 2px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+#footerBtn {
+    scale: 1;
+    font-size: 15px;
+    transition: 0.2s;
+    border-radius: 9px;
+    color: var(--text-main);
+    border: solid 2px transparent;
+    background-color: transparent;
+    cursor: pointer !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 520;
+}
+
+#footerBtn:hover {
+    border: solid 2px var(--accent);
+}
+
+#footerBtn:active {
+    scale: .95;
+    color: var(--text-inverse);
+    border: solid 2px var(--accent);
+    background-color: var(--accent);
+}
+
+/* Responsive Utilities */
+.mobile-only {
+    display: none !important;
+}
+
+/* Mobile Variables and LayoutOverrides */
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none !important;
+    }
+
+    th.mobile-only,
+    td.mobile-only {
+        display: table-cell !important;
+    }
+
+    span.mobile-only,
+    i.mobile-only {
+        display: inline !important;
+    }
+
+    div.mobile-only,
+    nav.mobile-only {
+        display: flex !important;
+    }
+
+    /* Header Mobile Override */
+    #header {
+        padding: 5px 15px 10px;
+        height: auto;
+        min-height: 60px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 20px;
+    }
+
+    #headerTxt {
+        font-size: 16px;
+    }
+
+    .header-center {
+        gap: 4px;
+    }
+
+    #yearPicker {
+        width: 65px;
+        padding: 4px 6px;
+        font-size: 13px;
+    }
+
+    .header-nav.mobile-only {
+        margin-left: 0;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .header-nav.mobile-only a {
+        font-size: 20px;
+        padding: 2px 8px;
+        border: none;
+    }
+
+    #mobileMenu a {
+        color: var(--accent);
+    }
+
+    #mobileMenu a:active {
+        color: var(--text-inverse);
+        background-color: var(--accent);
+    }
+
+    .content {
+        padding-bottom: 0;
+    }
+
+    .section-card,
+    #calendar {
+        margin: 0 5% 15% !important;
+    }
+
+    .section-title {
+        font-size: 18px;
+        transition: 0.3s;
+        padding: 15px 0 !important;
+    }
+
+    .nextheader {
+        margin-bottom: 3px;
+    }
+
+    #race-details-name,
+    #race-details-name:hover,
+    #race-details-name:active {
+        scale: 1 !important;
+        color: var(--text-main);
+        padding: 0 !important;
+    }
+
+    #headerTxt:hover,
+    #headerTxt:active,
+    #race-details-name:hover,
+    #race-details-name:active {
+        background-color: transparent !important;
+    }
+
+    .nextheader p,
+    #race-details,
+    #race-details-track,
+    #trackData,
+    .data-table,
+    .table-footer {
+        font-size: 12px;
+    }
+
+    .table-loader {
+        font-size: 38px;
+    }
+
+    #driver-table,
+    #calendar-table {
+        font-size: 10px;
+    }
+
+    .data-table th {
+        padding-left: 18px !important;
+    }
+
+    .data-table tbody tr:hover {
+        background-color: transparent !important;
+        color: var(--accent-hover) !important;
+        cursor: pointer;
+    }
+
+    .pt-5 {
+        padding-top: 13px;
+    }
+
+    .ti-loader-2 {
+        font-size: 20px;
+    }
+
+    #copyTxt {
+        padding: 0;
+        font-size: 18px;
+    }
+
+    #yearPicker,
+    .section-card {
+        border-radius: 9px;
+    }
+
+    .data-table th {
+        border-bottom: none !important;
+    }
+
+    .data-table thead tr {
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .table-footer {
+        border-top: solid var(--border-color) 1px;
+    }
+
+    #footerBtn {
+        font-size: 12px;
+    }
+}
