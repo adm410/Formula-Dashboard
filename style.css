@@ -506,7 +506,7 @@ footer {
 
     /* Header Mobile Override */
     #header {
-        padding: 5px 15px 10px;
+        padding: 10px 15px 10px;
         height: auto;
         min-height: 60px;
         flex-wrap: wrap;
@@ -526,6 +526,10 @@ footer {
         width: 65px;
         padding: 4px 6px;
         font-size: 13px;
+    }
+
+    #calIcon {
+        padding: 4px 6px;
     }
 
     .header-nav.mobile-only {
@@ -596,7 +600,6 @@ footer {
         font-size: 38px;
     }
 
-    #driver-table,
     #calendar-table {
         font-size: 10px;
     }
