@@ -225,7 +225,7 @@ async function loadStandings(type, year) {
                     <td class="desktop-only">${name}</td>
                     <td class="mobile-only">${short}</td>
                     <td class="desktop-only">${item.Driver.nationality}</td>
-                    <td class="desktop-only">${item.Constructors.map(c => c.name).join(", ")}</td>
+                    <td>${item.Constructors.map(c => c.name).join(", ")}</td>
                     ${pointsCell}`;
             } else {
                 row.innerHTML = `
