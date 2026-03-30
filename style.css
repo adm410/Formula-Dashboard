@@ -60,8 +60,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    -webkit-backdrop-filter: blur(80px);
-    backdrop-filter: blur(80px);
+    background-color: var(--bg-header);
     border-bottom: solid var(--border-color) 2px;
 }
 

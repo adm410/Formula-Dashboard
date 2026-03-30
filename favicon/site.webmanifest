@@ -1,6 +1,6 @@
 {
-  "name": "Formula Dashboard",
-  "short_name": "FDashboard",
+  "name": "FDashboard",
+  "short_name": "FDash",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
