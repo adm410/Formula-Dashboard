@@ -60,7 +60,8 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--bg-header);
+    -webkit-backdrop-filter: blur(80px);
+    backdrop-filter: blur(80px);
     border-bottom: solid var(--border-color) 2px;
 }
 
@@ -394,15 +395,7 @@ body {
     font-weight: 500;
 }
 
-.data-table tbody tr.current-race td:first-child {
-    border-top-left-radius: 11px;
-    border-bottom-left-radius: 11px;
-}
 
-.data-table tbody tr.current-race td:last-child {
-    border-top-right-radius: 11px;
-    border-bottom-right-radius: 11px;
-}
 
 .table-footer {
     margin-top: 4px;
@@ -557,6 +550,10 @@ footer {
         padding-bottom: 0;
     }
 
+    .section-card {
+        border-radius: 18px !important;
+    }
+
     .section-card,
     #calendar {
         margin: 0 5% 15% !important;
@@ -565,6 +562,7 @@ footer {
     .section-title {
         font-size: 18px;
         transition: 0.3s;
+        border-radius: 14px;
         padding: 15px 0 !important;
     }
 
@@ -605,8 +603,38 @@ footer {
         font-size: 10px;
     }
 
-    .data-table th {
-        padding-left: 18px !important;
+    #driver-table th:nth-child(6),
+    #driver-table td:nth-child(6),
+    #constructor-table th:nth-child(4),
+    #constructor-table td:nth-child(4) {
+        border-top-right-radius: 11px;
+        border-bottom-right-radius: 11px;
+    }
+
+    .data-table th:first-child,
+    .data-table td:first-child,
+    .data-table tbody tr.current-race td:first-child {
+        border-top-left-radius: 11px;
+        border-bottom-left-radius: 11px;
+    }
+
+    .data-table th:last-child,
+    .data-table td:last-child,
+    .data-table tbody tr.current-race td:last-child {
+        border-top-right-radius: 11px;
+        border-bottom-right-radius: 11px;
+    }
+
+    .data-table th,
+    .data-table td,
+    .data-table th:first-child,
+    .data-table td:first-child {
+        margin: auto;
+    }
+
+    .data-table th:not(:first-child),
+    .data-table td:not(:first-child) {
+        padding-left: 8px !important;
     }
 
     .data-table tbody tr:hover {
@@ -630,7 +658,7 @@ footer {
 
     #yearPicker,
     .section-card {
-        border-radius: 9px;
+        border-radius: 11px;
     }
 
     .data-table th {
