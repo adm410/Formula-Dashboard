@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-UK">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="document-name">Formula Dashboard</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <script src="./script.js" defer></script>
+    <link rel="shortcut icon" href="favicon/favicon.ico?v=2" />
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png?v=2" sizes="96x96" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png?v=2" />
+    <meta name="apple-mobile-web-app-title" content="Formula Dashboard" />
+    <link rel="manifest" href="favicon/site.webmanifest?v=2" />
+
+</head>
+
+<body>
+    <header id="header">
+        <div class="header-left">
+            <h1 id="headerTxt">Formula Dashboard</h1>
+        </div>
+        <div class="header-center">
+            <select id="yearPicker" style="appearance:none; -webkit-appearance:none;"></select>
+            <i id="calIcon" class="ti ti-calendar-time"></i>
+        </div>
+        <nav id="desktopMenu" class="header-nav desktop-only">
+            <a href="#next" id="raceBtn">Race</a>
+            <a href="#driver" id="driverBtn">Drivers</a>
+            <a href="#constructor" id="constructorBtn">Constructors</a>
+            <a href="#calendar" id="calendarBtn">Calendar</a>
+        </nav>
+        <nav id="mobileMenu" class="header-nav mobile-only">
+            <a href="#next" id="raceBtnMobile" class="ti ti-flag" aria-label="Next Race"></a>
+            <a href="#driver" id="driverBtnMobile" class="ti ti-helmet" aria-label="Drivers"></a>
+            <a href="#constructor" id="constructorBtnMobile" class="ti ti-trophy" aria-label="Constructors"></a>
+            <a href="#calendar" id="calendarBtnMobile" class="ti ti-calendar-event" aria-label="Calendar"></a>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div id="next" class="section-card">
+            <div class="nextheader">
+                <div>
+                    <p id="race-round">0</p>
+                    <p id="season-round">0</p>
+                </div>
+                <p id="race-details-venue"></p>
+            </div>
+            <button onclick="copyText()" id="race-details-name" class="section-title"></button>
+            <div id="race-details"></div>
+            <div id="race-details-track"></div>
+            <div id="trackData">
+                <div>
+                    <div id="lapstxt">Laps:</div>
+                    <div id="track-laps">00</div>
+                </div>
+                <div>
+                    <div id="lengthtxt">Length:</div>
+                    <div id="track-length">0.000Km</div>
+                </div>
+                <div>
+                    <div id="distancetxt">Distance:</div>
+                    <div id="track-distance">000.000Km</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="driver" class="section-card">
+            <div id="driverDesktop">
+                <p id="driver-year" class="section-title"></p>
+                <table id="driver-table" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th class="desktop-only">Driver</th>
+                            <th class="mobile-only">Driver</th>
+                            <th class="desktop-only">Nationality</th>
+                            <th>Team</th>
+                            <th>Points</th>
+                            <th class="desktop-only">Gap</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="table-footer">
+                    <div id="driver-total"></div>
+                    <div id="driverError" class="section-error"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="constructor" class="section-card">
+            <p id="constructor-year" class="section-title"></p>
+            <table id="constructor-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Team</th>
+                        <th class="desktop-only">Nationality</th>
+                        <th>Points</th>
+                        <th class="desktop-only">Gap</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="table-footer">
+                <div id="constructor-total"></div>
+                <div id="constructorError" class="section-error"></div>
+            </div>
+        </div>
+
+        <div id="calendar" class="section-card">
+            <p id="calendar-year" class="section-title"></p>
+            <table id="calendar-table" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Round</th>
+                        <th>Race</th>
+                        <th class="desktop-only">Circuit</th>
+                        <th class="desktop-only">Venue</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="table-footer">
+                <div id="calendar-total"></div>
+                <div id="calendarError" class="section-error"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <button id="footerBtn">Aditya More</button>
+    </footer>
+</body>
+
+</html>
