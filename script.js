@@ -39,6 +39,7 @@ const els = {
 const LOCALE = "en-IN";
 let currentYear = new Date().getFullYear();
 let copyData = {};
+let defaultDocumentName = 'Formula Dashboard';
 
 const formatDate = (dateStr, timeStr, fallback = "Not Available") => {
     if (!dateStr) return fallback;
@@ -72,11 +73,43 @@ const hideLoading = (table) => {
 const showError = (el, msg) => { el.style.display = "block"; el.textContent = msg; };
 const hideError = (el) => { el.style.display = "none"; };
 
+const apiCache = {};
 const fetchJSON = async (url) => {
+    if (apiCache[url]) return apiCache[url];
     const jolpiUrl = url.includes("ergast.com") ? url.replace("ergast.com", "api.jolpi.ca/ergast") : url;
     const res = await fetch(jolpiUrl);
     if (!res.ok) throw new Error(`HTTP ${res.status} - ${jolpiUrl}`);
-    return await res.json();
+    const data = await res.json();
+    apiCache[url] = data;
+    return data;
+};
+
+// === GAP MODE ===
+let gapMode = 'adjacent'; // 'adjacent' or 'leader'
+
+window.toggleGapMode = function () {
+    gapMode = gapMode === 'adjacent' ? 'leader' : 'adjacent';
+    const year = parseInt(els.yearPicker().value, 10) || currentYear;
+
+    const fadingElements = document.querySelectorAll('.gap-text, .points-text, #driver-table tbody, #constructor-table tbody');
+    fadingElements.forEach(el => el.style.opacity = '0');
+
+    setTimeout(async () => {
+        document.querySelectorAll('.gap-text').forEach(el => {
+            el.textContent = gapMode === 'adjacent' ? 'Interval' : 'Delta';
+        });
+
+        document.querySelectorAll('.points-text').forEach(el => {
+            el.textContent = gapMode === 'adjacent' ? 'Points' : 'Delta';
+        });
+
+        await Promise.all([
+            loadStandings("driver", year),
+            loadStandings("constructor", year)
+        ]);
+
+        fadingElements.forEach(el => el.style.opacity = '1');
+    }, 200);
 };
 
 // === NEXT RACE VISIBILITY ===
@@ -156,7 +189,10 @@ async function loadNextRace() {
             race: `${events[4].label} ${formatDate(race.date, race.time)}`,
         };
 
-        document.getElementById("document-name").textContent = `Next: ${race.Circuit.Location.country} ${nextData.MRData.RaceTable.season}`;
+        defaultDocumentName = `Next Race: ${race.Circuit.Location.country}`;
+        if (parseInt(els.yearPicker().value, 10) === currentYear) {
+            document.getElementById("document-name").textContent = defaultDocumentName;
+        }
         els.raceNameBtn().innerHTML = `${raceStarted ? flagIcon : ""} ${race.raceName}`;
         els.raceTrack().textContent = race.Circuit.circuitName;
         els.raceVenue().textContent = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
@@ -208,9 +244,9 @@ async function loadStandings(type, year) {
 
             let diff = "";
             if (i > 0) {
-                const prev = parseFloat(items[i - 1].points);
+                const referencePts = gapMode === 'adjacent' ? parseFloat(items[i - 1].points) : parseFloat(items[0].points);
                 const cur = parseFloat(item.points);
-                const gap = prev - cur;
+                const gap = referencePts - cur;
                 diff = Number.isInteger(gap) ? gap : gap.toFixed(1);
                 diff = `-${diff}`;
             }
@@ -231,7 +267,7 @@ async function loadStandings(type, year) {
                 row.innerHTML = `
                     <td>${i + 1}</td>
                     <td>${item.Constructor.name}</td>
-                    <td class="desktop-only">${item.Constructor.nationality}</td>
+                    <td>${item.Constructor.nationality}</td>
                     ${pointsCell}`;
             }
             frag.appendChild(row);
@@ -311,6 +347,7 @@ function initYearPicker() {
         updateAllTables(year);
         toggleNextRaceVisibility(year);
         setCalIconVisibility(year !== currentYear);
+        document.getElementById("document-name").textContent = year === currentYear ? defaultDocumentName : `${year} Results`;
     });
 
     icon.style.opacity = '0';
@@ -326,6 +363,7 @@ function setCalIconVisibility(show) {
         updateAllTables(currentYear);
         toggleNextRaceVisibility(currentYear);
         setCalIconVisibility(false);
+        document.getElementById("document-name").textContent = defaultDocumentName;
     } : null;
 }
 

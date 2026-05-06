@@ -78,8 +78,13 @@
                             <th class="mobile-only">Driver</th>
                             <th class="desktop-only">Nationality</th>
                             <th>Team</th>
-                            <th>Points</th>
-                            <th class="desktop-only">Gap</th>
+                            <th class="mobile-gap-toggle" onclick="if(window.innerWidth <= 768) toggleGapMode()"
+                                title="Tap to toggle gap mode"><span class="desktop-only">Points</span><span
+                                    class="mobile-only points-text">Points</span></th>
+                            <th class="desktop-only desktop-gap-toggle"
+                                onclick="if(window.innerWidth > 768) toggleGapMode()" title="Tap to toggle gap mode">
+                                <span class="gap-text">Interval</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -98,9 +103,13 @@
                     <tr>
                         <th>Position</th>
                         <th>Team</th>
-                        <th class="desktop-only">Nationality</th>
-                        <th>Points</th>
-                        <th class="desktop-only">Gap</th>
+                        <th>Nationality</th>
+                        <th class="mobile-gap-toggle" onclick="if(window.innerWidth <= 768) toggleGapMode()"
+                            title="Tap to toggle gap mode"><span class="desktop-only">Points</span><span
+                                class="mobile-only points-text">Points</span></th>
+                        <th class="desktop-only desktop-gap-toggle"
+                            onclick="if(window.innerWidth > 768) toggleGapMode()" title="Tap to toggle gap mode"><span
+                                class="gap-text">Interval</span></th>
                     </tr>
                 </thead>
                 <tbody></tbody>

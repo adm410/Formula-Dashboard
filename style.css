@@ -347,10 +347,75 @@ body {
     font-weight: 530;
 }
 
+@media (min-width: 769px) {
+    #constructor-table th:nth-child(1) {
+        width: 15%;
+    }
+
+    #constructor-table th:nth-child(2) {
+        width: 25%;
+    }
+
+    #constructor-table th:nth-child(3) {
+        width: 25%;
+    }
+
+    #constructor-table th:nth-child(4) {
+        width: 20%;
+    }
+
+    #constructor-table th:nth-child(5) {
+        width: 20%;
+    }
+}
+
 .data-table th {
     font-weight: 530;
     padding: 0 10px 10px 20px !important;
     border-bottom: none !important;
+}
+
+.mobile-gap-toggle,
+.desktop-gap-toggle {
+    user-select: none;
+    transition: 0.2s;
+}
+
+@media (max-width: 768px) {
+    .mobile-gap-toggle {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .mobile-gap-toggle:hover {
+        color: var(--accent);
+    }
+
+    .mobile-gap-toggle:active {
+        scale: 0.95;
+        color: var(--text-inverse) !important;
+        background-color: var(--accent) !important;
+        border-radius: 11px;
+    }
+}
+
+@media (min-width: 769px) {
+    .desktop-gap-toggle {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .desktop-gap-toggle:hover {
+        color: var(--accent) !important;
+        border-radius: 11px;
+    }
+
+    .desktop-gap-toggle:active {
+        scale: 0.95;
+        color: var(--text-inverse) !important;
+        background-color: var(--accent) !important;
+        border-radius: 11px;
+    }
 }
 
 .data-table thead tr {
@@ -360,6 +425,17 @@ body {
 .data-table td {
     font-weight: 450;
     padding: 5px 0 5px 20px !important;
+}
+
+.gap-text,
+.points-text,
+.data-table tbody {
+    transition: opacity 0.2s ease;
+}
+
+.data-table th,
+.data-table td {
+    transition: all 0.3s ease;
 }
 
 #calendar {
@@ -603,6 +679,7 @@ footer {
     }
 
     #driver-table,
+    #constructor-table,
     #calendar-table {
         font-size: 10px;
     }
@@ -613,6 +690,22 @@ footer {
     #constructor-table td:nth-child(4) {
         border-top-right-radius: 11px;
         border-bottom-right-radius: 11px;
+    }
+
+    #constructor-table th:nth-child(1) {
+        width: 10%;
+    }
+
+    #constructor-table th:nth-child(2) {
+        width: 30%;
+    }
+
+    #constructor-table th:nth-child(3) {
+        width: 25%;
+    }
+
+    #constructor-table th:nth-child(4) {
+        width: 20%;
     }
 
     .data-table th:first-child,
