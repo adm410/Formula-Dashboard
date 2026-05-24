@@ -282,6 +282,20 @@ body {
     display: inline-block;
 }
 
+.schedule-label {
+    position: relative;
+    padding-left: 1.5em;
+}
+
+.schedule-label .ti-flag-2-filled {
+    position: absolute !important;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 0 !important;
+}
+
+
 .p1dt,
 .p2dt,
 .p3dt,

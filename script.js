@@ -177,7 +177,7 @@ async function loadNextRace() {
             let wrapperClass = "pb-4";
             if (i === 2) wrapperClass = "pt-5 pb-4";
             if (i === 4) wrapperClass = "pt-5 pb-0";
-            return `<div class="${wrapperClass}"><div class="schedule-label">${showFlagHere ? flagIcon : ""} ${e.label}</div>   <div class="schedule-date">${dt}</div></div>`;
+            return `<div class="${wrapperClass}"><div class="schedule-label">${showFlagHere ? flagIcon : ""}${e.label}</div>   <div class="schedule-date">${dt}</div></div>`;
         }).join("");
 
         copyData = {
