@@ -62,10 +62,6 @@
                 "flag": "\uD83C\uDDEE\uD83C\uDDF3"
             },
             {
-                "name": "israel",
-                "flag": "\uD83C\uDDEE\uD83C\uDDF1"
-            },
-            {
                 "name": "italy",
                 "flag": "\uD83C\uDDEE\uD83C\uDDF9"
             },
@@ -232,10 +228,6 @@
                 "flag": "\uD83C\uDDEE\uD83C\uDDF3"
             },
             {
-                "name": "israeli",
-                "flag": "\uD83C\uDDEE\uD83C\uDDF1"
-            },
-            {
                 "name": "italian",
                 "flag": "\uD83C\uDDEE\uD83C\uDDF9"
             },
@@ -307,9 +299,7 @@
                 "flag": "\uD83C\uDDE6\uD83C\uDDFA",
                 "laps": "58",
                 "length": "5.278",
-                "distance": "306.124",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmelbournedetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245032/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Australia%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.124"
             },
             {
                 "name": "Autodromo Enzo e Dino Ferrari",
@@ -317,9 +307,7 @@
                 "flag": "\uD83C\uDDEE\uD83C\uDDF9",
                 "laps": "63",
                 "length": "4.909",
-                "distance": "309.049",
-                "image": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244984/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Emilia_Romagna_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245032/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Emilia%20Romagna%20carbon.png.transform/3col-retina/image.png"
+                "distance": "309.049"
             },
             {
                 "name": "Autodromo Nazionale di Monza",
@@ -327,9 +315,7 @@
                 "flag": "\uD83C\uDDEE\uD83C\uDDF9",
                 "laps": "53",
                 "length": "5.793",
-                "distance": "306.72",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmonzadetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245031/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Italy%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.72"
             },
             {
                 "name": "Autódromo Hermanos Rodríguez",
@@ -337,9 +323,7 @@
                 "flag": "\uD83C\uDDF2\uD83C\uDDFD",
                 "laps": "71",
                 "length": "4.304",
-                "distance": "305.354",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmexicocitydetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Mexico%20carbon.png.transform/3col-retina/image.png"
+                "distance": "305.354"
             },
             {
                 "name": "Autódromo José Carlos Pace",
@@ -347,9 +331,7 @@
                 "flag": "\uD83C\uDDE7\uD83C\uDDF7",
                 "laps": "71",
                 "length": "4.309",
-                "distance": "305.879",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackinterlagosdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Brazil%20carbon.png.transform/3col-retina/image.png"
+                "distance": "305.879"
             },
             {
                 "name": "Bahrain International Circuit",
@@ -357,9 +339,7 @@
                 "flag": "\uD83C\uDDE7\uD83C\uDDED",
                 "laps": "57",
                 "length": "5.412",
-                "distance": "308.238",
-                "image": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Bahrain_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245035/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Bahrain%20carbon.png.transform/3col-retina/image.png"
+                "distance": "308.238"
             },
             {
                 "name": "Baku City Circuit",
@@ -367,9 +347,7 @@
                 "flag": "\uD83C\uDDE6\uD83C\uDDFF",
                 "laps": "51",
                 "length": "6.003",
-                "distance": "306.049",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackbakudetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245030/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Azerbaijan%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.049"
             },
             {
                 "name": "Circuit Gilles Villeneuve",
@@ -377,9 +355,7 @@
                 "flag": "\uD83C\uDDE8\uD83C\uDDE6",
                 "laps": "70",
                 "length": "4.361",
-                "distance": "305.27",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmontrealdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Canada%20carbon.png.transform/3col-retina/image.png"
+                "distance": "305.27"
             },
             {
                 "name": "Circuit Park Zandvoort",
@@ -387,9 +363,7 @@
                 "flag": "\uD83C\uDDF3\uD83C\uDDF1",
                 "laps": "72",
                 "length": "4.259",
-                "distance": "306.587",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackzandvoortdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245033/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Netherlands%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.587"
             },
             {
                 "name": "Circuit Paul Ricard",
@@ -397,9 +371,7 @@
                 "flag": "\uD83C\uDDEB\uD83C\uDDF7",
                 "laps": "53",
                 "length": "5.842",
-                "distance": "309.69",
-                "image": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/France_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/France%20carbon.png.transform/3col-retina/image.png"
+                "distance": "309.69"
             },
             {
                 "name": "Circuit de Barcelona-Catalunya",
@@ -407,9 +379,7 @@
                 "flag": "\uD83C\uDDEA\uD83C\uDDF8",
                 "laps": "66",
                 "length": "4.657",
-                "distance": "307.236",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackcatalunyadetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1680529432/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Spain%20carbon.png.transform/3col-retina/image.png"
+                "distance": "307.236"
             },
             {
                 "name": "Circuit de Monaco",
@@ -417,9 +387,7 @@
                 "flag": "\uD83C\uDDF2\uD83C\uDDE8",
                 "laps": "78",
                 "length": "3.337",
-                "distance": "260.286",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmontecarlodetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245032/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Monte%20Carlo%20carbon.png.transform/3col-retina/image.png"
+                "distance": "260.286"
             },
             {
                 "name": "Circuit de Spa-Francorchamps",
@@ -427,9 +395,7 @@
                 "flag": "\uD83C\uDDE7\uD83C\uDDEA",
                 "laps": "44",
                 "length": "7.004",
-                "distance": "308.052",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackspafrancorchampsdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Belgium%20carbon.png.transform/3col-retina/image.png"
+                "distance": "308.052"
             },
             {
                 "name": "Circuit of the Americas",
@@ -437,9 +403,7 @@
                 "flag": "\uD83C\uDDFA\uD83C\uDDF8",
                 "laps": "56",
                 "length": "5.513",
-                "distance": "308.405",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackaustindetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245035/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/USA%20carbon.png.transform/3col-retina/image.png"
+                "distance": "308.405"
             },
             {
                 "name": "Hockenheimring",
@@ -447,9 +411,7 @@
                 "flag": "\uD83C\uDDE9\uD83C\uDDEA",
                 "laps": "67",
                 "length": "4.574",
-                "distance": "306.458",
-                "image": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Germany_Circuit_Hockenheim.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Germany%20Hockenheim%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.458"
             },
             {
                 "name": "Hungaroring",
@@ -457,9 +419,7 @@
                 "flag": "\uD83C\uDDED\uD83C\uDDFA",
                 "laps": "70",
                 "length": "4.381",
-                "distance": "306.63",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackhungaroringdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Hungary%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.63"
             },
             {
                 "name": "Istanbul Park",
@@ -467,9 +427,7 @@
                 "flag": "\uD83C\uDDF9\uD83C\uDDF7",
                 "laps": "58",
                 "length": "5.338",
-                "distance": "309.396",
-                "image": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Turkey_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Turkey%20carbon.png.transform/3col-retina/image.png"
+                "distance": "309.396"
             },
             {
                 "name": "Jeddah Corniche Circuit",
@@ -477,9 +435,7 @@
                 "flag": "\uD83C\uDDF8\uD83C\uDDE6",
                 "laps": "50",
                 "length": "6.174",
-                "distance": "308.45",
-                "image": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Saudi_Arabia_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245030/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Saudi%20Arabia%20carbon.png.transform/3col-retina/image.png"
+                "distance": "308.45"
             },
             {
                 "name": "Las Vegas Strip Street Circuit",
@@ -487,9 +443,7 @@
                 "flag": "\uD83C\uDDFA\uD83C\uDDF8",
                 "laps": "50",
                 "length": "6.201",
-                "distance": "310.05",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracklasvegasdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677249931/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Las%20Vegas%20carbon.png.transform/3col-retina/image.png"
+                "distance": "310.05"
             },
             {
                 "name": "Losail International Circuit",
@@ -497,9 +451,7 @@
                 "flag": "\uD83C\uDDF6\uD83C\uDDE6",
                 "laps": "57",
                 "length": "5.38",
-                "distance": "306.66",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracklusaildetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245031/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Qatar%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.66"
             },
             {
                 "name": "Marina Bay Street Circuit",
@@ -507,9 +459,7 @@
                 "flag": "\uD83C\uDDF8\uD83C\uDDEC",
                 "laps": "62",
                 "length": "5.063",
-                "distance": "308.706",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracksingaporedetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1683639275/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Singapore%20carbon.png.transform/3col-retina/image.png"
+                "distance": "308.706"
             },
             {
                 "name": "Madring",
@@ -517,9 +467,7 @@
                 "flag": "\uD83C\uDDEA\uD83C\uDDF8",
                 "laps": "57",
                 "length": "5.416",
-                "distance": "308.524",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmadringdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1683639275/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Singapore%20carbon.png.transform/3col-retina/image.png"
+                "distance": "308.524"
             },
             {
                 "name": "Miami International Autodrome",
@@ -527,9 +475,7 @@
                 "flag": "\uD83C\uDDFA\uD83C\uDDF8",
                 "laps": "57",
                 "length": "5.412",
-                "distance": "308.326",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackmiamidetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245035/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Miami%20carbon.png.transform/3col-retina/image.png"
+                "distance": "308.326"
             },
             {
                 "name": "Red Bull Ring",
@@ -537,9 +483,7 @@
                 "flag": "\uD83C\uDDE6\uD83C\uDDF9",
                 "laps": "71",
                 "length": "4.318",
-                "distance": "306.452",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackspielbergdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Austria%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.452"
             },
             {
                 "name": "Red Bull Ring",
@@ -547,19 +491,23 @@
                 "flag": "\uD83C\uDDE6\uD83C\uDDF9",
                 "laps": "71",
                 "length": "4.318",
-                "distance": "306.452",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackspielbergdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Austria%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.452"
+            },
+            {
+                "name": "Sepang International Circuit",
+                "event": "Bahrain Grand Prix in Malaysia",
+                "flag": "\ud83c\uddf2\ud83c\uddfe",
+                "laps": "56",
+                "length": "5.543",
+                "distance": "310.408"
             },
             {
                 "name": "Shanghai International Circuit",
-                "event": "Chinese Grand Prix",
+                "event": "Bahrain Grand Prix in Malaysia",
                 "flag": "\uD83C\uDDE8\uD83C\uDDF3",
                 "laps": "56",
                 "length": "5.451",
-                "distance": "305.066",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackshanghaidetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/China%20carbon.png.transform/3col-retina/image.png"
+                "distance": "305.066"
             },
             {
                 "name": "Silverstone Circuit",
@@ -567,9 +515,7 @@
                 "flag": "\uD83C\uDDEC\uD83C\uDDE7",
                 "laps": "52",
                 "length": "5.891",
-                "distance": "306.198",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracksilverstonedetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Great%20Britain%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.198"
             },
             {
                 "name": "Sochi Autodrom",
@@ -577,9 +523,7 @@
                 "flag": "\uD83C\uDDF7\uD83C\uDDFA",
                 "laps": "53",
                 "length": "5.848",
-                "distance": "309.745",
-                "image": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Russia_Circuit.png.transform/7col-retina/image.png",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Russia%20carbon.png.transform/3col-retina/image.png"
+                "distance": "309.745"
             },
             {
                 "name": "Suzuka Circuit",
@@ -587,9 +531,7 @@
                 "flag": "\uD83C\uDDEF\uD83C\uDDF5",
                 "laps": "53",
                 "length": "5.807",
-                "distance": "307.471",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026tracksuzukadetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677245031/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Japan%20carbon.png.transform/3col-retina/image.png"
+                "distance": "307.471"
             },
             {
                 "name": "Yas Marina Circuit",
@@ -597,9 +539,7 @@
                 "flag": "\uD83C\uDDE6\uD83C\uDDEA",
                 "laps": "58",
                 "length": "5.281",
-                "distance": "306.183",
-                "image": "https://media.formula1.com/image/upload/c_fit,h_704/q_auto/v1740000001/common/f1/2026/track/2026trackyasmarinacircuitdetailed.webp",
-                "imagemini": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Track%20icons%204x3/Abu%20Dhabi%20carbon.png.transform/3col-retina/image.png"
+                "distance": "306.183"
             }
         ]
     }
