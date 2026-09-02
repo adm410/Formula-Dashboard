@@ -245,16 +245,53 @@ body {
     user-select: text;
     float: none !important;
     text-align: center !important;
+    display: inline-grid;
+    grid-template-areas: "content";
+    place-items: center;
+    justify-content: center;
 }
 
-#race-details-name:hover {
+#race-details-name .name-full,
+#race-details-name .name-relative {
+    grid-area: content;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#race-details-name .name-full {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#race-details-name .name-relative {
+    opacity: 0;
+    transform: translateY(3px);
+    pointer-events: none;
+}
+
+#race-details-name:not(.past-race):hover {
     color: var(--accent);
 }
 
-#race-details-name:active {
+#race-details-name:not(.past-race):active {
     scale: 0.95;
     color: var(--text-inverse);
     background-color: var(--accent);
+}
+
+#race-details-name.past-race {
+    cursor: default !important;
+}
+
+#race-details-name.past-race:hover,
+#race-details-name.past-race:active {
+    color: var(--text-main) !important;
+    background-color: transparent !important;
+    scale: 1 !important;
 }
 
 .section-title:not(#race-details-name) {
@@ -266,7 +303,13 @@ body {
 
 #race-details {
     padding: 15px 0;
-    padding-left: 20px;
+    text-align: center;
+}
+
+.schedule-container {
+    margin: 0 auto;
+    width: fit-content;
+    text-align: left;
 }
 
 .nextheader p,
@@ -287,7 +330,8 @@ body {
     padding-left: 1.5em;
 }
 
-.schedule-label .ti-flag-2-filled {
+.schedule-label .ti-flag-2-filled,
+.schedule-label .ti-stopwatch {
     position: absolute !important;
     left: 0;
     top: 50%;
@@ -302,6 +346,60 @@ body {
 .schedule-date {
     font-weight: 400;
     display: inline-block;
+    vertical-align: middle;
+}
+
+.schedule-date .date-relative {
+    display: none;
+}
+
+.schedule-date .date-full {
+    display: inline-block;
+    animation: fadeInSchedule 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInSchedule {
+    0% {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 769px) {
+    #race-details-name.past-race:hover .name-full {
+        opacity: 0;
+        transform: translateY(-3px);
+        pointer-events: none;
+    }
+
+    #race-details-name.past-race:hover .name-relative {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    #race-details {
+        cursor: default;
+    }
+
+    #race-details:not(:hover) .schedule-date .date-full {
+        display: inline-block;
+        animation: fadeInSchedule 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    #race-details:hover .schedule-date .date-full {
+        display: none;
+    }
+
+    #race-details:hover .schedule-date .date-relative {
+        display: inline-block;
+        animation: fadeInSchedule 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
 }
 
 .pt-5 {
@@ -310,7 +408,7 @@ body {
 
 #trackData {
     margin: auto;
-    padding-top: 5px;
+    padding-top: 1px;
     width: fit-content;
     text-align: justify;
     padding-bottom: 15px;
@@ -661,21 +759,79 @@ footer {
     }
 
     #race-details {
-        padding-left: 5px;
+        padding: 10px 0;
+        text-align: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .schedule-container {
+        margin: 0 auto;
+        width: fit-content;
+        text-align: left;
+    }
+
+    .schedule-date {
+        display: inline-block;
+    }
+
+    #race-details .schedule-date .date-full,
+    #race-details:not(.show-relative):hover .schedule-date .date-full {
+        opacity: 1 !important;
+        display: inline-block !important;
+        animation: fadeInSchedule 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+        pointer-events: auto !important;
+    }
+
+    #race-details .schedule-date .date-relative,
+    #race-details:not(.show-relative):hover .schedule-date .date-relative {
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    #race-details.show-relative .schedule-date .date-full {
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    #race-details.show-relative .schedule-date .date-relative {
+        display: inline-block !important;
+        opacity: 1 !important;
+        animation: fadeInSchedule 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+        pointer-events: auto !important;
     }
 
     #race-details-name,
     #race-details-name:hover,
     #race-details-name:active {
         scale: 1 !important;
-        color: var(--text-main);
+        color: var(--text-main) !important;
+        background-color: transparent !important;
         padding: 0 !important;
+        display: inline-block !important;
+    }
+
+    #race-details-name .name-full,
+    #race-details-name:hover .name-full,
+    #race-details-name.past-race:hover .name-full {
+        opacity: 1 !important;
+        transform: none !important;
+        display: inline !important;
+        pointer-events: auto !important;
+    }
+
+    #race-details-name .name-relative,
+    #race-details-name:hover .name-relative,
+    #race-details-name.past-race:hover .name-relative {
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 
     #headerTxt:hover,
-    #headerTxt:active,
-    #race-details-name:hover,
-    #race-details-name:active {
+    #headerTxt:active {
         background-color: transparent !important;
     }
 

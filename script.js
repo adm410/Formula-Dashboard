@@ -51,6 +51,71 @@ const formatDate = (dateStr, timeStr, fallback = "Not Available") => {
     return date.toLocaleString(LOCALE, opts);
 };
 
+const formatRelativeDate = (dateStr, timeStr, fallback = "Not Available") => {
+    if (!dateStr) return fallback;
+    const hasTime = Boolean(timeStr);
+    const target = new Date(`${dateStr}T${timeStr || "00:00:00"}`);
+    if (isNaN(target.getTime())) return fallback;
+
+    const now = new Date();
+    const diffMs = target.getTime() - now.getTime();
+    const isFuture = diffMs > 0;
+    const absDiffMs = Math.abs(diffMs);
+    const diffMin = Math.round(absDiffMs / (1000 * 60));
+    const diffHours = Math.round(absDiffMs / (1000 * 60 * 60));
+
+    const timeFormatted = hasTime
+        ? target.toLocaleTimeString(LOCALE, {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+        }).replace(/,/g, "")
+        : "";
+
+    const midnightNow = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const midnightTarget = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+    const calDaysDiff = Math.round((midnightTarget.getTime() - midnightNow.getTime()) / (1000 * 60 * 60 * 24));
+    const absDays = Math.abs(calDaysDiff);
+
+    let res = "";
+    if (isFuture) {
+        if (hasTime && diffMin < 1) res = "Starting now";
+        else if (hasTime && diffMin < 60) res = diffMin === 1 ? "in 1 min" : `in ${diffMin} mins`;
+        else if (hasTime && diffHours < 24 && calDaysDiff === 0) res = diffHours === 1 ? "in 1 hour" : `in ${diffHours} hours`;
+        else if (calDaysDiff === 0) res = hasTime ? `Today at ${timeFormatted}` : "Today";
+        else if (calDaysDiff === 1) res = hasTime ? `Tomorrow at ${timeFormatted}` : "Tomorrow";
+        else if (calDaysDiff >= 2 && calDaysDiff < 7) res = hasTime ? `in ${calDaysDiff} days at ${timeFormatted}` : `in ${calDaysDiff} days`;
+        else if (calDaysDiff >= 7 && calDaysDiff < 30) {
+            const weeks = Math.max(1, Math.round(calDaysDiff / 7));
+            res = weeks === 1 ? "in 1 week" : `in ${weeks} weeks`;
+        } else if (calDaysDiff >= 30 && calDaysDiff < 365) {
+            const months = Math.max(1, Math.round(calDaysDiff / 30.44));
+            res = months === 1 ? "in 1 month" : `in ${months} months`;
+        } else {
+            const years = Math.max(1, Math.round(calDaysDiff / 365.25));
+            res = years === 1 ? "in 1 year" : `in ${years} years`;
+        }
+    } else {
+        if (hasTime && diffMin < 1) res = "Just now";
+        else if (hasTime && diffMin < 60) res = diffMin === 1 ? "1 min ago" : `${diffMin} mins ago`;
+        else if (hasTime && diffHours < 24 && calDaysDiff === 0) res = diffHours === 1 ? "1 hour ago" : `${diffHours} hours ago`;
+        else if (calDaysDiff === 0) res = hasTime ? `Today ${timeFormatted}` : "Today";
+        else if (calDaysDiff === -1) res = hasTime ? `Yesterday ${timeFormatted}` : "Yesterday";
+        else if (absDays >= 2 && absDays < 7) res = absDays === 1 ? "1 day ago" : `${absDays} days ago`;
+        else if (absDays >= 7 && absDays < 30) {
+            const weeks = Math.max(1, Math.round(absDays / 7));
+            res = weeks === 1 ? "a week ago" : `${weeks} weeks ago`;
+        } else if (absDays >= 30 && absDays < 365) {
+            const months = Math.max(1, Math.round(absDays / 30.44));
+            res = months === 1 ? "a month ago" : `${months} months ago`;
+        } else {
+            const years = Math.max(1, Math.round(absDays / 365.25));
+            res = years === 1 ? "a year ago" : `${years} years ago`;
+        }
+    }
+    return res.replace(/,/g, "");
+};
+
 const showLoading = (tbody, colSpan = 6) => {
     const table = tbody.closest("table");
     table.setAttribute("aria-busy", "true");
@@ -125,6 +190,7 @@ function toggleNextRaceVisibility(year) {
 // === COPY TEXT ===
 async function copyText() {
     const raceNameBtn = els.raceNameBtn();
+    if (raceNameBtn.classList.contains("past-race")) return;
     const originalHTML = raceNameBtn.innerHTML;
     const text = `${copyData.raceName}\n\n${copyData.p1}\n${copyData.p2}\n\n${copyData.p3}\n${copyData.quali}\n\n${copyData.race}`;
 
@@ -158,26 +224,40 @@ async function loadNextRace() {
         const now = Date.now();
 
         const flagIcon = `<i class="ti ti-flag-2-filled" style="color: var(--accent);margin-right:6px;"></i>`;
+        const stopwatchIcon = `<i class="ti ti-stopwatch" style="color: var(--accent);margin-right:6px;"></i>`;
         const getTime = (session) => new Date(`${session?.date || race.date}T${session?.time || race.time || "00:00:00Z"}`).getTime();
 
         const events = [
-            { label: "Practice 1:", date: race.FirstPractice },
-            { label: race.Sprint ? "Sprint Qualifying:" : "Practice 2:", date: race.SprintQualifying || race.SecondPractice },
-            { label: race.Sprint ? "Sprint Race:" : "Practice 3:", date: race.Sprint || race.ThirdPractice },
-            { label: "Qualifying:", date: race.Qualifying },
-            { label: "Race:", date: { date: race.date, time: race.time } },
+            { label: "Practice 1:", date: race.FirstPractice, durationMs: 60 * 60 * 1000 },
+            { label: race.Sprint ? "Sprint Qualifying:" : "Practice 2:", date: race.SprintQualifying || race.SecondPractice, durationMs: race.Sprint ? 45 * 60 * 1000 : 60 * 60 * 1000 },
+            { label: race.Sprint ? "Sprint Race:" : "Practice 3:", date: race.Sprint || race.ThirdPractice, durationMs: 60 * 60 * 1000 },
+            { label: "Qualifying:", date: race.Qualifying, durationMs: 60 * 60 * 1000 },
+            { label: "Race:", date: { date: race.date, time: race.time }, durationMs: 120 * 60 * 1000 },
         ];
 
-        const raceStarted = getTime(events[4].date) < now;
+        const mainRaceStart = getTime(events[4].date);
+        const mainRaceEnd = mainRaceStart + events[4].durationMs;
+        const mainRaceActive = now >= mainRaceStart && now < mainRaceEnd;
+        const mainRaceFinished = now >= mainRaceEnd;
+        const isPastOrActiveRace = now >= mainRaceStart;
 
         const scheduleHTML = events.map((e, i) => {
             const dt = formatDate(e.date?.date, e.date?.time);
-            const isFinished = getTime(e.date) < now;
-            const showFlagHere = raceStarted ? false : isFinished;
+            const relDt = formatRelativeDate(e.date?.date, e.date?.time);
+            const startTime = getTime(e.date);
+            const endTime = startTime + e.durationMs;
+
+            let statusIcon = "";
+            if (now >= endTime) {
+                statusIcon = mainRaceFinished ? "" : flagIcon;
+            } else if (now >= startTime) {
+                statusIcon = stopwatchIcon;
+            }
+
             let wrapperClass = "pb-4";
             if (i === 2) wrapperClass = "pt-5 pb-4";
             if (i === 4) wrapperClass = "pt-5 pb-0";
-            return `<div class="${wrapperClass}"><div class="schedule-label">${showFlagHere ? flagIcon : ""}${e.label}</div>   <div class="schedule-date">${dt}</div></div>`;
+            return `<div class="schedule-row ${wrapperClass}"><div class="schedule-label">${statusIcon}${e.label}</div>   <div class="schedule-date" title="${relDt}"><span class="date-full">${dt}</span><span class="date-relative">${relDt}</span></div></div>`;
         }).join("");
 
         copyData = {
@@ -193,16 +273,33 @@ async function loadNextRace() {
         if (parseInt(els.yearPicker().value, 10) === currentYear) {
             document.getElementById("document-name").textContent = defaultDocumentName;
         }
-        els.raceNameBtn().innerHTML = `${raceStarted ? flagIcon : ""} ${race.raceName}`;
+
+        const track = flagData.Data.track.find(t => t.name === race.Circuit.circuitName);
+        const flagSpan = track ? ` <span style="margin-left:3px;">${track.flag}</span>` : "";
+        const raceRelTime = formatRelativeDate(race.date, race.time);
+
+        let mainRaceIcon = "";
+        if (mainRaceFinished) {
+            mainRaceIcon = flagIcon;
+        } else if (mainRaceActive) {
+            mainRaceIcon = stopwatchIcon;
+        }
+
+        if (isPastOrActiveRace) {
+            els.raceNameBtn().classList.add("past-race");
+            els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span><span class="name-relative">${mainRaceIcon}${raceRelTime}${flagSpan}</span>`;
+        } else {
+            els.raceNameBtn().classList.remove("past-race");
+            els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span>`;
+        }
+
         els.raceTrack().textContent = race.Circuit.circuitName;
         els.raceVenue().textContent = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
-        els.raceDetails().innerHTML = `<div style="margin:auto;width:fit-content;text-align:justify">${scheduleHTML}</div>`;
+        els.raceDetails().innerHTML = `<div class="schedule-container">${scheduleHTML}</div>`;
         els.raceRound().textContent = `Round ${nextData.MRData.RaceTable.round}`;
         els.seasonRound().textContent = `of ${seasonData.MRData.total}`;
 
-        const track = flagData.Data.track.find(t => t.name === race.Circuit.circuitName);
         if (track) {
-            els.raceNameBtn().innerHTML += ` <span style="margin-left:3px;">${track.flag}</span>`;
             els.trackLaps().textContent = track.laps;
             els.trackLength().textContent = `${track.length}Km`;
             els.trackDistance().textContent = `${track.distance}Km`;
@@ -404,6 +501,12 @@ document.addEventListener("DOMContentLoaded", () => {
     initYearPicker();
     initScroll();
     toggleNextRaceVisibility(currentYear);
+
+    els.raceDetails()?.addEventListener("click", () => {
+        if (window.innerWidth <= 768) {
+            els.raceDetails()?.classList.toggle("show-relative");
+        }
+    });
 
     document.getElementById("footerBtn").onclick = () => {
         window.open("https://github.com/adm410/Formula-Dashboard", "_blank");
