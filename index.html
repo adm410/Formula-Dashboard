@@ -40,40 +40,37 @@
     </header>
 
     <div class="content">
-        <div id="next" class="section-card">
+        <div id="next" class="section-card animate-fade">
+            <button onclick="copyText()" id="race-details-name" class="section-title"></button>
             <div class="nextheader">
-                <div>
-                    <p id="race-round">0</p>
-                    <p id="season-round">0</p>
-                </div>
+                <p id="race-round">0</p>
                 <p id="race-details-venue"></p>
             </div>
-            <button onclick="copyText()" id="race-details-name" class="section-title"></button>
             <div id="race-details"></div>
             <div id="race-details-track"></div>
             <div id="trackData">
-                <div>
-                    <div id="lapstxt">Laps:</div>
+                <div class="track-item">
+                    <div id="lapstxt">Laps</div>
                     <div id="track-laps">00</div>
                 </div>
-                <div>
-                    <div id="lengthtxt">Length:</div>
+                <div class="track-item">
+                    <div id="lengthtxt">Length</div>
                     <div id="track-length">0.000Km</div>
                 </div>
-                <div>
-                    <div id="distancetxt">Distance:</div>
+                <div class="track-item">
+                    <div id="distancetxt">Distance</div>
                     <div id="track-distance">000.000Km</div>
                 </div>
             </div>
         </div>
 
-        <div id="driver" class="section-card">
+        <div id="driver" class="section-card animate-fade">
             <div id="driverDesktop">
                 <p id="driver-year" class="section-title"></p>
                 <table id="driver-table" class="data-table">
                     <thead>
                         <tr>
-                            <th>Position</th>
+                            <th><span class="desktop-only">Position</span><span class="mobile-only">Pos</span></th>
                             <th class="desktop-only">Driver</th>
                             <th class="mobile-only">Driver</th>
                             <th class="desktop-only">Nationality</th>
@@ -96,12 +93,12 @@
             </div>
         </div>
 
-        <div id="constructor" class="section-card">
+        <div id="constructor" class="section-card animate-fade">
             <p id="constructor-year" class="section-title"></p>
             <table id="constructor-table" class="data-table">
                 <thead>
                     <tr>
-                        <th>Position</th>
+                        <th><span class="desktop-only">Position</span><span class="mobile-only">Pos</span></th>
                         <th>Team</th>
                         <th>Nationality</th>
                         <th class="mobile-gap-toggle" onclick="if(window.innerWidth <= 768) toggleGapMode()"
@@ -120,12 +117,12 @@
             </div>
         </div>
 
-        <div id="calendar" class="section-card">
+        <div id="calendar" class="section-card animate-fade">
             <p id="calendar-year" class="section-title"></p>
             <table id="calendar-table" class="data-table">
                 <thead>
                     <tr>
-                        <th>Round</th>
+                        <th><span class="desktop-only">Round</span><span class="mobile-only">Rnd</span></th>
                         <th>Race</th>
                         <th class="desktop-only">Circuit</th>
                         <th class="desktop-only">Venue</th>

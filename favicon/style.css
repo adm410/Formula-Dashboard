@@ -212,31 +212,32 @@ body {
 }
 
 .nextheader {
+.nextheader {
     display: flex;
-    margin: 0 30px;
+    margin: 0 auto;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    font-family: var(--font-mono);
 }
 
 .nextheader p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+#race-round {
+    font-weight: 600;
+}
+
+#race-details-venue::before {
+    content: "·";
     display: inline-block;
-}
-
-.section-title {
-    border: none;
-    cursor: text;
-    font-size: 25px;
-    transition: 0.2s;
-    font-weight: 550;
-    border-radius: 11px;
-    color: var(--text-main);
-    padding: 5px 10px !important;
-    background-color: transparent;
-    font-family: 'Poppins', sans-serif !important;
-}
-
-#race-details-venue {
-    text-align: right;
+    font-size: 22px; /* Adjust dot size here */
+    line-height: 0;
+    vertical-align: -1px;
+    margin: 0 8px;
+    color: var(--border-color);
 }
 
 #race-details-name {
@@ -282,9 +283,19 @@ body {
     display: inline-block;
 }
 
+.schedule-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
 .schedule-label {
     position: relative;
     padding-left: 1.5em;
+    width: 108px;
+    flex-shrink: 0;
+    text-align: left;
 }
 
 .schedule-label .ti-flag-2-filled {
@@ -295,13 +306,13 @@ body {
     margin-right: 0 !important;
 }
 
-
 .p1dt,
 .p2dt,
 .p3dt,
 .schedule-date {
     font-weight: 400;
     display: inline-block;
+    text-align: left;
 }
 
 .pt-5 {
@@ -310,17 +321,36 @@ body {
 
 #trackData {
     margin: auto;
-    padding-top: 5px;
+    padding-top: 6px;
+    padding-bottom: 20px;
     width: fit-content;
-    text-align: justify;
-    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.track-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+#lapstxt,
+#lengthtxt,
+#distancetxt {
+    font-weight: 500;
+    font-size: 12.5px;
+    color: var(--text-muted);
 }
 
 #track-laps,
 #track-length,
 #track-distance {
-    font-weight: 400;
-    display: inline-block;
+    font-weight: 500;
+    font-size: 14px;
     font-family: 'Noto Sans Mono', monospace;
 }
 

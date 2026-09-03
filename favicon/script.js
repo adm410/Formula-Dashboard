@@ -17,7 +17,6 @@ const els = {
     raceTrack: () => document.getElementById("race-details-track"),
     raceVenue: () => document.getElementById("race-details-venue"),
     raceRound: () => document.getElementById("race-round"),
-    seasonRound: () => document.getElementById("season-round"),
     trackLaps: () => document.getElementById("track-laps"),
     trackLength: () => document.getElementById("track-length"),
     trackDistance: () => document.getElementById("track-distance"),
@@ -47,26 +46,25 @@ const formatDate = (dateStr, timeStr, fallback = "Not Available") => {
         weekday: "long", day: "numeric", month: "long", year: "numeric",
         hour: "numeric", minute: "numeric", hour12: true,
     };
-    return date.toLocaleString(LOCALE, opts);
+    return date.toLocaleString(LOCALE, opts).replace(/,/g, "");
 };
 
 const showLoading = (tbody, colSpan = 6) => {
     const table = tbody.closest("table");
-    table.setAttribute("aria-busy", "true");
-    tbody.innerHTML = `<tr><td colspan="${colSpan}" style="padding:0;border:none;"></td></tr>`;
-    const container = table.closest("div[id]");
-    container.querySelector(".table-loader")?.remove();
-    const loader = document.createElement("div");
-    loader.className = "table-loader";
-    loader.innerHTML = `<i class="ti ti-loader-2"></i>`;
-    container.style.position = "relative";
-    container.appendChild(loader);
+    table?.setAttribute("aria-busy", "true");
+    tbody.innerHTML = `
+        <tr class="table-loading-row">
+            <td colspan="${colSpan}">
+                <div class="table-loading-spinner">
+                    <i class="ti ti-loader-2"></i>
+                </div>
+            </td>
+        </tr>
+    `;
 };
 
 const hideLoading = (table) => {
     table?.removeAttribute("aria-busy");
-    const container = table?.closest("div[id]");
-    container?.querySelector(".table-loader")?.remove();
 };
 
 const showError = (el, msg) => { el.style.display = "block"; el.textContent = msg; };
@@ -97,7 +95,7 @@ async function copyText() {
 
     try {
         await navigator.clipboard.writeText(text);
-        raceNameBtn.innerHTML = `<i class="ti ti-circle-check-filled" style="color:var(--success);margin-right:6px;"></i> Copied!`;
+        raceNameBtn.innerHTML = `<span class="name-full" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;"><i class="ti ti-circle-check-filled" style="color:var(--success);margin-right:6px;"></i> Copied</span>`;
         raceNameBtn.style.color = "var(--success)";
         raceNameBtn.style.fontWeight = "600";
         setTimeout(() => {
@@ -106,7 +104,7 @@ async function copyText() {
             raceNameBtn.style.fontWeight = "";
         }, 2500);
     } catch {
-        raceNameBtn.innerHTML = `<i class="ti ti-x" style="color:var(--accent);margin-right:6px;"></i> Failed`;
+        raceNameBtn.innerHTML = `<span class="name-full" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;"><i class="ti ti-x" style="color:var(--accent);margin-right:6px;"></i> Failed</span>`;
         raceNameBtn.style.color = "var(--accent)";
         setTimeout(() => { raceNameBtn.innerHTML = originalHTML; raceNameBtn.style.color = ""; }, 2500);
     }
@@ -162,7 +160,6 @@ async function loadNextRace() {
         els.raceVenue().textContent = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
         els.raceDetails().innerHTML = `<div style="margin:auto;width:fit-content;text-align:justify">${scheduleHTML}</div>`;
         els.raceRound().textContent = `Round ${nextData.MRData.RaceTable.round}`;
-        els.seasonRound().textContent = `of ${seasonData.MRData.total}`;
 
         const track = flagData.Data.track.find(t => t.name === race.Circuit.circuitName);
         if (track) {
@@ -270,8 +267,8 @@ async function loadCalendar(year) {
 
         races.forEach(race => {
             const row = document.createElement("tr");
-            const desktopDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? dateOpts : { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-            const mobileDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? mobileDateOpts : { weekday: "short", day: "numeric", month: "short" });
+            const desktopDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? dateOpts : { weekday: "long", day: "numeric", month: "long", year: "numeric" }).replace(/,/g, "");
+            const mobileDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? mobileDateOpts : { weekday: "short", day: "numeric", month: "short" }).replace(/,/g, "");
 
             row.innerHTML = `<td>${race.round}</td><td>${race.raceName}</td><td class="desktop-only">${race.Circuit.circuitName}</td><td class="desktop-only">${race.Circuit.Location.locality}, ${race.Circuit.Location.country}</td><td><span class="desktop-only">${desktopDate}</span><span class="mobile-only">${mobileDate}</span></td>`;
 
@@ -308,6 +305,7 @@ function initYearPicker() {
 
     select.addEventListener('change', () => {
         const year = parseInt(select.value, 10);
+        window.scrollTo({ top: 0, behavior: "smooth" });
         updateAllTables(year);
         toggleNextRaceVisibility(year);
         setCalIconVisibility(year !== currentYear);
@@ -323,6 +321,7 @@ function setCalIconVisibility(show) {
     icon.style.pointerEvents = show ? 'all' : 'none';
     icon.onclick = show ? () => {
         els.yearPicker().value = currentYear;
+        window.scrollTo({ top: 0, behavior: "smooth" });
         updateAllTables(currentYear);
         toggleNextRaceVisibility(currentYear);
         setCalIconVisibility(false);

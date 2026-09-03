@@ -17,7 +17,6 @@ const els = {
     raceTrack: () => document.getElementById("race-details-track"),
     raceVenue: () => document.getElementById("race-details-venue"),
     raceRound: () => document.getElementById("race-round"),
-    seasonRound: () => document.getElementById("season-round"),
     trackLaps: () => document.getElementById("track-laps"),
     trackLength: () => document.getElementById("track-length"),
     trackDistance: () => document.getElementById("track-distance"),
@@ -48,7 +47,7 @@ const formatDate = (dateStr, timeStr, fallback = "Not Available") => {
         weekday: "long", day: "numeric", month: "long", year: "numeric",
         hour: "numeric", minute: "numeric", hour12: true,
     };
-    return date.toLocaleString(LOCALE, opts);
+    return date.toLocaleString(LOCALE, opts).replace(/,/g, "");
 };
 
 const formatRelativeDate = (dateStr, timeStr, fallback = "Not Available") => {
@@ -118,21 +117,20 @@ const formatRelativeDate = (dateStr, timeStr, fallback = "Not Available") => {
 
 const showLoading = (tbody, colSpan = 6) => {
     const table = tbody.closest("table");
-    table.setAttribute("aria-busy", "true");
-    tbody.innerHTML = `<tr><td colspan="${colSpan}" style="padding:0;border:none;"></td></tr>`;
-    const container = table.closest("div[id]");
-    container.querySelector(".table-loader")?.remove();
-    const loader = document.createElement("div");
-    loader.className = "table-loader";
-    loader.innerHTML = `<i class="ti ti-loader-2"></i>`;
-    container.style.position = "relative";
-    container.appendChild(loader);
+    table?.setAttribute("aria-busy", "true");
+    tbody.innerHTML = `
+        <tr class="table-loading-row">
+            <td colspan="${colSpan}">
+                <div class="table-loading-spinner">
+                    <i class="ti ti-loader-2"></i>
+                </div>
+            </td>
+        </tr>
+    `;
 };
 
 const hideLoading = (table) => {
     table?.removeAttribute("aria-busy");
-    const container = table?.closest("div[id]");
-    container?.querySelector(".table-loader")?.remove();
 };
 
 const showError = (el, msg) => { el.style.display = "block"; el.textContent = msg; };
@@ -156,7 +154,9 @@ window.toggleGapMode = function () {
     gapMode = gapMode === 'adjacent' ? 'leader' : 'adjacent';
     const year = parseInt(els.yearPicker().value, 10) || currentYear;
 
-    const fadingElements = document.querySelectorAll('.gap-text, .points-text, #driver-table tbody, #constructor-table tbody');
+    const fadingElements = document.querySelectorAll(
+        '#driver-table thead, #constructor-table thead, #driver-table tbody, #constructor-table tbody, .gap-text, .points-text'
+    );
     fadingElements.forEach(el => el.style.opacity = '0');
 
     setTimeout(async () => {
@@ -196,7 +196,7 @@ async function copyText() {
 
     try {
         await navigator.clipboard.writeText(text);
-        raceNameBtn.innerHTML = `<i class="ti ti-circle-check-filled" style="color:var(--success);margin-right:6px;"></i> Copied!`;
+        raceNameBtn.innerHTML = `<span class="name-full" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;"><i class="ti ti-circle-check-filled" style="color:var(--success);margin-right:6px;"></i> Copied</span>`;
         raceNameBtn.style.color = "var(--success)";
         raceNameBtn.style.fontWeight = "600";
         setTimeout(() => {
@@ -205,7 +205,7 @@ async function copyText() {
             raceNameBtn.style.fontWeight = "";
         }, 2500);
     } catch {
-        raceNameBtn.innerHTML = `<i class="ti ti-x" style="color:var(--accent);margin-right:6px;"></i> Failed`;
+        raceNameBtn.innerHTML = `<span class="name-full" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;"><i class="ti ti-x" style="color:var(--accent);margin-right:6px;"></i> Failed</span>`;
         raceNameBtn.style.color = "var(--accent)";
         setTimeout(() => { raceNameBtn.innerHTML = originalHTML; raceNameBtn.style.color = ""; }, 2500);
     }
@@ -297,7 +297,6 @@ async function loadNextRace() {
         els.raceVenue().textContent = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
         els.raceDetails().innerHTML = `<div class="schedule-container">${scheduleHTML}</div>`;
         els.raceRound().textContent = `Round ${nextData.MRData.RaceTable.round}`;
-        els.seasonRound().textContent = `of ${seasonData.MRData.total}`;
 
         if (track) {
             els.trackLaps().textContent = track.laps;
@@ -403,8 +402,8 @@ async function loadCalendar(year) {
 
         races.forEach(race => {
             const row = document.createElement("tr");
-            const desktopDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? dateOpts : { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-            const mobileDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? mobileDateOpts : { weekday: "short", day: "numeric", month: "short" });
+            const desktopDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? dateOpts : { weekday: "long", day: "numeric", month: "long", year: "numeric" }).replace(/,/g, "");
+            const mobileDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? mobileDateOpts : { weekday: "short", day: "numeric", month: "short" }).replace(/,/g, "");
 
             row.innerHTML = `<td>${race.round}</td><td>${race.raceName}</td><td class="desktop-only">${race.Circuit.circuitName}</td><td class="desktop-only">${race.Circuit.Location.locality}, ${race.Circuit.Location.country}</td><td><span class="desktop-only">${desktopDate}</span><span class="mobile-only">${mobileDate}</span></td>`;
 
@@ -425,6 +424,21 @@ async function loadCalendar(year) {
 }
 
 // === YEAR PICKER ===
+function animateSectionCards() {
+    const cards = document.querySelectorAll(".section-card");
+    cards.forEach(card => {
+        card.classList.remove("animate-fade");
+        card.style.animation = "none";
+    });
+    void document.body.offsetHeight;
+    requestAnimationFrame(() => {
+        cards.forEach(card => {
+            card.style.animation = "";
+            card.classList.add("animate-fade");
+        });
+    });
+}
+
 function initYearPicker() {
     const select = els.yearPicker();
     const icon = els.calIcon();
@@ -441,8 +455,10 @@ function initYearPicker() {
 
     select.addEventListener('change', () => {
         const year = parseInt(select.value, 10);
-        updateAllTables(year);
+        window.scrollTo({ top: 0, behavior: "smooth" });
         toggleNextRaceVisibility(year);
+        animateSectionCards();
+        updateAllTables(year);
         setCalIconVisibility(year !== currentYear);
         document.getElementById("document-name").textContent = year === currentYear ? defaultDocumentName : `${year} Results`;
     });
@@ -457,8 +473,10 @@ function setCalIconVisibility(show) {
     icon.style.pointerEvents = show ? 'all' : 'none';
     icon.onclick = show ? () => {
         els.yearPicker().value = currentYear;
-        updateAllTables(currentYear);
+        window.scrollTo({ top: 0, behavior: "smooth" });
         toggleNextRaceVisibility(currentYear);
+        animateSectionCards();
+        updateAllTables(currentYear);
         setCalIconVisibility(false);
         document.getElementById("document-name").textContent = defaultDocumentName;
     } : null;
@@ -472,6 +490,54 @@ function updateAllTables(year) {
 
 function initScroll() {
     const headerEle = document.getElementById("header");
+    const sections = ["next", "driver", "constructor", "calendar"];
+
+    const updateActiveNav = () => {
+        const scrollPosition = window.scrollY + 140;
+        const windowHeight = window.innerHeight;
+        const bodyHeight = document.body.offsetHeight;
+
+        let currentSection = "";
+
+        if (windowHeight + window.scrollY >= bodyHeight - 60) {
+            currentSection = "calendar";
+        } else {
+            for (const id of sections) {
+                const sec = document.getElementById(id);
+                if (sec && sec.style.display !== "none") {
+                    const top = sec.offsetTop;
+                    const height = sec.offsetHeight;
+                    if (scrollPosition >= top && scrollPosition < top + height + 40) {
+                        currentSection = id;
+                    }
+                }
+            }
+        }
+
+        if (!currentSection && window.scrollY < 200) {
+            const nextSec = document.getElementById("next");
+            if (nextSec && nextSec.style.display !== "none") {
+                currentSection = "next";
+            } else {
+                currentSection = "driver";
+            }
+        }
+
+        const linkMap = {
+            next: { desktop: "raceBtn", mobile: "raceBtnMobile" },
+            driver: { desktop: "driverBtn", mobile: "driverBtnMobile" },
+            constructor: { desktop: "constructorBtn", mobile: "constructorBtnMobile" },
+            calendar: { desktop: "calendarBtn", mobile: "calendarBtnMobile" }
+        };
+
+        Object.keys(linkMap).forEach(key => {
+            const isCurrent = key === currentSection;
+            const dLink = document.getElementById(linkMap[key].desktop);
+            const mLink = document.getElementById(linkMap[key].mobile);
+            if (dLink) dLink.classList.toggle("active", isCurrent);
+            if (mLink) mLink.classList.toggle("active", isCurrent);
+        });
+    };
 
     const updateHeader = () => {
         if (window.scrollY > 25) {
@@ -479,6 +545,7 @@ function initScroll() {
         } else {
             headerEle.classList.remove("scrolled");
         }
+        updateActiveNav();
     };
 
     let ticking = false;
@@ -491,6 +558,26 @@ function initScroll() {
             ticking = true;
         }
     });
+
+    document.querySelectorAll(".header-nav a").forEach(link => {
+        link.addEventListener("click", (e) => {
+            const href = link.getAttribute("href");
+            if (!href || !href.startsWith("#")) return;
+            const targetId = href.substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl && targetEl.style.display !== "none") {
+                e.preventDefault();
+                const headerOffset = 90;
+                const elementPosition = targetEl.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
+
     updateHeader();
 }
 
@@ -501,6 +588,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initYearPicker();
     initScroll();
     toggleNextRaceVisibility(currentYear);
+    animateSectionCards();
 
     els.raceDetails()?.addEventListener("click", () => {
         if (window.innerWidth <= 768) {
