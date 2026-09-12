@@ -223,14 +223,14 @@ async function loadNextRace() {
         const race = nextData.MRData.RaceTable.Races[0];
         const now = Date.now();
 
-        const flagIcon = `<i class="ti ti-flag-2-filled" style="color: var(--accent);margin-right:6px;"></i>`;
+        const flagIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-flag-2" style="color: var(--accent);margin-right:6px;"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19 4a1 1 0 0 1 .993 .883l.007 .117v9a1 1 0 0 1 -.883 .993l-.117 .007h-13v6a1 1 0 0 1 -.883 .993l-.117 .007a1 1 0 0 1 -.993 -.883l-.007 -.117v-16a1 1 0 0 1 .883 -.993l.117 -.007h14z" /></svg>`;
         const stopwatchIcon = `<i class="ti ti-stopwatch" style="color: var(--accent);margin-right:6px;"></i>`;
         const getTime = (session) => new Date(`${session?.date || race.date}T${session?.time || race.time || "00:00:00Z"}`).getTime();
 
         const events = [
             { label: "Practice 1:", date: race.FirstPractice, durationMs: 60 * 60 * 1000 },
             { label: race.Sprint ? "Sprint Qualifying:" : "Practice 2:", date: race.SprintQualifying || race.SecondPractice, durationMs: race.Sprint ? 45 * 60 * 1000 : 60 * 60 * 1000 },
-            { label: race.Sprint ? "Sprint Race:" : "Practice 3:", date: race.Sprint || race.ThirdPractice, durationMs: 60 * 60 * 1000 },
+            { label: race.Sprint ? "Sprint Race:" : "Practice 3:", date: race.Sprint || race.ThirdPractice, durationMs: race.Sprint ? 40 * 60 * 1000 : 60 * 60 * 1000 },
             { label: "Qualifying:", date: race.Qualifying, durationMs: 60 * 60 * 1000 },
             { label: "Race:", date: { date: race.date, time: race.time }, durationMs: 120 * 60 * 1000 },
         ];
@@ -243,14 +243,17 @@ async function loadNextRace() {
 
         const scheduleHTML = events.map((e, i) => {
             const dt = formatDate(e.date?.date, e.date?.time);
-            const relDt = formatRelativeDate(e.date?.date, e.date?.time);
             const startTime = getTime(e.date);
             const endTime = startTime + e.durationMs;
+            const isActive = !isNaN(startTime) && now >= startTime && now < endTime;
+            const isFinished = !isNaN(endTime) && now >= endTime;
+
+            const relDt = isActive ? "Ongoing" : formatRelativeDate(e.date?.date, e.date?.time);
 
             let statusIcon = "";
-            if (now >= endTime) {
-                statusIcon = mainRaceFinished ? "" : flagIcon;
-            } else if (now >= startTime) {
+            if (isFinished && !mainRaceFinished) {
+                statusIcon = flagIcon;
+            } else if (isActive) {
                 statusIcon = stopwatchIcon;
             }
 
@@ -287,7 +290,8 @@ async function loadNextRace() {
 
         if (isPastOrActiveRace) {
             els.raceNameBtn().classList.add("past-race");
-            els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span><span class="name-relative">${mainRaceIcon}${raceRelTime}${flagSpan}</span>`;
+            const mainRaceRel = mainRaceActive ? "Ongoing" : raceRelTime;
+            els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span><span class="name-relative">${mainRaceIcon}${mainRaceRel}${flagSpan}</span>`;
         } else {
             els.raceNameBtn().classList.remove("past-race");
             els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span>`;
@@ -404,8 +408,10 @@ async function loadCalendar(year) {
             const row = document.createElement("tr");
             const desktopDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? dateOpts : { weekday: "long", day: "numeric", month: "long", year: "numeric" }).replace(/,/g, "");
             const mobileDate = new Date(`${race.date}T${race.time || "00:00:00"}`).toLocaleString(LOCALE, race.time ? mobileDateOpts : { weekday: "short", day: "numeric", month: "short" }).replace(/,/g, "");
+            const desktopVenue = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
+            const mobileVenue = race.Circuit.Location.locality || race.Circuit.Location.country;
 
-            row.innerHTML = `<td>${race.round}</td><td>${race.raceName}</td><td class="desktop-only">${race.Circuit.circuitName}</td><td class="desktop-only">${race.Circuit.Location.locality}, ${race.Circuit.Location.country}</td><td><span class="desktop-only">${desktopDate}</span><span class="mobile-only">${mobileDate}</span></td>`;
+            row.innerHTML = `<td>${race.round}</td><td>${race.raceName}</td><td class="desktop-only">${race.Circuit.circuitName}</td><td><span class="desktop-only">${desktopVenue}</span><span class="mobile-only">${mobileVenue}</span></td><td><span class="desktop-only">${desktopDate}</span><span class="mobile-only">${mobileDate}</span></td>`;
 
             if (isCurrentYear && race.round == currentRound) {
                 row.classList.add("current-race");

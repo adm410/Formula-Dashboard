@@ -342,7 +342,7 @@ body {
     line-height: 0;
     vertical-align: -1px;
     margin: 0 8px;
-    color: var(--border-color);
+    color: var(--text-muted);
 }
 
 .section-title {
@@ -396,7 +396,7 @@ body {
 }
 
 #race-details-name:not(.past-race):hover {
-    color: var(--accent);
+    color: var(--text-inverse);
     background-color: var(--accent-soft);
 }
 
@@ -470,12 +470,26 @@ body {
 }
 
 .schedule-label .ti-flag-2-filled,
-.schedule-label .ti-stopwatch {
+.schedule-label .ti-stopwatch,
+.schedule-label i,
+.schedule-label svg {
     position: absolute !important;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     margin-right: 0 !important;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-text-stroke: 0.4px currentColor;
+}
+
+.ti-stopwatch:before {
+    content: "\f25a";
 }
 
 .schedule-date {
@@ -734,7 +748,7 @@ body {
 
 .data-table tbody tr:hover {
     background-color: var(--accent-soft) !important;
-    color: var(--accent) !important;
+    color: var(--text-main) !important;
     cursor: pointer;
 }
 
@@ -936,6 +950,14 @@ footer {
         text-align: left;
     }
 
+    .schedule-label i,
+    .schedule-label svg {
+        font-size: 14.5px;
+        width: 14.5px;
+        height: 14.5px;
+        -webkit-text-stroke: 0.35px currentColor;
+    }
+
     .schedule-date {
         display: inline-block;
         font-size: 12px;
@@ -1086,9 +1108,32 @@ footer {
     }
 
     .data-table tbody tr:hover {
-        background-color: transparent !important;
-        color: var(--accent-hover) !important;
+        background-color: var(--accent-soft) !important;
+        color: var(--text-main) !important;
         cursor: pointer;
+    }
+
+    #calendar-table th {
+        font-size: 10px;
+        padding: 6px 3px 8px !important;
+    }
+
+    #calendar-table td {
+        font-size: 10.5px;
+        padding: 6px 3px !important;
+    }
+
+    #calendar-table th:first-child,
+    #calendar-table td:first-child,
+    #calendar-table tbody tr.current-race td:first-child {
+        padding-left: 8px !important;
+    }
+
+    #calendar-table th:last-child,
+    #calendar-table td:last-child,
+    #calendar-table tbody tr.current-race td:last-child {
+        padding-right: 8px !important;
+        white-space: nowrap;
     }
 
     .pt-5 {
