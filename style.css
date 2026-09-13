@@ -938,7 +938,7 @@ footer {
     }
 
     .schedule-row {
-        gap: 14px;
+        gap: 5px;
         justify-content: flex-start;
     }
 
