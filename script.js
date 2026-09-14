@@ -40,13 +40,14 @@ let currentYear = new Date().getFullYear();
 let copyData = {};
 let defaultDocumentName = 'Formula Dashboard';
 
-const formatDate = (dateStr, timeStr, fallback = "Not Available") => {
+const formatDate = (dateStr, timeStr, fallback = "Not Available", includeYear = true) => {
     if (!dateStr) return fallback;
     const date = new Date(`${dateStr}T${timeStr || "00:00:00"}`);
     const opts = {
-        weekday: "long", day: "numeric", month: "long", year: "numeric",
+        weekday: "long", day: "numeric", month: "long",
         hour: "numeric", minute: "numeric", hour12: true,
     };
+    if (includeYear) opts.year = "numeric";
     return date.toLocaleString(LOCALE, opts).replace(/,/g, "");
 };
 
@@ -182,32 +183,35 @@ function toggleNextRaceVisibility(year) {
     const nextSection = document.getElementById("next");
     const nextMenuSection = document.getElementById("raceBtn");
     const nextMenuMobileSection = document.getElementById("raceBtnMobile");
-    nextSection.style.display = year === currentYear ? "block" : "none";
-    nextMenuSection.style.display = year === currentYear ? "block" : "none";
-    nextMenuMobileSection.style.display = year === currentYear ? "block" : "none";
+    const isCurrent = year === currentYear;
+    if (nextSection) nextSection.style.display = isCurrent ? "block" : "none";
+    if (nextMenuSection) nextMenuSection.style.display = isCurrent ? "block" : "none";
+    if (nextMenuMobileSection) nextMenuMobileSection.style.display = isCurrent ? "block" : "none";
+    if (typeof updateActiveNav === "function") updateActiveNav();
 }
 
 // === COPY TEXT ===
+let copyTimeout = null;
 async function copyText() {
     const raceNameBtn = els.raceNameBtn();
     if (raceNameBtn.classList.contains("past-race")) return;
-    const originalHTML = raceNameBtn.innerHTML;
     const text = `${copyData.raceName}\n\n${copyData.p1}\n${copyData.p2}\n\n${copyData.p3}\n${copyData.quali}\n\n${copyData.race}`;
 
     try {
         await navigator.clipboard.writeText(text);
-        raceNameBtn.innerHTML = `<span class="name-full" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;"><i class="ti ti-circle-check-filled" style="color:var(--success);margin-right:6px;"></i> Copied</span>`;
-        raceNameBtn.style.color = "var(--success)";
-        raceNameBtn.style.fontWeight = "600";
-        setTimeout(() => {
-            raceNameBtn.innerHTML = originalHTML;
-            raceNameBtn.style.color = "";
-            raceNameBtn.style.fontWeight = "";
-        }, 2500);
+        raceNameBtn.classList.remove("failed");
+        raceNameBtn.classList.add("copied");
+        if (copyTimeout) clearTimeout(copyTimeout);
+        copyTimeout = setTimeout(() => {
+            raceNameBtn.classList.remove("copied");
+        }, 2200);
     } catch {
-        raceNameBtn.innerHTML = `<span class="name-full" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;"><i class="ti ti-x" style="color:var(--accent);margin-right:6px;"></i> Failed</span>`;
-        raceNameBtn.style.color = "var(--accent)";
-        setTimeout(() => { raceNameBtn.innerHTML = originalHTML; raceNameBtn.style.color = ""; }, 2500);
+        raceNameBtn.classList.remove("copied");
+        raceNameBtn.classList.add("failed");
+        if (copyTimeout) clearTimeout(copyTimeout);
+        copyTimeout = setTimeout(() => {
+            raceNameBtn.classList.remove("failed");
+        }, 2200);
     }
 }
 
@@ -242,13 +246,14 @@ async function loadNextRace() {
         const isPastOrActiveRace = now >= mainRaceStart;
 
         const scheduleHTML = events.map((e, i) => {
-            const dt = formatDate(e.date?.date, e.date?.time);
+            const dt = formatDate(e.date?.date, e.date?.time, "Not Available", true);
+            const dtMobile = formatDate(e.date?.date, e.date?.time, "Not Available", false);
             const startTime = getTime(e.date);
             const endTime = startTime + e.durationMs;
             const isActive = !isNaN(startTime) && now >= startTime && now < endTime;
             const isFinished = !isNaN(endTime) && now >= endTime;
 
-            const relDt = isActive ? "Ongoing" : formatRelativeDate(e.date?.date, e.date?.time);
+            const relDt = isActive ? "In Session" : formatRelativeDate(e.date?.date, e.date?.time);
 
             let statusIcon = "";
             if (isFinished && !mainRaceFinished) {
@@ -260,7 +265,8 @@ async function loadNextRace() {
             let wrapperClass = "pb-4";
             if (i === 2) wrapperClass = "pt-5 pb-4";
             if (i === 4) wrapperClass = "pt-5 pb-0";
-            return `<div class="schedule-row ${wrapperClass}"><div class="schedule-label">${statusIcon}${e.label}</div>   <div class="schedule-date" title="${relDt}"><span class="date-full">${dt}</span><span class="date-relative">${relDt}</span></div></div>`;
+            if (isActive) wrapperClass += " active-session";
+            return `<div class="schedule-row ${wrapperClass}"><div class="schedule-label">${statusIcon}${e.label}</div>   <div class="schedule-date" title="${relDt}"><span class="date-full"><span class="desktop-only">${dt}</span><span class="mobile-only">${dtMobile}</span></span><span class="date-relative">${relDt}</span></div></div>`;
         }).join("");
 
         copyData = {
@@ -288,13 +294,15 @@ async function loadNextRace() {
             mainRaceIcon = stopwatchIcon;
         }
 
+        const statusSpans = `<span class="name-copied"><i class="ti ti-circle-check-filled"></i> Copied</span><span class="name-failed"><i class="ti ti-x"></i> Failed</span>`;
+
         if (isPastOrActiveRace) {
             els.raceNameBtn().classList.add("past-race");
-            const mainRaceRel = mainRaceActive ? "Ongoing" : raceRelTime;
-            els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span><span class="name-relative">${mainRaceIcon}${mainRaceRel}${flagSpan}</span>`;
+            const mainRaceRel = mainRaceActive ? "In Session" : raceRelTime;
+            els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span><span class="name-relative">${mainRaceIcon}${mainRaceRel}${flagSpan}</span>${statusSpans}`;
         } else {
             els.raceNameBtn().classList.remove("past-race");
-            els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span>`;
+            els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span>${statusSpans}`;
         }
 
         els.raceTrack().textContent = race.Circuit.circuitName;
@@ -496,54 +504,6 @@ function updateAllTables(year) {
 
 function initScroll() {
     const headerEle = document.getElementById("header");
-    const sections = ["next", "driver", "constructor", "calendar"];
-
-    const updateActiveNav = () => {
-        const scrollPosition = window.scrollY + 140;
-        const windowHeight = window.innerHeight;
-        const bodyHeight = document.body.offsetHeight;
-
-        let currentSection = "";
-
-        if (windowHeight + window.scrollY >= bodyHeight - 60) {
-            currentSection = "calendar";
-        } else {
-            for (const id of sections) {
-                const sec = document.getElementById(id);
-                if (sec && sec.style.display !== "none") {
-                    const top = sec.offsetTop;
-                    const height = sec.offsetHeight;
-                    if (scrollPosition >= top && scrollPosition < top + height + 40) {
-                        currentSection = id;
-                    }
-                }
-            }
-        }
-
-        if (!currentSection && window.scrollY < 200) {
-            const nextSec = document.getElementById("next");
-            if (nextSec && nextSec.style.display !== "none") {
-                currentSection = "next";
-            } else {
-                currentSection = "driver";
-            }
-        }
-
-        const linkMap = {
-            next: { desktop: "raceBtn", mobile: "raceBtnMobile" },
-            driver: { desktop: "driverBtn", mobile: "driverBtnMobile" },
-            constructor: { desktop: "constructorBtn", mobile: "constructorBtnMobile" },
-            calendar: { desktop: "calendarBtn", mobile: "calendarBtnMobile" }
-        };
-
-        Object.keys(linkMap).forEach(key => {
-            const isCurrent = key === currentSection;
-            const dLink = document.getElementById(linkMap[key].desktop);
-            const mLink = document.getElementById(linkMap[key].mobile);
-            if (dLink) dLink.classList.toggle("active", isCurrent);
-            if (mLink) mLink.classList.toggle("active", isCurrent);
-        });
-    };
 
     const updateHeader = () => {
         if (window.scrollY > 25) {
@@ -587,14 +547,77 @@ function initScroll() {
     updateHeader();
 }
 
+function updateActiveNav() {
+    const sections = ["next", "driver", "constructor", "calendar"];
+    const scrollPosition = window.scrollY + 140;
+    const windowHeight = window.innerHeight;
+    const bodyHeight = document.body.offsetHeight;
+    const nextSec = document.getElementById("next");
+    const isNextVisible = nextSec && nextSec.style.display !== "none";
+
+    let currentSection = "";
+
+    if (window.scrollY < 180) {
+        currentSection = isNextVisible ? "next" : "driver";
+    } else if (bodyHeight > windowHeight + 100 && windowHeight + window.scrollY >= bodyHeight - 60) {
+        currentSection = "calendar";
+    } else {
+        for (const id of sections) {
+            const sec = document.getElementById(id);
+            if (sec && sec.style.display !== "none") {
+                const top = sec.offsetTop;
+                const height = sec.offsetHeight;
+                if (scrollPosition >= top && scrollPosition < top + height + 40) {
+                    currentSection = id;
+                }
+            }
+        }
+    }
+
+    if (!currentSection) {
+        currentSection = isNextVisible ? "next" : "driver";
+    }
+
+    const linkMap = {
+        next: { desktop: "raceBtn", mobile: "raceBtnMobile" },
+        driver: { desktop: "driverBtn", mobile: "driverBtnMobile" },
+        constructor: { desktop: "constructorBtn", mobile: "constructorBtnMobile" },
+        calendar: { desktop: "calendarBtn", mobile: "calendarBtnMobile" }
+    };
+
+    Object.keys(linkMap).forEach(key => {
+        const isCurrent = key === currentSection;
+        const dLink = document.getElementById(linkMap[key].desktop);
+        const mLink = document.getElementById(linkMap[key].mobile);
+        if (dLink) dLink.classList.toggle("active", isCurrent);
+        if (mLink) mLink.classList.toggle("active", isCurrent);
+    });
+}
+
+// === SCROLL RESTORATION TO TOP ===
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+if (window.location.hash) {
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+}
+
+window.addEventListener("load", () => {
+    window.scrollTo(0, 0);
+    updateActiveNav();
+});
+
 // === INIT ===
 document.addEventListener("DOMContentLoaded", () => {
+    window.scrollTo(0, 0);
+    initYearPicker();
+    toggleNextRaceVisibility(currentYear);
     loadNextRace();
     updateAllTables(currentYear);
-    initYearPicker();
     initScroll();
-    toggleNextRaceVisibility(currentYear);
     animateSectionCards();
+    updateActiveNav();
 
     els.raceDetails()?.addEventListener("click", () => {
         if (window.innerWidth <= 768) {

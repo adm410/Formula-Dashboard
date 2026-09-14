@@ -360,7 +360,7 @@ body {
 }
 
 #race-details-name {
-    margin: auto !important;
+    margin: 10px 0 5px !important;
     cursor: pointer;
     user-select: text;
     float: none !important;
@@ -370,17 +370,22 @@ body {
     place-items: center;
     justify-content: center;
     white-space: nowrap;
-    margin-top: 10px !important;
 }
 
 #race-details-name .name-full,
-#race-details-name .name-relative {
+#race-details-name .name-relative,
+#race-details-name .name-copied,
+#race-details-name .name-failed {
     grid-area: content;
     transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
 }
 
 #race-details-name .name-full {
@@ -395,15 +400,77 @@ body {
     pointer-events: none;
 }
 
-#race-details-name:not(.past-race):hover {
-    color: var(--text-inverse);
-    background-color: var(--accent-soft);
+#race-details-name .name-copied {
+    opacity: 0;
+    transform: translateY(4px);
+    pointer-events: none;
+    color: var(--success) !important;
 }
 
-#race-details-name:not(.past-race):active {
+#race-details-name .name-copied i,
+#race-details-name .name-copied svg {
+    color: var(--success) !important;
+}
+
+#race-details-name .name-failed {
+    opacity: 0;
+    transform: translateY(4px);
+    pointer-events: none;
+    color: var(--accent) !important;
+}
+
+#race-details-name .name-failed i,
+#race-details-name .name-failed svg {
+    color: var(--accent) !important;
+}
+
+#race-details-name.copied .name-copied,
+#race-details-name.failed .name-failed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+}
+
+#race-details-name.copied .name-full,
+#race-details-name.copied .name-relative,
+#race-details-name.failed .name-full,
+#race-details-name.failed .name-relative {
+    opacity: 0 !important;
+    transform: translateY(-4px) !important;
+    pointer-events: none !important;
+}
+
+#race-details-name:not(.past-race):not(.copied):not(.failed):hover {
+    color: var(--text-inverse);
+    background-color: var(--accent-hover);
+}
+
+#race-details-name:not(.past-race):not(.copied):not(.failed):active {
     scale: 0.96;
     color: var(--text-inverse);
-    background-color: var(--accent);
+    background-color: var(--accent-hover);
+}
+
+#race-details-name.copied,
+#race-details-name.copied:hover,
+#race-details-name.copied:active,
+#race-details-name.copied:focus {
+    background-color: transparent !important;
+    color: var(--success) !important;
+    cursor: default !important;
+    scale: 1 !important;
+    box-shadow: none !important;
+}
+
+#race-details-name.failed,
+#race-details-name.failed:hover,
+#race-details-name.failed:active,
+#race-details-name.failed:focus {
+    background-color: transparent !important;
+    color: var(--accent) !important;
+    cursor: default !important;
+    scale: 1 !important;
+    box-shadow: none !important;
 }
 
 #race-details-name.past-race {
@@ -411,8 +478,8 @@ body {
     color: var(--text-muted);
 }
 
-#race-details-name.past-race:hover,
-#race-details-name.past-race:active {
+#race-details-name.past-race:not(.copied):not(.failed):hover,
+#race-details-name.past-race:not(.copied):not(.failed):active {
     color: var(--text-muted) !important;
     background-color: transparent !important;
     scale: 1 !important;
@@ -428,12 +495,17 @@ body {
 #race-details {
     margin: 20px 0 !important;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .schedule-container {
     margin: 0 auto;
     width: fit-content;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .schedule-row {
@@ -441,6 +513,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     gap: 16px;
+    width: 100%;
 }
 
 .nextheader p,
@@ -458,6 +531,7 @@ body {
     font-size: 16.5px;
     font-weight: 600;
     letter-spacing: -0.005em;
+    margin-top: 2px;
 }
 
 .schedule-label {
@@ -492,6 +566,27 @@ body {
     content: "\f25a";
 }
 
+.ti-stopwatch {
+    animation: pulseStopwatch 1.6s ease-in-out infinite;
+}
+
+@keyframes pulseStopwatch {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.schedule-row.active-session .schedule-date,
+.schedule-row.active-session .schedule-date * {
+    text-decoration: underline;
+    text-decoration-color: var(--text-muted);
+    text-underline-offset: 3.5px;
+    text-decoration-thickness: 1px;
+}
+
 .schedule-date {
     font-weight: 400;
     display: inline-block;
@@ -523,13 +618,13 @@ body {
 }
 
 @media (min-width: 769px) {
-    #race-details-name.past-race:hover .name-full {
+    #race-details-name.past-race:not(.copied):not(.failed):hover .name-full {
         opacity: 0;
         transform: translateY(-3px);
         pointer-events: none;
     }
 
-    #race-details-name.past-race:hover .name-relative {
+    #race-details-name.past-race:not(.copied):not(.failed):hover .name-relative {
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
@@ -555,7 +650,7 @@ body {
 }
 
 .pt-5 {
-    padding-top: 25px;
+    padding-top: 20px;
 }
 
 .pb-4 {
@@ -733,22 +828,17 @@ body {
     transition: opacity 0.2s ease;
 }
 
-.data-table th,
-.data-table td {
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
 #calendar {
     margin: 0 10% 5% !important;
 }
 
 .data-table tbody tr {
-    transition: background-color 0.16s ease, color 0.16s ease;
+    transition: none;
 }
 
 .data-table tbody tr:hover {
-    background-color: var(--accent-soft) !important;
-    color: var(--text-main) !important;
+    background-color: var(--accent-hover) !important;
+    color: var(--text-inverse) !important;
     cursor: pointer;
 }
 
@@ -766,7 +856,7 @@ body {
 
 .table-footer {
     margin-top: 4px;
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--text-muted);
     text-align: center;
@@ -793,19 +883,20 @@ footer {
     scale: 1;
     font-size: 14px;
     transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, scale 0.15s ease;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     color: var(--text-muted);
-    border: solid 1px transparent;
+    border: solid 2px transparent;
     background-color: transparent;
     cursor: pointer !important;
     font-family: var(--font-body) !important;
-    font-weight: 500;
+    font-weight: 600;
     padding: 6px 12px;
 }
 
 #footerBtn:hover {
+    background-color: var(--accent);
     border-color: var(--accent);
-    color: var(--accent);
+    color: var(--text-inverse);
 }
 
 #footerBtn:active {
@@ -926,6 +1017,8 @@ footer {
         margin: 12px 0 !important;
         padding: 0 !important;
         text-align: center;
+        display: flex;
+        justify-content: center;
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
     }
@@ -935,11 +1028,15 @@ footer {
         width: fit-content;
         max-width: 100%;
         text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .schedule-row {
-        gap: 5px;
+        gap: 6px;
         justify-content: flex-start;
+        width: 100%;
     }
 
     .schedule-label {
@@ -966,7 +1063,7 @@ footer {
     }
 
     .pt-5 {
-        padding-top: 14px !important;
+        padding-top: 12px !important;
     }
 
     .pb-4 {
@@ -1001,30 +1098,60 @@ footer {
         pointer-events: auto !important;
     }
 
-    #race-details-name,
-    #race-details-name:hover,
-    #race-details-name:active {
+    #race-details-name {
         scale: 1 !important;
         color: var(--text-main) !important;
         background-color: transparent !important;
         padding: 6px 10px !important;
         margin: 4px auto 0 !important;
-        display: inline-block !important;
+        display: inline-grid !important;
+        grid-template-areas: "content" !important;
+        place-items: center !important;
+        justify-content: center !important;
         font-size: 18px !important;
     }
 
-    #race-details-name .name-full,
-    #race-details-name:hover .name-full,
-    #race-details-name.past-race:hover .name-full {
+    #race-details-name:hover,
+    #race-details-name:active {
+        scale: 1 !important;
+        color: var(--text-main) !important;
+        background-color: transparent !important;
+    }
+
+    #race-details-name.copied,
+    #race-details-name.copied:hover,
+    #race-details-name.copied:active {
+        color: var(--success) !important;
+        background-color: transparent !important;
+        scale: 1 !important;
+    }
+
+    #race-details-name:not(.copied):not(.failed) .name-full {
         opacity: 1 !important;
         transform: none !important;
-        display: inline !important;
         pointer-events: auto !important;
     }
 
-    #race-details-name .name-relative,
-    #race-details-name:hover .name-relative,
-    #race-details-name.past-race:hover .name-relative {
+    #race-details-name.copied .name-full,
+    #race-details-name.failed .name-full {
+        opacity: 0 !important;
+        transform: translateY(-4px) !important;
+        pointer-events: none !important;
+    }
+
+    #race-details-name.copied .name-copied {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+    }
+
+    #race-details-name.failed .name-failed {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+    }
+
+    #race-details-name .name-relative {
         display: none !important;
         opacity: 0 !important;
         pointer-events: none !important;
@@ -1108,8 +1235,8 @@ footer {
     }
 
     .data-table tbody tr:hover {
-        background-color: var(--accent-soft) !important;
-        color: var(--text-main) !important;
+        background-color: var(--accent-hover) !important;
+        color: var(--text-inverse) !important;
         cursor: pointer;
     }
 
