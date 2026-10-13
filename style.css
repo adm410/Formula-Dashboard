@@ -541,6 +541,13 @@ body {
     width: 108px;
     flex-shrink: 0;
     text-align: left;
+    white-space: nowrap;
+}
+
+/* Sprint Weekend Exception (Desktop) */
+.schedule-container.sprint-weekend .schedule-label,
+.sprint-weekend .schedule-label {
+    width: 158px;
 }
 
 .schedule-label .ti-flag-2-filled,
@@ -1045,6 +1052,27 @@ footer {
         width: 95px;
         flex-shrink: 0;
         text-align: left;
+        white-space: nowrap;
+    }
+
+    /* Sprint Weekend Exception (Mobile) */
+    #next.sprint-weekend {
+        margin: 0 2.5% 8% !important;
+    }
+
+    .schedule-container.sprint-weekend .schedule-row {
+        gap: 6px;
+    }
+
+    .schedule-container.sprint-weekend .schedule-label,
+    .sprint-weekend .schedule-label {
+        width: 130px;
+        padding-left: 1.35em;
+    }
+
+    .schedule-container.sprint-weekend .schedule-date,
+    .sprint-weekend .schedule-date {
+        white-space: nowrap;
     }
 
     .schedule-label i,
@@ -1280,5 +1308,27 @@ footer {
 
     #footerBtn {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    #next.sprint-weekend {
+        margin: 0 1.5% 8% !important;
+    }
+
+    .schedule-container.sprint-weekend .schedule-row {
+        gap: 4px;
+    }
+
+    .schedule-container.sprint-weekend .schedule-label,
+    .sprint-weekend .schedule-label {
+        width: 124px;
+        font-size: 12px;
+        padding-left: 1.3em;
+    }
+
+    .schedule-container.sprint-weekend .schedule-date,
+    .sprint-weekend .schedule-date {
+        font-size: 11px;
     }
 }

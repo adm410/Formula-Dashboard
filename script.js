@@ -305,9 +305,14 @@ async function loadNextRace() {
             els.raceNameBtn().innerHTML = `<span class="name-full">${mainRaceIcon}${race.raceName}${flagSpan}</span>${statusSpans}`;
         }
 
+        const isSprintWeekend = Boolean(race.Sprint);
+        const sprintClass = isSprintWeekend ? " sprint-weekend" : "";
+        els.raceDetails().classList.toggle("sprint-weekend", isSprintWeekend);
+        document.getElementById("next")?.classList.toggle("sprint-weekend", isSprintWeekend);
+
         els.raceTrack().textContent = race.Circuit.circuitName;
         els.raceVenue().textContent = `${race.Circuit.Location.locality}, ${race.Circuit.Location.country}`;
-        els.raceDetails().innerHTML = `<div class="schedule-container">${scheduleHTML}</div>`;
+        els.raceDetails().innerHTML = `<div class="schedule-container${sprintClass}">${scheduleHTML}</div>`;
         els.raceRound().textContent = `Round ${nextData.MRData.RaceTable.round}`;
 
         if (track) {
